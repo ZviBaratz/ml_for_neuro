@@ -1,0 +1,5 @@
+# Build
+_build
+
+# Virtual environment
+venv
