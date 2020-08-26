@@ -3,10 +3,11 @@ author: Dr. Shlomi Lifshitz, Zvi Baratz
 logo: logo.png
 
 repository:
-  url: https://github.com/ZviBaratz/ml_for_neuro
   path_to_book: source/
+  url: https://github.com/ZviBaratz/ml_for_neuro
 
 html:
+  home_page_in_navbar: true
   use_issues_button: true
 
 launch_buttons:

@@ -1,4 +1,8 @@
-# Machine Learning for Neuroscience
+# Contents
 
-There are many ways to write content in Jupyter Book. This short section
-covers a few tips for how to do so.
+In this course, we will cover basic concepts of statistical learning and
+explore their usage in a neuroscientific context.
+
+```{tableofcontents}
+
+```

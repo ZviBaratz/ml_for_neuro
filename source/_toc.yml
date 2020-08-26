@@ -1,5 +1,6 @@
 - file: intro
 - file: content
   sections:
-    - file: markdown
-    - file: notebooks
+    - file: chapters/chapter_1
+    - file: chapters/chapter_2
+    - file: chapters/chapter_3
