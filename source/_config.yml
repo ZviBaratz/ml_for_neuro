@@ -16,3 +16,5 @@ launch_buttons:
 latex:
   latex_documents:
     targetname: book.tex
+
+exclude_patterns: ["*skip.ipynb"]

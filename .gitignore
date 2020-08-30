@@ -1,3 +1,6 @@
+# Jupyter files
+**/.ipynb_checkpoints/**
+
 # Build
 source/_build
 
