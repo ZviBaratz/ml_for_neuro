@@ -1,7 +1,5 @@
 - file: intro
 - file: content
   sections:
-    - file: chapters/chapter_1
-    - file: chapters/chapter_2
-    - file: chapters/chapter_3
-    - file: chapters/chapter_4
+    - file: chapters/chapter_01/exercise_01
+- file: zreferences
