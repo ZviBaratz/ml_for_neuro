@@ -34,15 +34,12 @@ def calculate_nan_fractions(
     nan_data = data[nan_columns]
 
     # Calculate fractions of null values.
-    fraction_missing = nan_data.isnull().sum() / len(nan_data)
-    positives = nan_data[data[target_column]]
-    negatives = nan_data[~data[target_column]]
-    fraction_missing_positives = (
-        positives.isnull().sum() / nan_data.isnull().sum()
-    )
-    fraction_missing_negatives = (
-        negatives.isnull().sum() / nan_data.isnull().sum()
-    )
+    nan_counts = nan_data.isnull().sum()
+    fraction_missing = nan_counts / len(nan_data)
+    positives_nan_counts = nan_data[data[target_column]].isnull().sum()
+    negatives_nan_counts = nan_data[~data[target_column]].isnull().sum()
+    fraction_missing_positives = positives_nan_counts / nan_counts
+    fraction_missing_negatives = negatives_nan_counts / nan_counts
 
     # Create dataframe.
     fraction_missing_df = pd.DataFrame(
@@ -88,3 +85,33 @@ def remove_missing_data_columns(
         missing_fractions["Total Missing"] > threshold
     ].index
     return data.drop(flagged, axis=1)
+
+
+def clean_missing_values(
+    data: pd.DataFrame,
+    threshold: float = NAN_FRACTION_THRESHOLD,
+    target_column: str = TARGET_COLUMN_NAME,
+) -> pd.DataFrame:
+    """
+    Cleans missing values from the dataset
+
+    Parameters
+    ----------
+    data : pd.DataFrame
+        Input dataset
+    threshold : float, optional
+        Fraction of missing values to use as threshold for feature removal,
+        by default NAN_FRACTION_THRESHOLD
+    target_column : str, optional
+        Boolean target column name, by default TARGET_COLUMN_NAME
+
+    Returns
+    -------
+    pd.DataFrame
+        NaN-free dataset
+    """
+
+    data = remove_missing_data_columns(
+        data, threshold=threshold, target_column=target_column
+    )
+    return data.dropna(axis=0, how="any").reset_index(drop=True)

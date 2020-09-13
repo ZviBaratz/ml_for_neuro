@@ -2,4 +2,5 @@
 - file: content
   sections:
     - file: chapters/chapter_01/exercise_01
+    - file: chapters/chapter_02/exercise_02
 - file: zreferences

@@ -12,12 +12,15 @@ from configuration import (
     REPLACE_DICT,
     TARGET_COLUMN_NAME,
     WEEK_IDS,
+    X_RAY_COLUMN_PREFIX,
 )
 
 
-def remove_x_ray_columns(data: pd.DataFrame) -> pd.DataFrame:
+def remove_x_ray_columns(
+    data: pd.DataFrame, prefix: str = X_RAY_COLUMN_PREFIX
+) -> pd.DataFrame:
     """
-    Removes radiology information columns from the dataset.
+    Removes radiology results columns from the dataset.
 
     Parameters
     ----------
@@ -33,7 +36,7 @@ def remove_x_ray_columns(data: pd.DataFrame) -> pd.DataFrame:
     xray_columns = [
         column_name
         for column_name in data.columns
-        if column_name.startswith("cxr_")
+        if column_name.startswith(prefix)
     ]
     return data.drop(xray_columns, axis=1)
 
@@ -49,13 +52,20 @@ def read_data() -> pd.DataFrame:
         COVID-19 PCR test dataset
     """
 
+    # Read CSVs from remote location as a single dataframe.
     urls = [CSV_URL_PATTERN.format(week_id=week_id) for week_id in WEEK_IDS]
-    dataframes = [
-        pd.read_csv(url, parse_dates=True, error_bad_lines=False)
-        for url in urls
-    ]
+    dataframes = [pd.read_csv(url, error_bad_lines=False) for url in urls]
     data = pd.concat(dataframes, ignore_index=True)
+
+    # Convert COVID-19 test results to boolean values.
     data.replace(REPLACE_DICT, inplace=True)
+
+    # Remove x-ray data.
     data = remove_x_ray_columns(data)
-    data.dropna(axis=0, subset=[TARGET_COLUMN_NAME], inplace=True)
+
+    # Remove the batch date column.
+    data.drop("batch_date", axis=1, inplace=True)
+
+    # Remove rows with no test results.
+    data.dropna(axis="rows", subset=[TARGET_COLUMN_NAME], inplace=True)
     return data
