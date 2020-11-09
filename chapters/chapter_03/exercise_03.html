@@ -1,0 +1,1661 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise III: Linear Regression &#8212; Machine Learning for Neuroscience</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="References" href="../../zreferences.html" />
+    <link rel="prev" title="Exercise II: K-Nearest Neighbors (KNN)" href="../chapter_02/exercise_02.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Machine Learning for Neuroscience</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="../../content.html">
+   Contents
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter_01/exercise_01.html">
+     Exercise I
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter_02/exercise_02.html">
+     Exercise II: K-Nearest Neighbors (KNN)
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Exercise III: Linear Regression
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../zreferences.html">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/chapters/chapter_03/exercise_03.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/ZviBaratz/ml_for_neuro/issues/new?title=Issue%20on%20page%20%2Fchapters/chapter_03/exercise_03.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ZviBaratz/ml_for_neuro/master?urlpath=tree/source/chapters/chapter_03/exercise_03.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#diabetes">
+   Diabetes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loading-the-dataset">
+     Loading the Dataset
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#basic-exploration">
+     Basic Exploration
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#dataset-description">
+       Dataset Description
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#raw-inspection">
+       Raw Inspection
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#scatter-matrix">
+       Scatter Matrix
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#feature-correlation">
+       Feature Correlation
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#simple-linear-regression">
+     Simple Linear Regression
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#train-test-split">
+       Train/Test Split
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#model-creation">
+       Model Creation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#model-evaluation">
+       Model Evaluation
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiple-linear-regression">
+     Multiple Linear Regression
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#manual-implementation">
+       Manual Implementation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#using-sklearn">
+       Using
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         sklearn
+        </span>
+       </code>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="exercise-iii-linear-regression">
+<h1>Exercise III: Linear Regression<a class="headerlink" href="#exercise-iii-linear-regression" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>In statistics, linear regression is a linear approach to modeling the relationship between a scalar response (or dependent variable) and one or more explanatory variables (or independent variables). <a class="reference external" href="https://en.wikipedia.org/wiki/Linear_regression"><em>Wikipedia</em></a></p>
+</div></blockquote>
+<p>Using linear regression with Python is as easy as running:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="diabetes">
+<h2>Diabetes<a class="headerlink" href="#diabetes" title="Permalink to this headline">¶</a></h2>
+<p>First, let’s reproduce <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>’s <a class="reference external" href="https://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#linear-regression-example">Linear Regerssion Example</a> using the prepackaged <code class="docutils literal notranslate"><span class="pre">diabetes</span></code> dataset.</p>
+<div class="section" id="loading-the-dataset">
+<h3>Loading the Dataset<a class="headerlink" href="#loading-the-dataset" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_diabetes</span><span class="p">(</span><span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">target</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="basic-exploration">
+<h3>Basic Exploration<a class="headerlink" href="#basic-exploration" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="dataset-description">
+<h4>Dataset Description<a class="headerlink" href="#dataset-description" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">DESCR</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.. _diabetes_dataset:
+
+Diabetes dataset
+----------------
+
+Ten baseline variables, age, sex, body mass index, average blood
+pressure, and six blood serum measurements were obtained for each of n =
+442 diabetes patients, as well as the response of interest, a
+quantitative measure of disease progression one year after baseline.
+
+**Data Set Characteristics:**
+
+  :Number of Instances: 442
+
+  :Number of Attributes: First 10 columns are numeric predictive values
+
+  :Target: Column 11 is a quantitative measure of disease progression one year after baseline
+
+  :Attribute Information:
+      - age     age in years
+      - sex
+      - bmi     body mass index
+      - bp      average blood pressure
+      - s1      tc, T-Cells (a type of white blood cells)
+      - s2      ldl, low-density lipoproteins
+      - s3      hdl, high-density lipoproteins
+      - s4      tch, thyroid stimulating hormone
+      - s5      ltg, lamotrigine
+      - s6      glu, blood sugar level
+
+Note: Each of these 10 feature variables have been mean centered and scaled by the standard deviation times `n_samples` (i.e. the sum of squares of each column totals 1).
+
+Source URL:
+https://www4.stat.ncsu.edu/~boos/var.select/diabetes.html
+
+For more information see:
+Bradley Efron, Trevor Hastie, Iain Johnstone and Robert Tibshirani (2004) &quot;Least Angle Regression,&quot; Annals of Statistics (with discussion), 407-499.
+(https://web.stanford.edu/~hastie/Papers/LARS/LeastAngle_2002.pdf)
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="raw-inspection">
+<h4>Raw Inspection<a class="headerlink" href="#raw-inspection" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Select some sample indices</span>
+<span class="n">sample_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">-</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">sample_indices</span> <span class="o">=</span> <span class="p">[</span><span class="n">index</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sample_indices</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)]</span>
+
+<span class="c1"># Print data table (features and target)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">sample_indices</span><span class="p">,</span> <span class="p">:]</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_properties</span><span class="p">(</span><span class="o">**</span><span class="p">{</span>
+    <span class="s2">&quot;text-align&quot;</span><span class="p">:</span> <span class="s2">&quot;center&quot;</span><span class="p">,</span>
+<span class="p">})</span><span class="o">.</span><span class="n">set_properties</span><span class="p">(</span><span class="o">**</span><span class="p">{</span>
+    <span class="s2">&quot;border-left&quot;</span><span class="p">:</span> <span class="s2">&quot;4px solid black&quot;</span>
+<span class="p">},</span> <span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">set_table_styles</span><span class="p">([</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="n">selector</span><span class="o">=</span><span class="s2">&quot;th&quot;</span><span class="p">,</span> <span class="n">props</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;font-size&quot;</span><span class="p">,</span> <span class="s2">&quot;13px&quot;</span><span class="p">)]),</span>
+    <span class="nb">dict</span><span class="p">(</span><span class="n">selector</span><span class="o">=</span><span class="s2">&quot;td&quot;</span><span class="p">,</span> <span class="n">props</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;font-size&quot;</span><span class="p">,</span> <span class="s2">&quot;11px&quot;</span><span class="p">)]),</span>
+<span class="p">])</span><span class="o">.</span><span class="n">background_gradient</span><span class="p">()</span><span class="o">.</span><span class="n">set_precision</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><style  type="text/css" >
+    #T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3 th {
+          font-size: 13px;
+    }    #T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3 td {
+          font-size: 11px;
+    }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col0,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col9{
+            text-align:  center;
+            background-color:  #0d75b3;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col1,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col3,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col0,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col1,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col1,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col2,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col1,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col1,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col7,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col8,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col2,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col1,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col1,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col1,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col5,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col9,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col1,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col4,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col6{
+            text-align:  center;
+            background-color:  #023858;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col2{
+            text-align:  center;
+            background-color:  #05659f;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col4,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col8{
+            text-align:  center;
+            background-color:  #f9f2f8;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col5,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col0{
+            text-align:  center;
+            background-color:  #d5d5e8;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col6,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col6{
+            text-align:  center;
+            background-color:  #efe9f3;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col7,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col7,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col7,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col7{
+            text-align:  center;
+            background-color:  #7bacd1;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col8{
+            text-align:  center;
+            background-color:  #1b7eb7;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col9{
+            text-align:  center;
+            background-color:  #5ea0ca;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col10{
+            text-align:  center;
+            border-left:  4px solid black;
+            background-color:  #4c99c5;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col0{
+            text-align:  center;
+            background-color:  #75a9cf;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col1,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col9,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col0,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col1,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col1,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col6,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col1,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col4,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col5,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col7,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col1,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col8,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col1,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col1,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col2,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col3{
+            text-align:  center;
+            background-color:  #fff7fb;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col2{
+            text-align:  center;
+            background-color:  #ebe6f2;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col3,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col2{
+            text-align:  center;
+            background-color:  #63a2cb;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col4{
+            text-align:  center;
+            background-color:  #bcc7e1;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col5,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col0,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col3,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col6{
+            text-align:  center;
+            background-color:  #b4c4df;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col6{
+            text-align:  center;
+            background-color:  #4697c4;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col7,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col7,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col7{
+            text-align:  center;
+            background-color:  #d7d6e9;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col10{
+            text-align:  center;
+            border-left:  4px solid black;
+            background-color:  #ede7f2;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col2{
+            text-align:  center;
+            background-color:  #157ab5;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col3,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col3{
+            text-align:  center;
+            background-color:  #0c74b2;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col4{
+            text-align:  center;
+            background-color:  #fbf3f9;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col5{
+            text-align:  center;
+            background-color:  #d4d4e8;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col6,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col6{
+            text-align:  center;
+            background-color:  #e7e3f0;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col8,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col5{
+            text-align:  center;
+            background-color:  #529bc7;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col9,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col4,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col9{
+            text-align:  center;
+            background-color:  #79abd0;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col10{
+            text-align:  center;
+            border-left:  4px solid black;
+            background-color:  #69a5cc;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col2,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col5{
+            text-align:  center;
+            background-color:  #a8bedc;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col3{
+            text-align:  center;
+            background-color:  #8fb4d6;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col4,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col4{
+            text-align:  center;
+            background-color:  #83afd3;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col5{
+            text-align:  center;
+            background-color:  #328dbf;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col6,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col3{
+            text-align:  center;
+            background-color:  #eae6f1;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col7,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col7,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col8,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col7{
+            text-align:  center;
+            background-color:  #0872b1;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col8{
+            text-align:  center;
+            background-color:  #1278b4;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col9,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col6{
+            text-align:  center;
+            background-color:  #3f93c2;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col10{
+            text-align:  center;
+            border-left:  4px solid black;
+            background-color:  #034e7b;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col2,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col3,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col3{
+            text-align:  center;
+            background-color:  #0567a2;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col5,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col7{
+            text-align:  center;
+            background-color:  #2182b9;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col8{
+            text-align:  center;
+            background-color:  #2987bc;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col10{
+            text-align:  center;
+            border-left:  4px solid black;
+            background-color:  #0771b1;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col0{
+            text-align:  center;
+            background-color:  #dedcec;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col3,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col3{
+            text-align:  center;
+            background-color:  #4295c3;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col5{
+            text-align:  center;
+            background-color:  #3790c0;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col6,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col0,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col6,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col6{
+            text-align:  center;
+            background-color:  #e3e0ee;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col9{
+            text-align:  center;
+            background-color:  #023f64;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col10{
+            text-align:  center;
+            border-left:  4px solid black;
+            background-color:  #8bb2d4;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col4{
+            text-align:  center;
+            background-color:  #2c89bd;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col5{
+            text-align:  center;
+            background-color:  #0569a4;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col6{
+            text-align:  center;
+            background-color:  #a9bfdc;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col8{
+            text-align:  center;
+            background-color:  #b9c6e0;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col9,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col9,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col8{
+            text-align:  center;
+            background-color:  #2685bb;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col10{
+            text-align:  center;
+            border-left:  4px solid black;
+            background-color:  #d1d2e6;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col2{
+            text-align:  center;
+            background-color:  #99b8d8;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col4{
+            text-align:  center;
+            background-color:  #d8d7e9;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col5{
+            text-align:  center;
+            background-color:  #b7c5df;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col9,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col9{
+            text-align:  center;
+            background-color:  #9fbad9;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col10{
+            text-align:  center;
+            border-left:  4px solid black;
+            background-color:  #8fb4d6;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col0{
+            text-align:  center;
+            background-color:  #569dc8;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col2{
+            text-align:  center;
+            background-color:  #bdc8e1;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col3,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col0{
+            text-align:  center;
+            background-color:  #7dacd1;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col8{
+            text-align:  center;
+            background-color:  #f2ecf5;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col10{
+            text-align:  center;
+            border-left:  4px solid black;
+            background-color:  #e1dfed;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col0{
+            text-align:  center;
+            background-color:  #f0eaf4;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col3{
+            text-align:  center;
+            background-color:  #034f7d;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col4{
+            text-align:  center;
+            background-color:  #67a4cc;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col5{
+            text-align:  center;
+            background-color:  #056faf;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col6{
+            text-align:  center;
+            background-color:  #c4cbe3;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col7{
+            text-align:  center;
+            background-color:  #73a9cf;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col8{
+            text-align:  center;
+            background-color:  #e8e4f0;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col10{
+            text-align:  center;
+            border-left:  4px solid black;
+            background-color:  #04598c;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col0{
+            text-align:  center;
+            background-color:  #2d8abd;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col2{
+            text-align:  center;
+            background-color:  #d0d1e6;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col4,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col0,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col0{
+            text-align:  center;
+            background-color:  #d1d2e6;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col5{
+            text-align:  center;
+            background-color:  #4a98c5;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col9{
+            text-align:  center;
+            background-color:  #93b5d6;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col10{
+            text-align:  center;
+            border-left:  4px solid black;
+            background-color:  #fff7fb;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col0{
+            text-align:  center;
+            background-color:  #d9d8ea;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col2,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col2{
+            text-align:  center;
+            background-color:  #2383ba;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col3{
+            text-align:  center;
+            background-color:  #9cb9d9;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col4{
+            text-align:  center;
+            background-color:  #b5c4df;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col5{
+            text-align:  center;
+            background-color:  #a5bddb;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col9,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col9{
+            text-align:  center;
+            background-color:  #197db7;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col10{
+            text-align:  center;
+            border-left:  4px solid black;
+            background-color:  #e0dded;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col2,#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col2{
+            text-align:  center;
+            background-color:  #b0c2de;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col4{
+            text-align:  center;
+            background-color:  #0771b1;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col8{
+            text-align:  center;
+            background-color:  #97b7d7;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col10{
+            text-align:  center;
+            border-left:  4px solid black;
+            background-color:  #c0c9e2;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col0{
+            text-align:  center;
+            background-color:  #0570b0;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col3{
+            text-align:  center;
+            background-color:  #03446a;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col4{
+            text-align:  center;
+            background-color:  #f1ebf5;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col6{
+            text-align:  center;
+            background-color:  #e0dded;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col7{
+            text-align:  center;
+            background-color:  #94b6d7;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col8{
+            text-align:  center;
+            background-color:  #dbdaeb;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col9{
+            text-align:  center;
+            background-color:  #0569a5;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col10{
+            text-align:  center;
+            border-left:  4px solid black;
+            background-color:  #81aed2;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col4{
+            text-align:  center;
+            background-color:  #76aad0;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col7{
+            text-align:  center;
+            background-color:  #1e80b8;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col8{
+            text-align:  center;
+            background-color:  #04598c;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col10{
+            text-align:  center;
+            border-left:  4px solid black;
+            background-color:  #023858;
+            color:  #f1f1f1;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col5{
+            text-align:  center;
+            background-color:  #2a88bc;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col8{
+            text-align:  center;
+            background-color:  #6ba5cd;
+            color:  #000000;
+        }#T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col10{
+            text-align:  center;
+            border-left:  4px solid black;
+            background-color:  #fdf5fa;
+            color:  #000000;
+        }</style><table id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >age</th>        <th class="col_heading level0 col1" >sex</th>        <th class="col_heading level0 col2" >bmi</th>        <th class="col_heading level0 col3" >bp</th>        <th class="col_heading level0 col4" >s1</th>        <th class="col_heading level0 col5" >s2</th>        <th class="col_heading level0 col6" >s3</th>        <th class="col_heading level0 col7" >s4</th>        <th class="col_heading level0 col8" >s5</th>        <th class="col_heading level0 col9" >s6</th>        <th class="col_heading level0 col10" >target</th>    </tr></thead><tbody>
+                <tr>
+                        <th id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3level0_row0" class="row_heading level0 row0" >0</th>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col0" class="data row0 col0" >0.038</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col1" class="data row0 col1" >0.051</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col2" class="data row0 col2" >0.062</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col3" class="data row0 col3" >0.022</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col4" class="data row0 col4" >-0.044</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col5" class="data row0 col5" >-0.035</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col6" class="data row0 col6" >-0.043</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col7" class="data row0 col7" >-0.003</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col8" class="data row0 col8" >0.020</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col9" class="data row0 col9" >-0.018</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row0_col10" class="data row0 col10" >151.000</td>
+            </tr>
+            <tr>
+                        <th id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3level0_row1" class="row_heading level0 row1" >1</th>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col0" class="data row1 col0" >-0.002</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col1" class="data row1 col1" >-0.045</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col2" class="data row1 col2" >-0.051</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col3" class="data row1 col3" >-0.026</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col4" class="data row1 col4" >-0.008</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col5" class="data row1 col5" >-0.019</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col6" class="data row1 col6" >0.074</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col7" class="data row1 col7" >-0.039</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col8" class="data row1 col8" >-0.068</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col9" class="data row1 col9" >-0.092</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row1_col10" class="data row1 col10" >75.000</td>
+            </tr>
+            <tr>
+                        <th id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3level0_row2" class="row_heading level0 row2" >2</th>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col0" class="data row2 col0" >0.085</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col1" class="data row2 col1" >0.051</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col2" class="data row2 col2" >0.044</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col3" class="data row2 col3" >-0.006</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col4" class="data row2 col4" >-0.046</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col5" class="data row2 col5" >-0.034</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col6" class="data row2 col6" >-0.032</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col7" class="data row2 col7" >-0.003</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col8" class="data row2 col8" >0.003</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col9" class="data row2 col9" >-0.026</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row2_col10" class="data row2 col10" >141.000</td>
+            </tr>
+            <tr>
+                        <th id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3level0_row3" class="row_heading level0 row3" >3</th>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col0" class="data row3 col0" >-0.089</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col1" class="data row3 col1" >-0.045</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col2" class="data row3 col2" >-0.012</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col3" class="data row3 col3" >-0.037</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col4" class="data row3 col4" >0.012</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col5" class="data row3 col5" >0.025</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col6" class="data row3 col6" >-0.036</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col7" class="data row3 col7" >0.034</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col8" class="data row3 col8" >0.023</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col9" class="data row3 col9" >-0.009</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row3_col10" class="data row3 col10" >206.000</td>
+            </tr>
+            <tr>
+                        <th id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3level0_row4" class="row_heading level0 row4" >146</th>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col0" class="data row4 col0" >-0.031</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col1" class="data row4 col1" >0.051</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col2" class="data row4 col2" >0.060</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col3" class="data row4 col3" >0.001</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col4" class="data row4 col4" >0.012</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col5" class="data row4 col5" >0.032</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col6" class="data row4 col6" >-0.043</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col7" class="data row4 col7" >0.034</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col8" class="data row4 col8" >0.015</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col9" class="data row4 col9" >0.007</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row4_col10" class="data row4 col10" >178.000</td>
+            </tr>
+            <tr>
+                        <th id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3level0_row5" class="row_heading level0 row5" >147</th>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col0" class="data row5 col0" >-0.056</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col1" class="data row5 col1" >-0.045</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col2" class="data row5 col2" >0.093</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col3" class="data row5 col3" >-0.019</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col4" class="data row5 col4" >0.015</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col5" class="data row5 col5" >0.023</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col6" class="data row5 col6" >-0.029</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col7" class="data row5 col7" >0.025</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col8" class="data row5 col8" >0.026</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col9" class="data row5 col9" >0.040</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row5_col10" class="data row5 col10" >128.000</td>
+            </tr>
+            <tr>
+                        <th id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3level0_row6" class="row_heading level0 row6" >148</th>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col0" class="data row6 col0" >-0.060</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col1" class="data row6 col1" >0.051</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col2" class="data row6 col2" >0.015</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col3" class="data row6 col3" >-0.019</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col4" class="data row6 col4" >0.037</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col5" class="data row6 col5" >0.048</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col6" class="data row6 col6" >0.019</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col7" class="data row6 col7" >-0.003</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col8" class="data row6 col8" >-0.031</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col9" class="data row6 col9" >-0.001</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row6_col10" class="data row6 col10" >96.000</td>
+            </tr>
+            <tr>
+                        <th id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3level0_row7" class="row_heading level0 row7" >149</th>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col0" class="data row7 col0" >-0.049</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col1" class="data row7 col1" >0.051</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col2" class="data row7 col2" >-0.005</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col3" class="data row7 col3" >-0.047</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col4" class="data row7 col4" >-0.021</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col5" class="data row7 col5" >-0.020</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col6" class="data row7 col6" >-0.069</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col7" class="data row7 col7" >0.071</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col8" class="data row7 col8" >0.061</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col9" class="data row7 col9" >-0.038</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row7_col10" class="data row7 col10" >126.000</td>
+            </tr>
+            <tr>
+                        <th id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3level0_row8" class="row_heading level0 row8" >292</th>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col0" class="data row8 col0" >0.009</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col1" class="data row8 col1" >-0.045</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col2" class="data row8 col2" >-0.022</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col3" class="data row8 col3" >-0.032</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col4" class="data row8 col4" >-0.050</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col5" class="data row8 col5" >-0.069</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col6" class="data row8 col6" >0.078</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col7" class="data row8 col7" >-0.071</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col8" class="data row8 col8" >-0.063</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col9" class="data row8 col9" >-0.038</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row8_col10" class="data row8 col10" >84.000</td>
+            </tr>
+            <tr>
+                        <th id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3level0_row9" class="row_heading level0 row9" >293</th>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col0" class="data row9 col0" >-0.071</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col1" class="data row9 col1" >-0.045</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col2" class="data row9 col2" >0.093</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col3" class="data row9 col3" >0.013</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col4" class="data row9 col4" >0.020</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col5" class="data row9 col5" >0.043</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col6" class="data row9 col6" >0.001</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col7" class="data row9 col7" >0.000</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col8" class="data row9 col8" >-0.055</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col9" class="data row9 col9" >-0.001</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row9_col10" class="data row9 col10" >200.000</td>
+            </tr>
+            <tr>
+                        <th id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3level0_row10" class="row_heading level0 row10" >294</th>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col0" class="data row10 col0" >0.024</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col1" class="data row10 col1" >0.051</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col2" class="data row10 col2" >-0.031</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col3" class="data row10 col3" >-0.006</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col4" class="data row10 col4" >-0.017</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col5" class="data row10 col5" >0.018</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col6" class="data row10 col6" >-0.032</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col7" class="data row10 col7" >-0.003</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col8" class="data row10 col8" >-0.074</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col9" class="data row10 col9" >-0.034</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row10_col10" class="data row10 col10" >55.000</td>
+            </tr>
+            <tr>
+                        <th id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3level0_row11" class="row_heading level0 row11" >295</th>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col0" class="data row11 col0" >-0.053</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col1" class="data row11 col1" >0.051</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col2" class="data row11 col2" >0.039</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col3" class="data row11 col3" >-0.040</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col4" class="data row11 col4" >-0.006</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col5" class="data row11 col5" >-0.013</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col6" class="data row11 col6" >0.012</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col7" class="data row11 col7" >-0.039</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col8" class="data row11 col8" >0.016</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col9" class="data row11 col9" >0.003</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row11_col10" class="data row11 col10" >85.000</td>
+            </tr>
+            <tr>
+                        <th id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3level0_row12" class="row_heading level0 row12" >438</th>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col0" class="data row12 col0" >-0.006</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col1" class="data row12 col1" >0.051</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col2" class="data row12 col2" >-0.016</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col3" class="data row12 col3" >-0.068</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col4" class="data row12 col4" >0.049</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col5" class="data row12 col5" >0.079</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col6" class="data row12 col6" >-0.029</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col7" class="data row12 col7" >0.034</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col8" class="data row12 col8" >-0.018</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col9" class="data row12 col9" >0.044</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row12_col10" class="data row12 col10" >104.000</td>
+            </tr>
+            <tr>
+                        <th id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3level0_row13" class="row_heading level0 row13" >439</th>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col0" class="data row13 col0" >0.042</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col1" class="data row13 col1" >0.051</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col2" class="data row13 col2" >-0.016</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col3" class="data row13 col3" >0.017</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col4" class="data row13 col4" >-0.037</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col5" class="data row13 col5" >-0.014</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col6" class="data row13 col6" >-0.025</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col7" class="data row13 col7" >-0.011</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col8" class="data row13 col8" >-0.047</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col9" class="data row13 col9" >0.015</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row13_col10" class="data row13 col10" >132.000</td>
+            </tr>
+            <tr>
+                        <th id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3level0_row14" class="row_heading level0 row14" >440</th>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col0" class="data row14 col0" >-0.045</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col1" class="data row14 col1" >-0.045</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col2" class="data row14 col2" >0.039</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col3" class="data row14 col3" >0.001</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col4" class="data row14 col4" >0.016</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col5" class="data row14 col5" >0.015</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col6" class="data row14 col6" >-0.029</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col7" class="data row14 col7" >0.027</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col8" class="data row14 col8" >0.045</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col9" class="data row14 col9" >-0.026</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row14_col10" class="data row14 col10" >220.000</td>
+            </tr>
+            <tr>
+                        <th id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3level0_row15" class="row_heading level0 row15" >441</th>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col0" class="data row15 col0" >-0.045</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col1" class="data row15 col1" >-0.045</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col2" class="data row15 col2" >-0.073</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col3" class="data row15 col3" >-0.081</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col4" class="data row15 col4" >0.084</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col5" class="data row15 col5" >0.028</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col6" class="data row15 col6" >0.174</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col7" class="data row15 col7" >-0.039</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col8" class="data row15 col8" >-0.004</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col9" class="data row15 col9" >0.003</td>
+                        <td id="T_2bc7f19c_2292_11eb_8fb4_000d3a99f3a3row15_col10" class="data row15 col10" >57.000</td>
+            </tr>
+    </tbody></table></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 442 entries, 0 to 441
+Data columns (total 11 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   age     442 non-null    float64
+ 1   sex     442 non-null    float64
+ 2   bmi     442 non-null    float64
+ 3   bp      442 non-null    float64
+ 4   s1      442 non-null    float64
+ 5   s2      442 non-null    float64
+ 6   s3      442 non-null    float64
+ 7   s4      442 non-null    float64
+ 8   s5      442 non-null    float64
+ 9   s6      442 non-null    float64
+ 10  target  442 non-null    float64
+dtypes: float64(11)
+memory usage: 38.1 KB
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>sex</th>
+      <th>bmi</th>
+      <th>bp</th>
+      <th>s1</th>
+      <th>s2</th>
+      <th>s3</th>
+      <th>s4</th>
+      <th>s5</th>
+      <th>s6</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>4.420000e+02</td>
+      <td>4.420000e+02</td>
+      <td>4.420000e+02</td>
+      <td>4.420000e+02</td>
+      <td>4.420000e+02</td>
+      <td>4.420000e+02</td>
+      <td>4.420000e+02</td>
+      <td>4.420000e+02</td>
+      <td>4.420000e+02</td>
+      <td>4.420000e+02</td>
+      <td>442.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>-3.639623e-16</td>
+      <td>1.309912e-16</td>
+      <td>-8.013951e-16</td>
+      <td>1.289818e-16</td>
+      <td>-9.042540e-17</td>
+      <td>1.301121e-16</td>
+      <td>-4.563971e-16</td>
+      <td>3.863174e-16</td>
+      <td>-3.848103e-16</td>
+      <td>-3.398488e-16</td>
+      <td>152.133484</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>4.761905e-02</td>
+      <td>4.761905e-02</td>
+      <td>4.761905e-02</td>
+      <td>4.761905e-02</td>
+      <td>4.761905e-02</td>
+      <td>4.761905e-02</td>
+      <td>4.761905e-02</td>
+      <td>4.761905e-02</td>
+      <td>4.761905e-02</td>
+      <td>4.761905e-02</td>
+      <td>77.093005</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>-1.072256e-01</td>
+      <td>-4.464164e-02</td>
+      <td>-9.027530e-02</td>
+      <td>-1.123996e-01</td>
+      <td>-1.267807e-01</td>
+      <td>-1.156131e-01</td>
+      <td>-1.023071e-01</td>
+      <td>-7.639450e-02</td>
+      <td>-1.260974e-01</td>
+      <td>-1.377672e-01</td>
+      <td>25.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>-3.729927e-02</td>
+      <td>-4.464164e-02</td>
+      <td>-3.422907e-02</td>
+      <td>-3.665645e-02</td>
+      <td>-3.424784e-02</td>
+      <td>-3.035840e-02</td>
+      <td>-3.511716e-02</td>
+      <td>-3.949338e-02</td>
+      <td>-3.324879e-02</td>
+      <td>-3.317903e-02</td>
+      <td>87.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>5.383060e-03</td>
+      <td>-4.464164e-02</td>
+      <td>-7.283766e-03</td>
+      <td>-5.670611e-03</td>
+      <td>-4.320866e-03</td>
+      <td>-3.819065e-03</td>
+      <td>-6.584468e-03</td>
+      <td>-2.592262e-03</td>
+      <td>-1.947634e-03</td>
+      <td>-1.077698e-03</td>
+      <td>140.500000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>3.807591e-02</td>
+      <td>5.068012e-02</td>
+      <td>3.124802e-02</td>
+      <td>3.564384e-02</td>
+      <td>2.835801e-02</td>
+      <td>2.984439e-02</td>
+      <td>2.931150e-02</td>
+      <td>3.430886e-02</td>
+      <td>3.243323e-02</td>
+      <td>2.791705e-02</td>
+      <td>211.500000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1.107267e-01</td>
+      <td>5.068012e-02</td>
+      <td>1.705552e-01</td>
+      <td>1.320442e-01</td>
+      <td>1.539137e-01</td>
+      <td>1.987880e-01</td>
+      <td>1.811791e-01</td>
+      <td>1.852344e-01</td>
+      <td>1.335990e-01</td>
+      <td>1.356118e-01</td>
+      <td>346.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</div>
+<div class="section" id="scatter-matrix">
+<h4>Scatter Matrix<a class="headerlink" href="#scatter-matrix" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">numeric_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;sex&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">axes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">numeric_data</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="n">new_labels</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">get_text</span><span class="p">()),</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">()</span>
+<span class="p">]</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="n">new_labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/exercise_03_14_0.png" src="../../_images/exercise_03_14_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="feature-correlation">
+<h4>Feature Correlation<a class="headerlink" href="#feature-correlation" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">hm</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">,</span>
+                 <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                 <span class="n">cbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;vlag&quot;</span><span class="p">,</span>
+                 <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                 <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.2f&#39;</span><span class="p">,</span>
+                 <span class="n">annot_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">},</span>
+                 <span class="n">xticklabels</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
+                 <span class="n">yticklabels</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/exercise_03_16_0.png" src="../../_images/exercise_03_16_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="simple-linear-regression">
+<h3>Simple Linear Regression<a class="headerlink" href="#simple-linear-regression" title="Permalink to this headline">¶</a></h3>
+<p>Simple linear regression is a linear regression model with a single explanatory variable. <code class="docutils literal notranslate"><span class="pre">bmi</span></code> seems to show a discernible linear relationship with the target variable, so let’s go with that one.</p>
+<div class="section" id="train-test-split">
+<h4>Train/Test Split<a class="headerlink" href="#train-test-split" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># Create a vector of the single predictor values</span>
+<span class="n">simple_X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">bmi</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Reshape for LinearRegression</span>
+
+<span class="c1"># Split</span>
+<span class="n">simple_X_train</span><span class="p">,</span> <span class="n">simple_X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+    <span class="n">simple_X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+</div>
+</div>
+<p>We now have a training dataset consisting of <span class="pasted-inline"><code class="output text_plain docutils literal notranslate"><span class="pre">353</span></code></span> observations and a test dataset with <span class="pasted-inline"><code class="output text_plain docutils literal notranslate"><span class="pre">89</span></code></span> observations.</p>
+</div>
+<div class="section" id="model-creation">
+<h4>Model Creation<a class="headerlink" href="#model-creation" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">simple_X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="model-evaluation">
+<h4>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+
+<span class="c1"># Predict</span>
+<span class="n">simple_y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">simple_X_test</span><span class="p">)</span>
+
+<span class="c1"># Plot</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Disease Progression by BMI&quot;</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">simple_X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Real Values&quot;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">simple_X_test</span><span class="p">,</span>
+                <span class="n">simple_y_pred</span><span class="p">,</span>
+                <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+                <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Predicted Values&quot;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">simple_X_test</span><span class="p">,</span>
+             <span class="n">simple_y_pred</span><span class="p">,</span>
+             <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span>
+             <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Regression Line&quot;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Standardized BMI score&quot;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Disease Progression&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># Show metrics</span>
+<span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">simple_y_pred</span><span class="p">)</span>
+<span class="n">r2_score_</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">simple_y_pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coefficient: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean Squared Error: </span><span class="si">{</span><span class="n">mse</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coefficient of Determination (R^2): </span><span class="si">{</span><span class="n">r2_score_</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/exercise_03_26_0.png" src="../../_images/exercise_03_26_0.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coefficient: 981.66
+Mean Squared Error: 4150.68
+Coefficient of Determination (R^2): 0.19
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="multiple-linear-regression">
+<h3>Multiple Linear Regression<a class="headerlink" href="#multiple-linear-regression" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(y = X\beta + \varepsilon\)</span></p>
+<div class="section" id="manual-implementation">
+<h4>Manual Implementation<a class="headerlink" href="#manual-implementation" title="Permalink to this headline">¶</a></h4>
+<p>While it is always best to use the standard tools Python offers, let’s be educationally paranoid for a minute and create our own implementation of ordinary least-squared (OLS) multiple linear regression.</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>This code is adapted from Chapter 3 of Machine Learning: An Algorithmic Perspective (2nd Edition) by Stephen Marsland (<a class="reference external" href="http://stephenmonika.net">website</a>, <a class="reference external" href="https://github.com/alexsosn/MarslandMLAlgo/blob/master/Ch3/linreg.py">code source</a>).</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="k">def</span> <span class="nf">calculate_linear_model</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="n">n_observations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">intercept</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_observations</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">intercept</span><span class="p">,</span> <span class="n">X</span><span class="p">])</span>
+    <span class="n">beta_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">beta_hat</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">beta_hat</span><span class="p">,</span> <span class="n">predictions</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Genrate model and predictions:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betas_manual</span><span class="p">,</span> <span class="n">y_pred_manual</span> <span class="o">=</span> <span class="n">calculate_linear_model</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Evaluate the model using <span class="math notranslate nohighlight">\(R^2\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ss_residual</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_pred_manual</span>
+<span class="n">ss_total</span> <span class="o">=</span> <span class="n">y_pred_manual</span> <span class="o">-</span> <span class="n">y_pred_manual</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="n">r2_score_manual</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ss_residual</span><span class="p">,</span> <span class="n">ss_residual</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span>
+    <span class="n">ss_total</span><span class="p">,</span> <span class="n">ss_total</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">Exception</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">14</span><span class="o">-</span><span class="mf">81e1</span><span class="n">bf76d79a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ss_residual</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_pred_manual</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">ss_total</span> <span class="o">=</span> <span class="n">y_pred_manual</span> <span class="o">-</span> <span class="n">y_pred_manual</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">r2_score_manual</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ss_residual</span><span class="p">,</span> <span class="n">ss_residual</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">ss_total</span><span class="p">,</span> <span class="n">ss_total</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/pandas/core/ops/common.py</span> in <span class="ni">new_method</span><span class="nt">(self, other)</span>
+<span class="g g-Whitespace">     </span><span class="mi">63</span>         <span class="n">other</span> <span class="o">=</span> <span class="n">item_from_zerodim</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span> 
+<span class="ne">---&gt; </span><span class="mi">65</span>         <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">66</span> 
+<span class="g g-Whitespace">     </span><span class="mi">67</span>     <span class="k">return</span> <span class="n">new_method</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/pandas/core/ops/__init__.py</span> in <span class="ni">wrapper</span><span class="nt">(left, right)</span>
+<span class="g g-Whitespace">    </span><span class="mi">343</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">arithmetic_op</span><span class="p">(</span><span class="n">lvalues</span><span class="p">,</span> <span class="n">rvalues</span><span class="p">,</span> <span class="n">op</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">344</span> 
+<span class="ne">--&gt; </span><span class="mi">345</span>         <span class="k">return</span> <span class="n">left</span><span class="o">.</span><span class="n">_construct_result</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">res_name</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">346</span> 
+<span class="g g-Whitespace">    </span><span class="mi">347</span>     <span class="n">wrapper</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">op_name</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/pandas/core/series.py</span> in <span class="ni">_construct_result</span><span class="nt">(self, result, name)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2767</span>         <span class="c1"># We do not pass dtype to ensure that the Series constructor</span>
+<span class="g g-Whitespace">   </span><span class="mi">2768</span>         <span class="c1">#  does inference in the case where `result` has object-dtype.</span>
+<span class="ne">-&gt; </span><span class="mi">2769</span>         <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2770</span>         <span class="n">out</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">2771</span> 
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/pandas/core/series.py</span> in <span class="ni">__init__</span><span class="nt">(self, data, index, dtype, name, copy, fastpath)</span>
+<span class="g g-Whitespace">    </span><span class="mi">325</span>                     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">326</span>             <span class="k">else</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">327</span>                 <span class="n">data</span> <span class="o">=</span> <span class="n">sanitize_array</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">raise_cast_failure</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">328</span> 
+<span class="g g-Whitespace">    </span><span class="mi">329</span>                 <span class="n">data</span> <span class="o">=</span> <span class="n">SingleBlockManager</span><span class="o">.</span><span class="n">from_array</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/pandas/core/construction.py</span> in <span class="ni">sanitize_array</span><span class="nt">(data, index, dtype, copy, raise_cast_failure)</span>
+<span class="g g-Whitespace">    </span><span class="mi">494</span>     <span class="k">elif</span> <span class="n">subarr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">495</span>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">496</span>             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Data must be 1-dimensional&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">497</span>         <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">498</span>             <span class="n">subarr</span> <span class="o">=</span> <span class="n">com</span><span class="o">.</span><span class="n">asarray_tuplesafe</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+
+<span class="ne">Exception</span>: Data must be 1-dimensional
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculate MSE:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mse_manual</span> <span class="o">=</span> <span class="p">(</span><span class="n">ss_residual</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betas_manual_repr</span> <span class="o">=</span> <span class="p">[</span><span class="n">beta</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">beta</span> <span class="ow">in</span> <span class="n">betas_manual</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coefficient: </span><span class="si">{</span><span class="n">betas_manual_repr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean Squared Error: </span><span class="si">{</span><span class="n">mse_manual</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coefficient of Determination (R^2): </span><span class="si">{</span><span class="n">r2_score_manual</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coefficient: [-10.01, -239.82, 519.84, 324.39, -792.18, 476.75, 101.04, 177.06, 751.28, 67.63, -152.13]
+Mean Squared Error: 2859.69
+Coefficient of Determination (R^2): 0.07
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="using-sklearn">
+<h4>Using <code class="docutils literal notranslate"><span class="pre">sklearn</span></code><a class="headerlink" href="#using-sklearn" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiple_model_all</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">multiple_model_all</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">y_pred_all</span> <span class="o">=</span> <span class="n">multiple_model_all</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Evaluate the model using <span class="math notranslate nohighlight">\(R^2\)</span>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ss_residual_all</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_pred_all</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">ss_total_all</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred_all</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="n">mse_all</span> <span class="o">=</span> <span class="p">(</span><span class="n">ss_residual_all</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">r2_score_all</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ss_residual_all</span><span class="p">,</span> <span class="n">ss_residual_all</span><span class="p">)</span> <span class="o">/</span> \
+                          <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ss_total_all</span><span class="p">,</span> <span class="n">ss_total_all</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mse_all</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred_all</span><span class="p">)</span>
+<span class="n">r2_score_all</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred_all</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betas_all_repr</span> <span class="o">=</span> <span class="p">[</span><span class="n">beta</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">beta</span> <span class="ow">in</span> <span class="n">multiple_model_all</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">flatten</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coefficient: </span><span class="si">{</span><span class="n">betas_all_repr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean Squared Error: </span><span class="si">{</span><span class="n">mse_all</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coefficient of Determination (R^2): </span><span class="si">{</span><span class="n">r2_score_all</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coefficient: [-10.01, -239.82, 519.84, 324.39, -792.18, 476.75, 101.04, 177.06, 751.28, 67.63]
+Mean Squared Error: 2859.69
+Coefficient of Determination (R^2): 0.07
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betas_all_repr</span> <span class="o">=</span> <span class="p">[</span><span class="n">beta</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">beta</span> <span class="ow">in</span> <span class="n">multiple_model_all</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">flatten</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coefficient: </span><span class="si">{</span><span class="n">betas_all_repr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean Squared Error: </span><span class="si">{:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coefficient of Determination (R^2): </span><span class="si">{</span><span class="n">r2_score_all</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coefficient: [-10.01, -239.82, 519.84, 324.39, -792.18, 476.75, 101.04, 177.06, 751.28, 67.63]
+Mean Squared Error: 2859.69
+Coefficient of Determination (R^2): 0.07
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/chapter_03"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../chapter_02/exercise_02.html" title="previous page">Exercise II: K-Nearest Neighbors (KNN)</a>
+    <a class='right-next' id="next-link" href="../../zreferences.html" title="next page">References</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dr. Shlomi Lifshits, Zvi Baratz<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
