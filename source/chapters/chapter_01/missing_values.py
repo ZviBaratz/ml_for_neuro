@@ -93,7 +93,7 @@ def clean_missing_values(
     target_column: str = TARGET_COLUMN_NAME,
 ) -> pd.DataFrame:
     """
-    Cleans missing values from the dataset
+    Cleans missing values from the dataset.
 
     Parameters
     ----------
