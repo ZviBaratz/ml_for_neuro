@@ -278,6 +278,11 @@
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#model-execution">
+       Model Execution
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#model-evaluation">
        Model Evaluation
       </a>
@@ -293,16 +298,59 @@
       <a class="reference internal nav-link" href="#manual-implementation">
        Manual Implementation
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id1">
+         Model Execution
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id2">
+         Model Evaluation
+        </a>
+        <ul class="nav section-nav flex-column">
+         <li class="toc-h6 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#r-2">
+           <span class="math notranslate nohighlight">
+            \(R^2\)
+           </span>
+          </a>
+         </li>
+         <li class="toc-h6 nav-item toc-entry">
+          <a class="reference internal nav-link" href="#mean-squared-error">
+           Mean Squared Error
+          </a>
+         </li>
+        </ul>
+       </li>
+      </ul>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#using-sklearn">
-       Using
+      <a class="reference internal nav-link" href="#multiple-linear-regression-using-sklearn">
+       Multiple Linear Regression using
        <code class="docutils literal notranslate">
         <span class="pre">
          sklearn
         </span>
        </code>
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id3">
+         Model Creation
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id4">
+         Model Execution
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id5">
+         Model Evaluation
+        </a>
+       </li>
+      </ul>
      </li>
     </ul>
    </li>
@@ -342,8 +390,13 @@
 
 <span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
 
+<span class="c1"># Read the dataset as a pandas DataFrame</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_diabetes</span><span class="p">(</span><span class="n">as_frame</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Create observations matrix and target vector</span>
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">dataset</span><span class="o">.</span><span class="n">target</span>
+
+<span class="c1"># Create a unified DataFrame containing both</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -429,658 +482,658 @@ Bradley Efron, Trevor Hastie, Iain Johnstone and Robert Tibshirani (2004) &quot;
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style  type="text/css" >
-    #T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622 th {
+    #T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1 th {
           font-size: 13px;
-    }    #T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622 td {
+    }    #T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1 td {
           font-size: 11px;
-    }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col0,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col9{
+    }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col0,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col9{
             text-align:  center;
             background-color:  #0d75b3;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col1,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col3,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col0,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col1,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col1,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col2,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col1,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col1,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col7,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col8,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col2,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col1,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col1,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col1,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col5,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col9,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col1,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col4,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col6{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col1,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col3,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col0,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col1,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col1,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col2,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col1,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col1,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col7,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col8,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col2,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col1,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col1,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col1,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col5,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col9,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col1,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col4,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col6{
             text-align:  center;
             background-color:  #023858;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col2{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col2{
             text-align:  center;
             background-color:  #05659f;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col4,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col8{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col4,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col8{
             text-align:  center;
             background-color:  #f9f2f8;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col5,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col0{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col5,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col0{
             text-align:  center;
             background-color:  #d5d5e8;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col6,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col6{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col6,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col6{
             text-align:  center;
             background-color:  #efe9f3;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col7,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col7,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col7,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col7{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col7,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col7,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col7,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col7{
             text-align:  center;
             background-color:  #7bacd1;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col8{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col8{
             text-align:  center;
             background-color:  #1b7eb7;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col9{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col9{
             text-align:  center;
             background-color:  #5ea0ca;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col10{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col10{
             text-align:  center;
             border-left:  4px solid black;
             background-color:  #4c99c5;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col0{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col0{
             text-align:  center;
             background-color:  #75a9cf;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col1,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col9,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col0,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col1,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col1,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col6,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col1,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col4,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col5,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col7,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col1,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col8,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col1,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col1,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col2,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col3{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col1,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col9,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col0,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col1,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col1,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col6,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col1,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col4,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col5,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col7,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col1,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col8,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col1,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col1,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col2,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col3{
             text-align:  center;
             background-color:  #fff7fb;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col2{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col2{
             text-align:  center;
             background-color:  #ebe6f2;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col3,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col2{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col3,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col2{
             text-align:  center;
             background-color:  #63a2cb;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col4{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col4{
             text-align:  center;
             background-color:  #bcc7e1;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col5,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col0,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col3,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col6{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col5,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col0,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col3,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col6{
             text-align:  center;
             background-color:  #b4c4df;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col6{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col6{
             text-align:  center;
             background-color:  #4697c4;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col7,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col7,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col7{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col7,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col7,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col7{
             text-align:  center;
             background-color:  #d7d6e9;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col10{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col10{
             text-align:  center;
             border-left:  4px solid black;
             background-color:  #ede7f2;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col2{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col2{
             text-align:  center;
             background-color:  #157ab5;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col3,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col3{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col3,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col3{
             text-align:  center;
             background-color:  #0c74b2;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col4{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col4{
             text-align:  center;
             background-color:  #fbf3f9;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col5{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col5{
             text-align:  center;
             background-color:  #d4d4e8;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col6,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col6{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col6,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col6{
             text-align:  center;
             background-color:  #e7e3f0;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col8,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col5{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col8,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col5{
             text-align:  center;
             background-color:  #529bc7;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col9,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col4,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col9{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col9,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col4,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col9{
             text-align:  center;
             background-color:  #79abd0;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col10{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col10{
             text-align:  center;
             border-left:  4px solid black;
             background-color:  #69a5cc;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col2,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col5{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col2,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col5{
             text-align:  center;
             background-color:  #a8bedc;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col3{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col3{
             text-align:  center;
             background-color:  #8fb4d6;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col4,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col4{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col4,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col4{
             text-align:  center;
             background-color:  #83afd3;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col5{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col5{
             text-align:  center;
             background-color:  #328dbf;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col6,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col3{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col6,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col3{
             text-align:  center;
             background-color:  #eae6f1;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col7,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col7,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col8,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col7{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col7,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col7,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col8,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col7{
             text-align:  center;
             background-color:  #0872b1;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col8{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col8{
             text-align:  center;
             background-color:  #1278b4;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col9,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col6{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col9,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col6{
             text-align:  center;
             background-color:  #3f93c2;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col10{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col10{
             text-align:  center;
             border-left:  4px solid black;
             background-color:  #034e7b;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col2,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col3,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col3{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col2,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col3,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col3{
             text-align:  center;
             background-color:  #0567a2;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col5,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col7{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col5,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col7{
             text-align:  center;
             background-color:  #2182b9;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col8{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col8{
             text-align:  center;
             background-color:  #2987bc;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col10{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col10{
             text-align:  center;
             border-left:  4px solid black;
             background-color:  #0771b1;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col0{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col0{
             text-align:  center;
             background-color:  #dedcec;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col3,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col3{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col3,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col3{
             text-align:  center;
             background-color:  #4295c3;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col5{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col5{
             text-align:  center;
             background-color:  #3790c0;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col6,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col0,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col6,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col6{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col6,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col0,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col6,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col6{
             text-align:  center;
             background-color:  #e3e0ee;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col9{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col9{
             text-align:  center;
             background-color:  #023f64;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col10{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col10{
             text-align:  center;
             border-left:  4px solid black;
             background-color:  #8bb2d4;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col4{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col4{
             text-align:  center;
             background-color:  #2c89bd;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col5{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col5{
             text-align:  center;
             background-color:  #0569a4;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col6{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col6{
             text-align:  center;
             background-color:  #a9bfdc;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col8{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col8{
             text-align:  center;
             background-color:  #b9c6e0;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col9,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col9,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col8{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col9,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col9,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col8{
             text-align:  center;
             background-color:  #2685bb;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col10{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col10{
             text-align:  center;
             border-left:  4px solid black;
             background-color:  #d1d2e6;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col2{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col2{
             text-align:  center;
             background-color:  #99b8d8;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col4{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col4{
             text-align:  center;
             background-color:  #d8d7e9;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col5{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col5{
             text-align:  center;
             background-color:  #b7c5df;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col9,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col9{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col9,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col9{
             text-align:  center;
             background-color:  #9fbad9;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col10{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col10{
             text-align:  center;
             border-left:  4px solid black;
             background-color:  #8fb4d6;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col0{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col0{
             text-align:  center;
             background-color:  #569dc8;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col2{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col2{
             text-align:  center;
             background-color:  #bdc8e1;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col3,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col0{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col3,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col0{
             text-align:  center;
             background-color:  #7dacd1;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col8{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col8{
             text-align:  center;
             background-color:  #f2ecf5;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col10{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col10{
             text-align:  center;
             border-left:  4px solid black;
             background-color:  #e1dfed;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col0{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col0{
             text-align:  center;
             background-color:  #f0eaf4;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col3{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col3{
             text-align:  center;
             background-color:  #034f7d;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col4{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col4{
             text-align:  center;
             background-color:  #67a4cc;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col5{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col5{
             text-align:  center;
             background-color:  #056faf;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col6{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col6{
             text-align:  center;
             background-color:  #c4cbe3;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col7{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col7{
             text-align:  center;
             background-color:  #73a9cf;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col8{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col8{
             text-align:  center;
             background-color:  #e8e4f0;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col10{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col10{
             text-align:  center;
             border-left:  4px solid black;
             background-color:  #04598c;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col0{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col0{
             text-align:  center;
             background-color:  #2d8abd;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col2{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col2{
             text-align:  center;
             background-color:  #d0d1e6;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col4,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col0,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col0{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col4,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col0,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col0{
             text-align:  center;
             background-color:  #d1d2e6;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col5{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col5{
             text-align:  center;
             background-color:  #4a98c5;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col9{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col9{
             text-align:  center;
             background-color:  #93b5d6;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col10{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col10{
             text-align:  center;
             border-left:  4px solid black;
             background-color:  #fff7fb;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col0{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col0{
             text-align:  center;
             background-color:  #d9d8ea;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col2,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col2{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col2,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col2{
             text-align:  center;
             background-color:  #2383ba;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col3{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col3{
             text-align:  center;
             background-color:  #9cb9d9;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col4{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col4{
             text-align:  center;
             background-color:  #b5c4df;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col5{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col5{
             text-align:  center;
             background-color:  #a5bddb;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col9,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col9{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col9,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col9{
             text-align:  center;
             background-color:  #197db7;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col10{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col10{
             text-align:  center;
             border-left:  4px solid black;
             background-color:  #e0dded;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col2,#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col2{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col2,#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col2{
             text-align:  center;
             background-color:  #b0c2de;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col4{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col4{
             text-align:  center;
             background-color:  #0771b1;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col8{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col8{
             text-align:  center;
             background-color:  #97b7d7;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col10{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col10{
             text-align:  center;
             border-left:  4px solid black;
             background-color:  #c0c9e2;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col0{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col0{
             text-align:  center;
             background-color:  #0570b0;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col3{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col3{
             text-align:  center;
             background-color:  #03446a;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col4{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col4{
             text-align:  center;
             background-color:  #f1ebf5;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col6{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col6{
             text-align:  center;
             background-color:  #e0dded;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col7{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col7{
             text-align:  center;
             background-color:  #94b6d7;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col8{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col8{
             text-align:  center;
             background-color:  #dbdaeb;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col9{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col9{
             text-align:  center;
             background-color:  #0569a5;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col10{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col10{
             text-align:  center;
             border-left:  4px solid black;
             background-color:  #81aed2;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col4{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col4{
             text-align:  center;
             background-color:  #76aad0;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col7{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col7{
             text-align:  center;
             background-color:  #1e80b8;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col8{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col8{
             text-align:  center;
             background-color:  #04598c;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col10{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col10{
             text-align:  center;
             border-left:  4px solid black;
             background-color:  #023858;
             color:  #f1f1f1;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col5{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col5{
             text-align:  center;
             background-color:  #2a88bc;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col8{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col8{
             text-align:  center;
             background-color:  #6ba5cd;
             color:  #000000;
-        }#T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col10{
+        }#T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col10{
             text-align:  center;
             border-left:  4px solid black;
             background-color:  #fdf5fa;
             color:  #000000;
-        }</style><table id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >age</th>        <th class="col_heading level0 col1" >sex</th>        <th class="col_heading level0 col2" >bmi</th>        <th class="col_heading level0 col3" >bp</th>        <th class="col_heading level0 col4" >s1</th>        <th class="col_heading level0 col5" >s2</th>        <th class="col_heading level0 col6" >s3</th>        <th class="col_heading level0 col7" >s4</th>        <th class="col_heading level0 col8" >s5</th>        <th class="col_heading level0 col9" >s6</th>        <th class="col_heading level0 col10" >target</th>    </tr></thead><tbody>
+        }</style><table id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >age</th>        <th class="col_heading level0 col1" >sex</th>        <th class="col_heading level0 col2" >bmi</th>        <th class="col_heading level0 col3" >bp</th>        <th class="col_heading level0 col4" >s1</th>        <th class="col_heading level0 col5" >s2</th>        <th class="col_heading level0 col6" >s3</th>        <th class="col_heading level0 col7" >s4</th>        <th class="col_heading level0 col8" >s5</th>        <th class="col_heading level0 col9" >s6</th>        <th class="col_heading level0 col10" >target</th>    </tr></thead><tbody>
                 <tr>
-                        <th id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622level0_row0" class="row_heading level0 row0" >0</th>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col0" class="data row0 col0" >0.038</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col1" class="data row0 col1" >0.051</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col2" class="data row0 col2" >0.062</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col3" class="data row0 col3" >0.022</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col4" class="data row0 col4" >-0.044</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col5" class="data row0 col5" >-0.035</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col6" class="data row0 col6" >-0.043</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col7" class="data row0 col7" >-0.003</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col8" class="data row0 col8" >0.020</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col9" class="data row0 col9" >-0.018</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row0_col10" class="data row0 col10" >151.000</td>
+                        <th id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1level0_row0" class="row_heading level0 row0" >0</th>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col0" class="data row0 col0" >0.038</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col1" class="data row0 col1" >0.051</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col2" class="data row0 col2" >0.062</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col3" class="data row0 col3" >0.022</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col4" class="data row0 col4" >-0.044</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col5" class="data row0 col5" >-0.035</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col6" class="data row0 col6" >-0.043</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col7" class="data row0 col7" >-0.003</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col8" class="data row0 col8" >0.020</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col9" class="data row0 col9" >-0.018</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row0_col10" class="data row0 col10" >151.000</td>
             </tr>
             <tr>
-                        <th id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622level0_row1" class="row_heading level0 row1" >1</th>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col0" class="data row1 col0" >-0.002</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col1" class="data row1 col1" >-0.045</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col2" class="data row1 col2" >-0.051</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col3" class="data row1 col3" >-0.026</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col4" class="data row1 col4" >-0.008</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col5" class="data row1 col5" >-0.019</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col6" class="data row1 col6" >0.074</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col7" class="data row1 col7" >-0.039</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col8" class="data row1 col8" >-0.068</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col9" class="data row1 col9" >-0.092</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row1_col10" class="data row1 col10" >75.000</td>
+                        <th id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1level0_row1" class="row_heading level0 row1" >1</th>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col0" class="data row1 col0" >-0.002</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col1" class="data row1 col1" >-0.045</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col2" class="data row1 col2" >-0.051</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col3" class="data row1 col3" >-0.026</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col4" class="data row1 col4" >-0.008</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col5" class="data row1 col5" >-0.019</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col6" class="data row1 col6" >0.074</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col7" class="data row1 col7" >-0.039</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col8" class="data row1 col8" >-0.068</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col9" class="data row1 col9" >-0.092</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row1_col10" class="data row1 col10" >75.000</td>
             </tr>
             <tr>
-                        <th id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622level0_row2" class="row_heading level0 row2" >2</th>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col0" class="data row2 col0" >0.085</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col1" class="data row2 col1" >0.051</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col2" class="data row2 col2" >0.044</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col3" class="data row2 col3" >-0.006</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col4" class="data row2 col4" >-0.046</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col5" class="data row2 col5" >-0.034</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col6" class="data row2 col6" >-0.032</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col7" class="data row2 col7" >-0.003</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col8" class="data row2 col8" >0.003</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col9" class="data row2 col9" >-0.026</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row2_col10" class="data row2 col10" >141.000</td>
+                        <th id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1level0_row2" class="row_heading level0 row2" >2</th>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col0" class="data row2 col0" >0.085</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col1" class="data row2 col1" >0.051</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col2" class="data row2 col2" >0.044</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col3" class="data row2 col3" >-0.006</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col4" class="data row2 col4" >-0.046</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col5" class="data row2 col5" >-0.034</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col6" class="data row2 col6" >-0.032</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col7" class="data row2 col7" >-0.003</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col8" class="data row2 col8" >0.003</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col9" class="data row2 col9" >-0.026</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row2_col10" class="data row2 col10" >141.000</td>
             </tr>
             <tr>
-                        <th id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622level0_row3" class="row_heading level0 row3" >3</th>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col0" class="data row3 col0" >-0.089</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col1" class="data row3 col1" >-0.045</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col2" class="data row3 col2" >-0.012</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col3" class="data row3 col3" >-0.037</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col4" class="data row3 col4" >0.012</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col5" class="data row3 col5" >0.025</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col6" class="data row3 col6" >-0.036</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col7" class="data row3 col7" >0.034</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col8" class="data row3 col8" >0.023</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col9" class="data row3 col9" >-0.009</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row3_col10" class="data row3 col10" >206.000</td>
+                        <th id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1level0_row3" class="row_heading level0 row3" >3</th>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col0" class="data row3 col0" >-0.089</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col1" class="data row3 col1" >-0.045</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col2" class="data row3 col2" >-0.012</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col3" class="data row3 col3" >-0.037</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col4" class="data row3 col4" >0.012</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col5" class="data row3 col5" >0.025</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col6" class="data row3 col6" >-0.036</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col7" class="data row3 col7" >0.034</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col8" class="data row3 col8" >0.023</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col9" class="data row3 col9" >-0.009</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row3_col10" class="data row3 col10" >206.000</td>
             </tr>
             <tr>
-                        <th id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622level0_row4" class="row_heading level0 row4" >146</th>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col0" class="data row4 col0" >-0.031</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col1" class="data row4 col1" >0.051</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col2" class="data row4 col2" >0.060</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col3" class="data row4 col3" >0.001</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col4" class="data row4 col4" >0.012</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col5" class="data row4 col5" >0.032</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col6" class="data row4 col6" >-0.043</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col7" class="data row4 col7" >0.034</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col8" class="data row4 col8" >0.015</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col9" class="data row4 col9" >0.007</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row4_col10" class="data row4 col10" >178.000</td>
+                        <th id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1level0_row4" class="row_heading level0 row4" >146</th>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col0" class="data row4 col0" >-0.031</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col1" class="data row4 col1" >0.051</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col2" class="data row4 col2" >0.060</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col3" class="data row4 col3" >0.001</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col4" class="data row4 col4" >0.012</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col5" class="data row4 col5" >0.032</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col6" class="data row4 col6" >-0.043</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col7" class="data row4 col7" >0.034</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col8" class="data row4 col8" >0.015</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col9" class="data row4 col9" >0.007</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row4_col10" class="data row4 col10" >178.000</td>
             </tr>
             <tr>
-                        <th id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622level0_row5" class="row_heading level0 row5" >147</th>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col0" class="data row5 col0" >-0.056</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col1" class="data row5 col1" >-0.045</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col2" class="data row5 col2" >0.093</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col3" class="data row5 col3" >-0.019</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col4" class="data row5 col4" >0.015</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col5" class="data row5 col5" >0.023</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col6" class="data row5 col6" >-0.029</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col7" class="data row5 col7" >0.025</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col8" class="data row5 col8" >0.026</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col9" class="data row5 col9" >0.040</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row5_col10" class="data row5 col10" >128.000</td>
+                        <th id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1level0_row5" class="row_heading level0 row5" >147</th>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col0" class="data row5 col0" >-0.056</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col1" class="data row5 col1" >-0.045</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col2" class="data row5 col2" >0.093</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col3" class="data row5 col3" >-0.019</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col4" class="data row5 col4" >0.015</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col5" class="data row5 col5" >0.023</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col6" class="data row5 col6" >-0.029</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col7" class="data row5 col7" >0.025</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col8" class="data row5 col8" >0.026</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col9" class="data row5 col9" >0.040</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row5_col10" class="data row5 col10" >128.000</td>
             </tr>
             <tr>
-                        <th id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622level0_row6" class="row_heading level0 row6" >148</th>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col0" class="data row6 col0" >-0.060</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col1" class="data row6 col1" >0.051</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col2" class="data row6 col2" >0.015</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col3" class="data row6 col3" >-0.019</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col4" class="data row6 col4" >0.037</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col5" class="data row6 col5" >0.048</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col6" class="data row6 col6" >0.019</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col7" class="data row6 col7" >-0.003</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col8" class="data row6 col8" >-0.031</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col9" class="data row6 col9" >-0.001</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row6_col10" class="data row6 col10" >96.000</td>
+                        <th id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1level0_row6" class="row_heading level0 row6" >148</th>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col0" class="data row6 col0" >-0.060</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col1" class="data row6 col1" >0.051</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col2" class="data row6 col2" >0.015</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col3" class="data row6 col3" >-0.019</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col4" class="data row6 col4" >0.037</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col5" class="data row6 col5" >0.048</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col6" class="data row6 col6" >0.019</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col7" class="data row6 col7" >-0.003</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col8" class="data row6 col8" >-0.031</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col9" class="data row6 col9" >-0.001</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row6_col10" class="data row6 col10" >96.000</td>
             </tr>
             <tr>
-                        <th id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622level0_row7" class="row_heading level0 row7" >149</th>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col0" class="data row7 col0" >-0.049</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col1" class="data row7 col1" >0.051</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col2" class="data row7 col2" >-0.005</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col3" class="data row7 col3" >-0.047</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col4" class="data row7 col4" >-0.021</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col5" class="data row7 col5" >-0.020</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col6" class="data row7 col6" >-0.069</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col7" class="data row7 col7" >0.071</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col8" class="data row7 col8" >0.061</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col9" class="data row7 col9" >-0.038</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row7_col10" class="data row7 col10" >126.000</td>
+                        <th id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1level0_row7" class="row_heading level0 row7" >149</th>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col0" class="data row7 col0" >-0.049</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col1" class="data row7 col1" >0.051</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col2" class="data row7 col2" >-0.005</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col3" class="data row7 col3" >-0.047</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col4" class="data row7 col4" >-0.021</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col5" class="data row7 col5" >-0.020</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col6" class="data row7 col6" >-0.069</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col7" class="data row7 col7" >0.071</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col8" class="data row7 col8" >0.061</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col9" class="data row7 col9" >-0.038</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row7_col10" class="data row7 col10" >126.000</td>
             </tr>
             <tr>
-                        <th id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622level0_row8" class="row_heading level0 row8" >292</th>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col0" class="data row8 col0" >0.009</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col1" class="data row8 col1" >-0.045</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col2" class="data row8 col2" >-0.022</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col3" class="data row8 col3" >-0.032</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col4" class="data row8 col4" >-0.050</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col5" class="data row8 col5" >-0.069</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col6" class="data row8 col6" >0.078</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col7" class="data row8 col7" >-0.071</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col8" class="data row8 col8" >-0.063</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col9" class="data row8 col9" >-0.038</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row8_col10" class="data row8 col10" >84.000</td>
+                        <th id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1level0_row8" class="row_heading level0 row8" >292</th>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col0" class="data row8 col0" >0.009</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col1" class="data row8 col1" >-0.045</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col2" class="data row8 col2" >-0.022</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col3" class="data row8 col3" >-0.032</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col4" class="data row8 col4" >-0.050</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col5" class="data row8 col5" >-0.069</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col6" class="data row8 col6" >0.078</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col7" class="data row8 col7" >-0.071</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col8" class="data row8 col8" >-0.063</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col9" class="data row8 col9" >-0.038</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row8_col10" class="data row8 col10" >84.000</td>
             </tr>
             <tr>
-                        <th id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622level0_row9" class="row_heading level0 row9" >293</th>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col0" class="data row9 col0" >-0.071</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col1" class="data row9 col1" >-0.045</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col2" class="data row9 col2" >0.093</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col3" class="data row9 col3" >0.013</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col4" class="data row9 col4" >0.020</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col5" class="data row9 col5" >0.043</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col6" class="data row9 col6" >0.001</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col7" class="data row9 col7" >0.000</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col8" class="data row9 col8" >-0.055</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col9" class="data row9 col9" >-0.001</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row9_col10" class="data row9 col10" >200.000</td>
+                        <th id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1level0_row9" class="row_heading level0 row9" >293</th>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col0" class="data row9 col0" >-0.071</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col1" class="data row9 col1" >-0.045</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col2" class="data row9 col2" >0.093</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col3" class="data row9 col3" >0.013</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col4" class="data row9 col4" >0.020</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col5" class="data row9 col5" >0.043</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col6" class="data row9 col6" >0.001</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col7" class="data row9 col7" >0.000</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col8" class="data row9 col8" >-0.055</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col9" class="data row9 col9" >-0.001</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row9_col10" class="data row9 col10" >200.000</td>
             </tr>
             <tr>
-                        <th id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622level0_row10" class="row_heading level0 row10" >294</th>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col0" class="data row10 col0" >0.024</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col1" class="data row10 col1" >0.051</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col2" class="data row10 col2" >-0.031</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col3" class="data row10 col3" >-0.006</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col4" class="data row10 col4" >-0.017</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col5" class="data row10 col5" >0.018</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col6" class="data row10 col6" >-0.032</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col7" class="data row10 col7" >-0.003</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col8" class="data row10 col8" >-0.074</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col9" class="data row10 col9" >-0.034</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row10_col10" class="data row10 col10" >55.000</td>
+                        <th id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1level0_row10" class="row_heading level0 row10" >294</th>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col0" class="data row10 col0" >0.024</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col1" class="data row10 col1" >0.051</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col2" class="data row10 col2" >-0.031</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col3" class="data row10 col3" >-0.006</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col4" class="data row10 col4" >-0.017</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col5" class="data row10 col5" >0.018</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col6" class="data row10 col6" >-0.032</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col7" class="data row10 col7" >-0.003</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col8" class="data row10 col8" >-0.074</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col9" class="data row10 col9" >-0.034</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row10_col10" class="data row10 col10" >55.000</td>
             </tr>
             <tr>
-                        <th id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622level0_row11" class="row_heading level0 row11" >295</th>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col0" class="data row11 col0" >-0.053</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col1" class="data row11 col1" >0.051</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col2" class="data row11 col2" >0.039</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col3" class="data row11 col3" >-0.040</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col4" class="data row11 col4" >-0.006</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col5" class="data row11 col5" >-0.013</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col6" class="data row11 col6" >0.012</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col7" class="data row11 col7" >-0.039</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col8" class="data row11 col8" >0.016</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col9" class="data row11 col9" >0.003</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row11_col10" class="data row11 col10" >85.000</td>
+                        <th id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1level0_row11" class="row_heading level0 row11" >295</th>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col0" class="data row11 col0" >-0.053</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col1" class="data row11 col1" >0.051</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col2" class="data row11 col2" >0.039</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col3" class="data row11 col3" >-0.040</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col4" class="data row11 col4" >-0.006</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col5" class="data row11 col5" >-0.013</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col6" class="data row11 col6" >0.012</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col7" class="data row11 col7" >-0.039</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col8" class="data row11 col8" >0.016</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col9" class="data row11 col9" >0.003</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row11_col10" class="data row11 col10" >85.000</td>
             </tr>
             <tr>
-                        <th id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622level0_row12" class="row_heading level0 row12" >438</th>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col0" class="data row12 col0" >-0.006</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col1" class="data row12 col1" >0.051</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col2" class="data row12 col2" >-0.016</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col3" class="data row12 col3" >-0.068</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col4" class="data row12 col4" >0.049</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col5" class="data row12 col5" >0.079</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col6" class="data row12 col6" >-0.029</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col7" class="data row12 col7" >0.034</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col8" class="data row12 col8" >-0.018</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col9" class="data row12 col9" >0.044</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row12_col10" class="data row12 col10" >104.000</td>
+                        <th id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1level0_row12" class="row_heading level0 row12" >438</th>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col0" class="data row12 col0" >-0.006</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col1" class="data row12 col1" >0.051</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col2" class="data row12 col2" >-0.016</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col3" class="data row12 col3" >-0.068</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col4" class="data row12 col4" >0.049</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col5" class="data row12 col5" >0.079</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col6" class="data row12 col6" >-0.029</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col7" class="data row12 col7" >0.034</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col8" class="data row12 col8" >-0.018</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col9" class="data row12 col9" >0.044</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row12_col10" class="data row12 col10" >104.000</td>
             </tr>
             <tr>
-                        <th id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622level0_row13" class="row_heading level0 row13" >439</th>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col0" class="data row13 col0" >0.042</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col1" class="data row13 col1" >0.051</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col2" class="data row13 col2" >-0.016</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col3" class="data row13 col3" >0.017</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col4" class="data row13 col4" >-0.037</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col5" class="data row13 col5" >-0.014</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col6" class="data row13 col6" >-0.025</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col7" class="data row13 col7" >-0.011</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col8" class="data row13 col8" >-0.047</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col9" class="data row13 col9" >0.015</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row13_col10" class="data row13 col10" >132.000</td>
+                        <th id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1level0_row13" class="row_heading level0 row13" >439</th>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col0" class="data row13 col0" >0.042</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col1" class="data row13 col1" >0.051</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col2" class="data row13 col2" >-0.016</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col3" class="data row13 col3" >0.017</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col4" class="data row13 col4" >-0.037</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col5" class="data row13 col5" >-0.014</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col6" class="data row13 col6" >-0.025</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col7" class="data row13 col7" >-0.011</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col8" class="data row13 col8" >-0.047</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col9" class="data row13 col9" >0.015</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row13_col10" class="data row13 col10" >132.000</td>
             </tr>
             <tr>
-                        <th id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622level0_row14" class="row_heading level0 row14" >440</th>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col0" class="data row14 col0" >-0.045</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col1" class="data row14 col1" >-0.045</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col2" class="data row14 col2" >0.039</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col3" class="data row14 col3" >0.001</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col4" class="data row14 col4" >0.016</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col5" class="data row14 col5" >0.015</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col6" class="data row14 col6" >-0.029</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col7" class="data row14 col7" >0.027</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col8" class="data row14 col8" >0.045</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col9" class="data row14 col9" >-0.026</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row14_col10" class="data row14 col10" >220.000</td>
+                        <th id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1level0_row14" class="row_heading level0 row14" >440</th>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col0" class="data row14 col0" >-0.045</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col1" class="data row14 col1" >-0.045</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col2" class="data row14 col2" >0.039</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col3" class="data row14 col3" >0.001</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col4" class="data row14 col4" >0.016</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col5" class="data row14 col5" >0.015</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col6" class="data row14 col6" >-0.029</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col7" class="data row14 col7" >0.027</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col8" class="data row14 col8" >0.045</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col9" class="data row14 col9" >-0.026</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row14_col10" class="data row14 col10" >220.000</td>
             </tr>
             <tr>
-                        <th id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622level0_row15" class="row_heading level0 row15" >441</th>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col0" class="data row15 col0" >-0.045</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col1" class="data row15 col1" >-0.045</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col2" class="data row15 col2" >-0.073</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col3" class="data row15 col3" >-0.081</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col4" class="data row15 col4" >0.084</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col5" class="data row15 col5" >0.028</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col6" class="data row15 col6" >0.174</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col7" class="data row15 col7" >-0.039</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col8" class="data row15 col8" >-0.004</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col9" class="data row15 col9" >0.003</td>
-                        <td id="T_ab6d94ac_297b_11eb_b7bb_000d3a8e4622row15_col10" class="data row15 col10" >57.000</td>
+                        <th id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1level0_row15" class="row_heading level0 row15" >441</th>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col0" class="data row15 col0" >-0.045</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col1" class="data row15 col1" >-0.045</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col2" class="data row15 col2" >-0.073</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col3" class="data row15 col3" >-0.081</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col4" class="data row15 col4" >0.084</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col5" class="data row15 col5" >0.028</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col6" class="data row15 col6" >0.174</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col7" class="data row15 col7" >-0.039</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col8" class="data row15 col8" >-0.004</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col9" class="data row15 col9" >0.003</td>
+                        <td id="T_af8566b2_2e5a_11eb_a5d1_000d3a8befa1row15_col10" class="data row15 col10" >57.000</td>
             </tr>
     </tbody></table></div></div>
 </div>
@@ -1115,7 +1168,8 @@ memory usage: 38.1 KB
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s1">&#39;float_format&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{:g}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -1154,115 +1208,115 @@ memory usage: 38.1 KB
   <tbody>
     <tr>
       <th>count</th>
-      <td>4.420000e+02</td>
-      <td>4.420000e+02</td>
-      <td>4.420000e+02</td>
-      <td>4.420000e+02</td>
-      <td>4.420000e+02</td>
-      <td>4.420000e+02</td>
-      <td>4.420000e+02</td>
-      <td>4.420000e+02</td>
-      <td>4.420000e+02</td>
-      <td>4.420000e+02</td>
-      <td>442.000000</td>
+      <td>442</td>
+      <td>442</td>
+      <td>442</td>
+      <td>442</td>
+      <td>442</td>
+      <td>442</td>
+      <td>442</td>
+      <td>442</td>
+      <td>442</td>
+      <td>442</td>
+      <td>442</td>
     </tr>
     <tr>
       <th>mean</th>
-      <td>-3.639623e-16</td>
-      <td>1.309912e-16</td>
-      <td>-8.013951e-16</td>
-      <td>1.289818e-16</td>
-      <td>-9.042540e-17</td>
-      <td>1.301121e-16</td>
-      <td>-4.563971e-16</td>
-      <td>3.863174e-16</td>
-      <td>-3.848103e-16</td>
-      <td>-3.398488e-16</td>
-      <td>152.133484</td>
+      <td>-3.63962e-16</td>
+      <td>1.30991e-16</td>
+      <td>-8.01395e-16</td>
+      <td>1.28982e-16</td>
+      <td>-9.04254e-17</td>
+      <td>1.30112e-16</td>
+      <td>-4.56397e-16</td>
+      <td>3.86317e-16</td>
+      <td>-3.8481e-16</td>
+      <td>-3.39849e-16</td>
+      <td>152.133</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>4.761905e-02</td>
-      <td>4.761905e-02</td>
-      <td>4.761905e-02</td>
-      <td>4.761905e-02</td>
-      <td>4.761905e-02</td>
-      <td>4.761905e-02</td>
-      <td>4.761905e-02</td>
-      <td>4.761905e-02</td>
-      <td>4.761905e-02</td>
-      <td>4.761905e-02</td>
-      <td>77.093005</td>
+      <td>0.047619</td>
+      <td>0.047619</td>
+      <td>0.047619</td>
+      <td>0.047619</td>
+      <td>0.047619</td>
+      <td>0.047619</td>
+      <td>0.047619</td>
+      <td>0.047619</td>
+      <td>0.047619</td>
+      <td>0.047619</td>
+      <td>77.093</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>-1.072256e-01</td>
-      <td>-4.464164e-02</td>
-      <td>-9.027530e-02</td>
-      <td>-1.123996e-01</td>
-      <td>-1.267807e-01</td>
-      <td>-1.156131e-01</td>
-      <td>-1.023071e-01</td>
-      <td>-7.639450e-02</td>
-      <td>-1.260974e-01</td>
-      <td>-1.377672e-01</td>
-      <td>25.000000</td>
+      <td>-0.107226</td>
+      <td>-0.0446416</td>
+      <td>-0.0902753</td>
+      <td>-0.1124</td>
+      <td>-0.126781</td>
+      <td>-0.115613</td>
+      <td>-0.102307</td>
+      <td>-0.0763945</td>
+      <td>-0.126097</td>
+      <td>-0.137767</td>
+      <td>25</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>-3.729927e-02</td>
-      <td>-4.464164e-02</td>
-      <td>-3.422907e-02</td>
-      <td>-3.665645e-02</td>
-      <td>-3.424784e-02</td>
-      <td>-3.035840e-02</td>
-      <td>-3.511716e-02</td>
-      <td>-3.949338e-02</td>
-      <td>-3.324879e-02</td>
-      <td>-3.317903e-02</td>
-      <td>87.000000</td>
+      <td>-0.0372993</td>
+      <td>-0.0446416</td>
+      <td>-0.0342291</td>
+      <td>-0.0366564</td>
+      <td>-0.0342478</td>
+      <td>-0.0303584</td>
+      <td>-0.0351172</td>
+      <td>-0.0394934</td>
+      <td>-0.0332488</td>
+      <td>-0.033179</td>
+      <td>87</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>5.383060e-03</td>
-      <td>-4.464164e-02</td>
-      <td>-7.283766e-03</td>
-      <td>-5.670611e-03</td>
-      <td>-4.320866e-03</td>
-      <td>-3.819065e-03</td>
-      <td>-6.584468e-03</td>
-      <td>-2.592262e-03</td>
-      <td>-1.947634e-03</td>
-      <td>-1.077698e-03</td>
-      <td>140.500000</td>
+      <td>0.00538306</td>
+      <td>-0.0446416</td>
+      <td>-0.00728377</td>
+      <td>-0.00567061</td>
+      <td>-0.00432087</td>
+      <td>-0.00381907</td>
+      <td>-0.00658447</td>
+      <td>-0.00259226</td>
+      <td>-0.00194763</td>
+      <td>-0.0010777</td>
+      <td>140.5</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>3.807591e-02</td>
-      <td>5.068012e-02</td>
-      <td>3.124802e-02</td>
-      <td>3.564384e-02</td>
-      <td>2.835801e-02</td>
-      <td>2.984439e-02</td>
-      <td>2.931150e-02</td>
-      <td>3.430886e-02</td>
-      <td>3.243323e-02</td>
-      <td>2.791705e-02</td>
-      <td>211.500000</td>
+      <td>0.0380759</td>
+      <td>0.0506801</td>
+      <td>0.031248</td>
+      <td>0.0356438</td>
+      <td>0.028358</td>
+      <td>0.0298444</td>
+      <td>0.0293115</td>
+      <td>0.0343089</td>
+      <td>0.0324332</td>
+      <td>0.0279171</td>
+      <td>211.5</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>1.107267e-01</td>
-      <td>5.068012e-02</td>
-      <td>1.705552e-01</td>
-      <td>1.320442e-01</td>
-      <td>1.539137e-01</td>
-      <td>1.987880e-01</td>
-      <td>1.811791e-01</td>
-      <td>1.852344e-01</td>
-      <td>1.335990e-01</td>
-      <td>1.356118e-01</td>
-      <td>346.000000</td>
+      <td>0.110727</td>
+      <td>0.0506801</td>
+      <td>0.170555</td>
+      <td>0.132044</td>
+      <td>0.153914</td>
+      <td>0.198788</td>
+      <td>0.181179</td>
+      <td>0.185234</td>
+      <td>0.133599</td>
+      <td>0.135612</td>
+      <td>346</td>
     </tr>
   </tbody>
 </table>
@@ -1271,12 +1325,17 @@ memory usage: 38.1 KB
 </div>
 <div class="section" id="scatter-matrix">
 <h4>Scatter Matrix<a class="headerlink" href="#scatter-matrix" title="Permalink to this headline">¶</a></h4>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
+<span class="c1"># Extract numeric data</span>
 <span class="n">numeric_data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s2">&quot;sex&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Plot scatter matrix</span>
 <span class="n">axes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">plotting</span><span class="o">.</span><span class="n">scatter_matrix</span><span class="p">(</span><span class="n">numeric_data</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+
+<span class="c1"># Fix y-axis label formatting</span>
 <span class="n">new_labels</span> <span class="o">=</span> <span class="p">[</span>
     <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">get_text</span><span class="p">()),</span> <span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_yticklabels</span><span class="p">()</span>
 <span class="p">]</span>
@@ -1291,31 +1350,38 @@ memory usage: 38.1 KB
 </div>
 <div class="section" id="feature-correlation">
 <h4>Feature Correlation<a class="headerlink" href="#feature-correlation" title="Permalink to this headline">¶</a></h4>
-<div class="cell tag_hide-input docutils container">
+<p>We can use <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>’s <a class="reference external" href="http://seaborn.pydata.org/generated/seaborn.heatmap.html"><code class="docutils literal notranslate"><span class="pre">heatmap</span></code></a> function to inspect feature correlations.</p>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
 
-<span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+<span class="c1"># Calculate correlation matrix using NumPy</span>
+<span class="n">correlation_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+
+<span class="c1"># Plot correlation matrix using seaborn</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-<span class="n">hm</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">correlation_matrix</span><span class="p">,</span>
-                 <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
-                 <span class="n">cbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                 <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;vlag&quot;</span><span class="p">,</span>
-                 <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
-                 <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-                 <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                 <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                 <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.2f&#39;</span><span class="p">,</span>
-                 <span class="n">annot_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">12</span><span class="p">},</span>
-                 <span class="n">xticklabels</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span>
-                 <span class="n">yticklabels</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">tick_labels</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;diabetes&#39;</span><span class="p">]</span>
+<span class="n">hm</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span>
+    <span class="n">correlation_matrix</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+    <span class="n">cbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Show colorbar</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;vlag&quot;</span><span class="p">,</span>  <span class="c1"># Specify colormap</span>
+    <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Min. value for colormapping</span>
+    <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Max. value for colormapping</span>
+    <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Show the value of each cell</span>
+    <span class="n">square</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Square aspect ratio in cell sizing</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;.2f&#39;</span><span class="p">,</span>  <span class="c1"># Float formatting</span>
+    <span class="n">annot_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span>
+               <span class="mi">12</span><span class="p">},</span>  <span class="c1"># Font size of the values displayed within the cells</span>
+    <span class="n">xticklabels</span><span class="o">=</span><span class="n">tick_labels</span><span class="p">,</span>  <span class="c1"># x-axis labels</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="n">tick_labels</span><span class="p">)</span>  <span class="c1"># y-axis labels</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_03_16_0.png" src="../../_images/exercise_03_16_0.png" />
+<img alt="../../_images/exercise_03_17_0.png" src="../../_images/exercise_03_17_0.png" />
 </div>
 </div>
 </div>
@@ -1330,11 +1396,19 @@ memory usage: 38.1 KB
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
 <span class="c1"># Create a vector of the single predictor values</span>
-<span class="n">simple_X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">bmi</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># Reshape for LinearRegression</span>
+<span class="n">simple_X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">bmi</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
 
-<span class="c1"># Split</span>
-<span class="n">simple_X_train</span><span class="p">,</span> <span class="n">simple_X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
-    <span class="n">simple_X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<span class="c1"># Split for simple linear regression</span>
+<span class="n">simple_X_train</span><span class="p">,</span> <span class="n">simple_X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">simple_X</span><span class="p">,</span>
+                                                                  <span class="n">y</span><span class="p">,</span>
+                                                                  <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                                                  <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+
+<span class="c1"># Split for multiple linear regression</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span>
+                                                    <span class="n">y</span><span class="p">,</span>
+                                                    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+                                                    <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1358,34 +1432,63 @@ memory usage: 38.1 KB
 </div>
 </div>
 </div>
+<div class="section" id="model-execution">
+<h4>Model Execution<a class="headerlink" href="#model-execution" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">simple_y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">simple_X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="model-evaluation">
 <h4>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this headline">¶</a></h4>
-<div class="cell tag_hide-input docutils container">
+<p>First, we’ll plot our predicted values alongside the observed values, as well as the regression line estimated by our model.</p>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
-
-<span class="c1"># Predict</span>
-<span class="n">simple_y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">simple_X_test</span><span class="p">)</span>
-
-<span class="c1"># Plot</span>
-<span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Disease Progression by BMI&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create figure</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+
+<span class="c1"># Plot real values scatter plot</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">simple_X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Real Values&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot predicted values scatter plot</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">simple_X_test</span><span class="p">,</span>
                 <span class="n">simple_y_pred</span><span class="p">,</span>
                 <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
                 <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Predicted Values&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot regression line</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">simple_X_test</span><span class="p">,</span>
              <span class="n">simple_y_pred</span><span class="p">,</span>
              <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span>
              <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Regression Line&quot;</span><span class="p">)</span>
+
+<span class="c1"># Show legend</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Set title</span>
+<span class="n">title</span> <span class="o">=</span> <span class="s2">&quot;Disease Progression by BMI&quot;</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+
+<span class="c1"># Sex axis labels</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Standardized BMI score&quot;</span><span class="p">)</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Disease Progression&quot;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="c1"># Show metrics</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/exercise_03_30_0.png" src="../../_images/exercise_03_30_0.png" />
+</div>
+</div>
+<p>We can also use the <a class="reference external" href="https://scikit-learn.org/stable/modules/model_evaluation.html"><code class="docutils literal notranslate"><span class="pre">sklearn.metrics</span></code></a> module to calculate the <a class="reference external" href="https://en.wikipedia.org/wiki/Mean_squared_error">MSE</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/Coefficient_of_determination">coefficient of determination</a> (<span class="math notranslate nohighlight">\(R^2\)</span>).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+
 <span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">simple_y_pred</span><span class="p">)</span>
 <span class="n">r2_score_</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">simple_y_pred</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coefficient: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -1395,7 +1498,6 @@ memory usage: 38.1 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_03_26_0.png" src="../../_images/exercise_03_26_0.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coefficient: 981.66
 Mean Squared Error: 4150.68
 Coefficient of Determination (R^2): 0.19
@@ -1407,127 +1509,321 @@ Coefficient of Determination (R^2): 0.19
 </div>
 <div class="section" id="multiple-linear-regression">
 <h3>Multiple Linear Regression<a class="headerlink" href="#multiple-linear-regression" title="Permalink to this headline">¶</a></h3>
-<p><span class="math notranslate nohighlight">\(y = X\beta + \varepsilon\)</span></p>
+<p>General notation:</p>
+<p><img alt="OLS" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/5d4d7a9152344a9b203e651e82834c16cb085365" /></p>
+<p>Calculating the coefficient vector of the least-squares hyperplane:</p>
+<p><img alt="OLS beta hat" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/b6001f896b83cf90fdc5c544743ceec61b7c83fd" /></p>
 <div class="section" id="manual-implementation">
 <h4>Manual Implementation<a class="headerlink" href="#manual-implementation" title="Permalink to this headline">¶</a></h4>
 <p>While it is always best to use the standard tools Python offers, let’s be educationally paranoid for a minute and create our own implementation of ordinary least-squared (OLS) multiple linear regression.</p>
+<p>A simplist implementation might look something like:</p>
 <div class="margin sidebar">
 <p class="sidebar-title"></p>
 <p>This code is adapted from Chapter 3 of Machine Learning: An Algorithmic Perspective (2nd Edition) by Stephen Marsland (<a class="reference external" href="http://stephenmonika.net">website</a>, <a class="reference external" href="https://github.com/alexsosn/MarslandMLAlgo/blob/master/Ch3/linreg.py">code source</a>).</p>
 </div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+
+<span class="k">def</span> <span class="nf">append_intercept</span><span class="p">(</span><span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Append a column of ones to the beginning of the dataset.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : pd.DataFrame</span>
+<span class="sd">        Observed features data</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        Design matrix</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">intercept</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">intercept</span><span class="p">,</span> <span class="n">X</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">estimate_coefficients</span><span class="p">(</span><span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the estimated beta hat vector.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : pd.DataFrame</span>
+<span class="sd">        Observed features data</span>
+<span class="sd">    y : np.ndarray</span>
+<span class="sd">        Target vector</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    np.ndarray</span>
+<span class="sd">        Estimated coefficients</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">append_intercept</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">calculate_predictions</span><span class="p">(</span><span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">beta_hat</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the predicted values for a test set of observations (X) using a</span>
+<span class="sd">    vector of the estimated coefficients.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    X : pd.DataFrame</span>
+<span class="sd">        Test features data</span>
+<span class="sd">    beta_hat : np.ndarray</span>
+<span class="sd">        Estimated coefficients vector</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    np.ndarray</span>
+<span class="sd">        Estimated coefficients</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">append_intercept</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">X</span> <span class="o">@</span> <span class="n">beta_hat</span>
+
+</pre></div>
+</div>
+<p>Another version, which better conforms with standard implementations in machine learning models, might look something like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ManualLinearRegression</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Manual implementation of an Ordinary Least Squares (OLS) linear regression</span>
+<span class="sd">    model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Initializes a new instance of the ManualLinearRegression model.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beta_hat</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">append_intercept</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Append a column of ones to the beginning of the dataset.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : pd.DataFrame</span>
+<span class="sd">            Observed features data</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        pd.DataFrame</span>
+<span class="sd">            Design matrix</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">intercept</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">intercept</span><span class="p">,</span> <span class="n">X</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">estimate_coefficients</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the estimated beta hat vector.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : pd.DataFrame</span>
+<span class="sd">            Observed features data</span>
+<span class="sd">        y : np.ndarray</span>
+<span class="sd">            Target vector</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray</span>
+<span class="sd">            Estimated coefficients</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">append_intercept</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate the estimated coefficients vector (beta hat).</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : pd.DataFrame</span>
+<span class="sd">            Observed features data</span>
+<span class="sd">        y : np.ndarray</span>
+<span class="sd">            Target vector</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beta_hat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimate_coefficients</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the predicted values for a test set of observations (X) using a</span>
+<span class="sd">        vector of the estimated coefficients.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : pd.DataFrame</span>
+<span class="sd">            Test features data</span>
+<span class="sd">        beta_hat : np.ndarray</span>
+<span class="sd">            Estimated coefficients vector</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray</span>
+<span class="sd">            Estimated coefficients</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta_hat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">append_intercept</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">X</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta_hat</span>
+        <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">&quot;Please fit the model before calling predict().&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="id1">
+<h5>Model Execution<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h5>
+<div class="cell tag_remove-input docutils container">
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-
-<span class="k">def</span> <span class="nf">calculate_linear_model</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-    <span class="n">n_observations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">X</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">intercept</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">n_observations</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">intercept</span><span class="p">,</span> <span class="n">X</span><span class="p">])</span>
-    <span class="n">beta_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span><span class="p">)</span>
-    <span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">beta_hat</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">beta_hat</span><span class="p">,</span> <span class="n">predictions</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">beta_hat</span> <span class="o">=</span> <span class="n">estimate_coefficients</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred_manual</span> <span class="o">=</span> <span class="n">calculate_predictions</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">beta_hat</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Genrate model and predictions:</p>
+<p>or:</p>
+<div class="cell tag_remove-input docutils container">
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betas_manual</span><span class="p">,</span> <span class="n">y_pred_manual</span> <span class="o">=</span> <span class="n">calculate_linear_model</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">manual_model</span> <span class="o">=</span> <span class="n">ManualLinearRegression</span><span class="p">()</span>
+<span class="n">manual_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="n">y_pred_manual</span> <span class="o">=</span> <span class="n">manual_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Evaluate the model using <span class="math notranslate nohighlight">\(R^2\)</span>:</p>
+</div>
+<div class="section" id="id2">
+<h5>Model Evaluation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="r-2">
+<h6><span class="math notranslate nohighlight">\(R^2\)</span><a class="headerlink" href="#r-2" title="Permalink to this headline">¶</a></h6>
+<p>Calculate the <a class="reference external" href="https://en.wikipedia.org/wiki/Residual_sum_of_squares">residual sum of squares</a> (<span class="math notranslate nohighlight">\(RSS\)</span>):</p>
+<div class="sphinx-bs container pb-4 docutils">
+<div class="row docutils">
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 p-2 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-header docutils">
+<p class="card-text">General notation</p>
+</div>
+<div class="card-body docutils">
+<p class="card-text"><img alt="RSS general notation" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/f8852833a56a9b55fdf5d6b2521eaec45274bab8" /></p>
+</div>
+</div>
+</div>
+<div class="d-flex col-lg-6 col-md-6 col-sm-6 col-xs-12 p-2 docutils">
+<div class="card w-100 shadow docutils">
+<div class="card-header docutils">
+<p class="card-text">Matrix notation</p>
+</div>
+<div class="card-body docutils">
+<p class="card-text"><img alt="RSS linear notation" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/68936d9b62f488dcc66120282485c13a0755bf3d" /></p>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ss_residual</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_pred_manual</span>
-<span class="n">ss_total</span> <span class="o">=</span> <span class="n">y_pred_manual</span> <span class="o">-</span> <span class="n">y_pred_manual</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-
-<span class="n">r2_score_manual</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ss_residual</span><span class="p">,</span> <span class="n">ss_residual</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span>
-    <span class="n">ss_total</span><span class="p">,</span> <span class="n">ss_total</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ss_residual</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_test</span> <span class="o">-</span> <span class="n">y_pred_manual</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ss_residual</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">Exception</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">14</span><span class="o">-</span><span class="mf">81e1</span><span class="n">bf76d79a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ss_residual</span> <span class="o">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">y_pred_manual</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">ss_total</span> <span class="o">=</span> <span class="n">y_pred_manual</span> <span class="o">-</span> <span class="n">y_pred_manual</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">r2_score_manual</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ss_residual</span><span class="p">,</span> <span class="n">ss_residual</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">ss_total</span><span class="p">,</span> <span class="n">ss_total</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/pandas/core/ops/common.py</span> in <span class="ni">new_method</span><span class="nt">(self, other)</span>
-<span class="g g-Whitespace">     </span><span class="mi">63</span>         <span class="n">other</span> <span class="o">=</span> <span class="n">item_from_zerodim</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">64</span> 
-<span class="ne">---&gt; </span><span class="mi">65</span>         <span class="k">return</span> <span class="n">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">66</span> 
-<span class="g g-Whitespace">     </span><span class="mi">67</span>     <span class="k">return</span> <span class="n">new_method</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/pandas/core/ops/__init__.py</span> in <span class="ni">wrapper</span><span class="nt">(left, right)</span>
-<span class="g g-Whitespace">    </span><span class="mi">343</span>         <span class="n">result</span> <span class="o">=</span> <span class="n">arithmetic_op</span><span class="p">(</span><span class="n">lvalues</span><span class="p">,</span> <span class="n">rvalues</span><span class="p">,</span> <span class="n">op</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">344</span> 
-<span class="ne">--&gt; </span><span class="mi">345</span>         <span class="k">return</span> <span class="n">left</span><span class="o">.</span><span class="n">_construct_result</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">res_name</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">346</span> 
-<span class="g g-Whitespace">    </span><span class="mi">347</span>     <span class="n">wrapper</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">op_name</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/pandas/core/series.py</span> in <span class="ni">_construct_result</span><span class="nt">(self, result, name)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2767</span>         <span class="c1"># We do not pass dtype to ensure that the Series constructor</span>
-<span class="g g-Whitespace">   </span><span class="mi">2768</span>         <span class="c1">#  does inference in the case where `result` has object-dtype.</span>
-<span class="ne">-&gt; </span><span class="mi">2769</span>         <span class="n">out</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_constructor</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2770</span>         <span class="n">out</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">__finalize__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-<span class="g g-Whitespace">   </span><span class="mi">2771</span> 
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/pandas/core/series.py</span> in <span class="ni">__init__</span><span class="nt">(self, data, index, dtype, name, copy, fastpath)</span>
-<span class="g g-Whitespace">    </span><span class="mi">325</span>                     <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="g g-Whitespace">    </span><span class="mi">326</span>             <span class="k">else</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">327</span>                 <span class="n">data</span> <span class="o">=</span> <span class="n">sanitize_array</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="p">,</span> <span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="p">,</span> <span class="n">raise_cast_failure</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">328</span> 
-<span class="g g-Whitespace">    </span><span class="mi">329</span>                 <span class="n">data</span> <span class="o">=</span> <span class="n">SingleBlockManager</span><span class="o">.</span><span class="n">from_array</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/pandas/core/construction.py</span> in <span class="ni">sanitize_array</span><span class="nt">(data, index, dtype, copy, raise_cast_failure)</span>
-<span class="g g-Whitespace">    </span><span class="mi">494</span>     <span class="k">elif</span> <span class="n">subarr</span><span class="o">.</span><span class="n">ndim</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">495</span>         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">496</span>             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;Data must be 1-dimensional&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">497</span>         <span class="k">else</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">498</span>             <span class="n">subarr</span> <span class="o">=</span> <span class="n">com</span><span class="o">.</span><span class="n">asarray_tuplesafe</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
-
-<span class="ne">Exception</span>: Data must be 1-dimensional
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>304764.1852510227
 </pre></div>
 </div>
 </div>
 </div>
-<p>Calculate MSE:</p>
+<p>Calculate the <a class="reference external" href="https://en.wikipedia.org/wiki/Total_sum_of_squares">total sum of squares</a> (<span class="math notranslate nohighlight">\(TSS\)</span>):</p>
+<p><img alt="TSS" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/24f49fd012d7208436fc502fdb1f0065605951e6" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mse_manual</span> <span class="o">=</span> <span class="p">(</span><span class="n">ss_residual</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betas_manual_repr</span> <span class="o">=</span> <span class="p">[</span><span class="n">beta</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">beta</span> <span class="ow">in</span> <span class="n">betas_manual</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coefficient: </span><span class="si">{</span><span class="n">betas_manual_repr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean Squared Error: </span><span class="si">{</span><span class="n">mse_manual</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coefficient of Determination (R^2): </span><span class="si">{</span><span class="n">r2_score_manual</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ss_total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_test</span> <span class="o">-</span> <span class="n">y_test</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ss_total</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coefficient: [-10.01, -239.82, 519.84, 324.39, -792.18, 476.75, 101.04, 177.06, 751.28, 67.63, -152.13]
-Mean Squared Error: 2859.69
-Coefficient of Determination (R^2): 0.07
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>456385.5056179776
+</pre></div>
+</div>
+</div>
+</div>
+<p>Calculate <span class="math notranslate nohighlight">\(R^2\)</span>:</p>
+<p><img alt="R squared" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/c7e3ab84636f38c257641f85f009bcb422c73151" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2_score_manual</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">ss_residual</span> <span class="o">/</span> <span class="n">ss_total</span>
+<span class="n">r2_score_manual</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.33222203269065065
+</pre></div>
+</div>
+</div>
+</div>
+<p>Compare with <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>’s built-in <code class="docutils literal notranslate"><span class="pre">r2_score</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r2_score</span><span class="p">(</span><span class="n">y_true</span><span class="o">=</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="o">=</span><span class="n">y_pred_manual</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.33222203269065065
 </pre></div>
 </div>
 </div>
 </div>
 </div>
-<div class="section" id="using-sklearn">
-<h4>Using <code class="docutils literal notranslate"><span class="pre">sklearn</span></code><a class="headerlink" href="#using-sklearn" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="mean-squared-error">
+<h6>Mean Squared Error<a class="headerlink" href="#mean-squared-error" title="Permalink to this headline">¶</a></h6>
+<p>Manual <span class="math notranslate nohighlight">\(MSE\)</span> calculation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mse_manual</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">y_test</span> <span class="o">-</span> <span class="n">y_pred_manual</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">mse_manual</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3424.316688213738
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or using <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_manual</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3424.316688213738
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="multiple-linear-regression-using-sklearn">
+<h4>Multiple Linear Regression using <code class="docutils literal notranslate"><span class="pre">sklearn</span></code><a class="headerlink" href="#multiple-linear-regression-using-sklearn" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id3">
+<h5>Model Creation<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h5>
+<p>We’ll need to <a class="reference external" href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.reshape.html"><code class="docutils literal notranslate"><span class="pre">reshape</span></code></a> our target vector:</p>
+<div class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>For more information, see <a class="reference external" href="https://stackoverflow.com/a/42510505">this SO answer</a>.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
@@ -1535,39 +1831,40 @@ Coefficient of Determination (R^2): 0.07
 </div>
 </div>
 </div>
+<p>And now we’re ready to fit the linear regression model, identically to our own object-oriented implementation:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiple_model_all</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">multiple_model_all</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">y_pred_all</span> <span class="o">=</span> <span class="n">multiple_model_all</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">multiple_model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">multiple_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>Evaluate the model using <span class="math notranslate nohighlight">\(R^2\)</span>:</p>
+</div>
+<div class="section" id="id4">
+<h5>Model Execution<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ss_residual_all</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_pred_all</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-<span class="n">ss_total_all</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_pred_all</span> <span class="o">-</span> <span class="n">y</span><span class="o">.</span><span class="n">mean</span><span class="p">())</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-
-<span class="n">mse_all</span> <span class="o">=</span> <span class="p">(</span><span class="n">ss_residual_all</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-<span class="n">r2_score_all</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ss_residual_all</span><span class="p">,</span> <span class="n">ss_residual_all</span><span class="p">)</span> <span class="o">/</span> \
-                          <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ss_total_all</span><span class="p">,</span> <span class="n">ss_total_all</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred_all</span> <span class="o">=</span> <span class="n">multiple_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
+</div>
+<div class="section" id="id5">
+<h5>Model Evaluation<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mse_all</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred_all</span><span class="p">)</span>
-<span class="n">r2_score_all</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred_all</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mse_all</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_all</span><span class="p">)</span>
+<span class="n">r2_score_all</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred_all</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betas_all_repr</span> <span class="o">=</span> <span class="p">[</span><span class="n">beta</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">beta</span> <span class="ow">in</span> <span class="n">multiple_model_all</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">flatten</span><span class="p">()]</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betas_all_repr</span> <span class="o">=</span> <span class="p">[</span><span class="n">beta</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">beta</span> <span class="ow">in</span> <span class="n">multiple_model</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">flatten</span><span class="p">()]</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coefficient: </span><span class="si">{</span><span class="n">betas_all_repr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean Squared Error: </span><span class="si">{</span><span class="n">mse_all</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coefficient of Determination (R^2): </span><span class="si">{</span><span class="n">r2_score_all</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -1575,27 +1872,11 @@ Coefficient of Determination (R^2): 0.07
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coefficient: [-10.01, -239.82, 519.84, 324.39, -792.18, 476.75, 101.04, 177.06, 751.28, 67.63]
-Mean Squared Error: 2859.69
-Coefficient of Determination (R^2): 0.07
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coefficient: [-35.56, -243.17, 562.75, 305.47, -662.79, 324.28, 24.78, 170.33, 731.68, 43.03]
+Mean Squared Error: 3424.32
+Coefficient of Determination (R^2): 0.33
 </pre></div>
 </div>
-</div>
-</div>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">betas_all_repr</span> <span class="o">=</span> <span class="p">[</span><span class="n">beta</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">beta</span> <span class="ow">in</span> <span class="n">multiple_model_all</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">flatten</span><span class="p">()]</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coefficient: </span><span class="si">{</span><span class="n">betas_all_repr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Mean Squared Error: </span><span class="si">{:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coefficient of Determination (R^2): </span><span class="si">{</span><span class="n">r2_score_all</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Coefficient: [-10.01, -239.82, 519.84, 324.39, -792.18, 476.75, 101.04, 177.06, 751.28, 67.63]
-Mean Squared Error: 2859.69
-Coefficient of Determination (R^2): 0.07
-</pre></div>
 </div>
 </div>
 </div>
