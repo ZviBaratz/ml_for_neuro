@@ -382,6 +382,9 @@
                 
   <div class="section" id="exercise-iv-logistic-regression">
 <h1>Exercise IV: Logistic Regression<a class="headerlink" href="#exercise-iv-logistic-regression" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>In statistics, the logistic model (or logit model) is used to model the probability of a certain class or event existing such as pass/fail, win/lose, alive/dead or healthy/sick. This can be extended to model several classes of events such as determining whether an image contains a cat, dog, lion, etc. Each object being detected in the image would be assigned a probability between 0 and 1, with a sum of one. <a class="reference external" href="https://en.wikipedia.org/wiki/Logistic_regression"><em>Wikipedia</em></a></p>
+</div></blockquote>
 <p>In this exercise we will reproduce the bank defaults example used in chapter IV of the ISLR, as adapted from the <a class="reference external" href="https://github.com/JWarmenhoven/ISLR-python">ISLR-python</a> repository.</p>
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
@@ -389,8 +392,8 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="k">def</span> <span class="nf">fix_boolean</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;Yes&quot;</span>
+<span class="k">def</span> <span class="nf">fix_boolean</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;Yes&quot;</span> <span class="k">else</span> <span class="mi">0</span>
 
 <span class="n">converters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="n">fix_boolean</span><span class="p">,</span> <span class="s2">&quot;student&quot;</span><span class="p">:</span> <span class="n">fix_boolean</span><span class="p">}</span>
 
@@ -451,36 +454,36 @@
   <tbody>
     <tr>
       <th>1</th>
-      <td>False</td>
-      <td>False</td>
+      <td>0</td>
+      <td>0</td>
       <td>-0.218835</td>
       <td>0.813187</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>False</td>
-      <td>True</td>
+      <td>0</td>
+      <td>1</td>
       <td>-0.037616</td>
       <td>-1.605496</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>False</td>
-      <td>False</td>
+      <td>0</td>
+      <td>0</td>
       <td>0.492410</td>
       <td>-0.131212</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>False</td>
-      <td>False</td>
+      <td>0</td>
+      <td>0</td>
       <td>-0.632893</td>
       <td>0.164031</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>False</td>
-      <td>False</td>
+      <td>0</td>
+      <td>0</td>
       <td>-0.102791</td>
       <td>0.370915</td>
     </tr>
@@ -500,12 +503,12 @@ Int64Index: 10000 entries, 1 to 10000
 Data columns (total 4 columns):
  #   Column   Non-Null Count  Dtype  
 ---  ------   --------------  -----  
- 0   default  10000 non-null  bool   
- 1   student  10000 non-null  bool   
+ 0   default  10000 non-null  int64  
+ 1   student  10000 non-null  int64  
  2   balance  10000 non-null  float64
  3   income   10000 non-null  float64
-dtypes: bool(2), float64(2)
-memory usage: 253.9 KB
+dtypes: float64(2), int64(2)
+memory usage: 390.6 KB
 </pre></div>
 </div>
 </div>
@@ -536,6 +539,8 @@ memory usage: 253.9 KB
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>default</th>
+      <th>student</th>
       <th>balance</th>
       <th>income</th>
     </tr>
@@ -545,39 +550,55 @@ memory usage: 253.9 KB
       <th>count</th>
       <td>10000</td>
       <td>10000</td>
+      <td>10000</td>
+      <td>10000</td>
     </tr>
     <tr>
       <th>mean</th>
+      <td>0.0333</td>
+      <td>0.2944</td>
       <td>-1.25056e-16</td>
       <td>-1.93623e-16</td>
     </tr>
     <tr>
       <th>std</th>
+      <td>0.179428</td>
+      <td>0.455795</td>
       <td>1.00005</td>
       <td>1.00005</td>
     </tr>
     <tr>
       <th>min</th>
+      <td>0</td>
+      <td>0</td>
       <td>-1.72708</td>
       <td>-2.45539</td>
     </tr>
     <tr>
       <th>25%</th>
+      <td>0</td>
+      <td>0</td>
       <td>-0.731136</td>
       <td>-0.913058</td>
     </tr>
     <tr>
       <th>50%</th>
+      <td>0</td>
+      <td>0</td>
       <td>-0.0242674</td>
       <td>0.0776593</td>
     </tr>
     <tr>
       <th>75%</th>
+      <td>0</td>
+      <td>1</td>
       <td>0.684184</td>
       <td>0.771653</td>
     </tr>
     <tr>
       <th>max</th>
+      <td>1</td>
+      <td>1</td>
       <td>3.76056</td>
       <td>3.0022</td>
     </tr>
@@ -609,7 +630,7 @@ memory usage: 253.9 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_04_11_0.png" src="../../_images/exercise_04_11_0.png" />
+<img alt="../../_images/exercise_04_12_0.png" src="../../_images/exercise_04_12_0.png" />
 </div>
 </div>
 </div>
@@ -628,7 +649,7 @@ memory usage: 253.9 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_04_13_0.png" src="../../_images/exercise_04_13_0.png" />
+<img alt="../../_images/exercise_04_14_0.png" src="../../_images/exercise_04_14_0.png" />
 </div>
 </div>
 </div>
@@ -674,7 +695,7 @@ memory usage: 253.9 KB
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 
-<span class="n">sm_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">Logit</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;default ~ balance + income + student&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="kc">True</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span> <span class="mi">0</span><span class="p">}))</span>
+<span class="n">sm_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">Logit</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;default ~ balance + income + student&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -786,7 +807,7 @@ Coefficients: [[ 2.72019068 -0.02263331 -0.61746372]]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_04_36_0.png" src="../../_images/exercise_04_36_0.png" />
+<img alt="../../_images/exercise_04_37_0.png" src="../../_images/exercise_04_37_0.png" />
 </div>
 </div>
 </div>
@@ -805,8 +826,8 @@ Coefficients: [[ 2.72019068 -0.02263331 -0.61746372]]
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-       False       0.97      1.00      0.99      1926
-        True       0.79      0.31      0.45        74
+           0       0.97      1.00      0.99      1926
+           1       0.79      0.31      0.45        74
 
     accuracy                           0.97      2000
    macro avg       0.88      0.65      0.72      2000
@@ -873,7 +894,7 @@ weighted avg       0.97      0.97      0.97      2000
   <th>Date:</th>            <td>Wed, 25 Nov 2020</td> <th>  Pseudo R-squ.:     </th>   <td>0.4619</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>07:32:29</td>     <th>  Log-Likelihood:    </th>  <td> -785.77</td> 
+  <th>Time:</th>                <td>07:39:01</td>     <th>  Log-Likelihood:    </th>  <td> -785.77</td> 
 </tr>
 <tr>
   <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th>  <td> -1460.3</td> 
