@@ -349,6 +349,28 @@
       <a class="reference internal nav-link" href="#classification-report">
        Classification Report
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#precision">
+         Precision
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#recall-sensitivity">
+         Recall (Sensitivity)
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#specificity">
+         Specificity
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#accuracy-score">
+         Accuracy Score
+        </a>
+       </li>
+      </ul>
      </li>
     </ul>
    </li>
@@ -848,6 +870,94 @@ weighted avg       0.97      0.97      0.97      2000
 </div>
 </div>
 </div>
+<p><img alt="precision and recall" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Precisionrecall.svg/350px-Precisionrecall.svg.png" />
+<em><a class="reference external" href="https://en.wikipedia.org/wiki/Precision_and_recall">Wikipedia</a></em></p>
+<div class="section" id="precision">
+<h5>Precision<a class="headerlink" href="#precision" title="Permalink to this headline">¶</a></h5>
+<p><img alt="precision" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/26106935459abe7c266f7b1ebfa2a824b334c807" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_positive</span> <span class="o">=</span> <span class="n">confusion_matrix_</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">false_positive</span> <span class="o">=</span> <span class="n">confusion_matrix_</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="n">true_positive</span> <span class="o">/</span> <span class="p">(</span><span class="n">true_positive</span> <span class="o">+</span> <span class="n">false_positive</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.7931034482758621
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="recall-sensitivity">
+<h5>Recall (Sensitivity)<a class="headerlink" href="#recall-sensitivity" title="Permalink to this headline">¶</a></h5>
+<p><img alt="recall" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/4c233366865312bc99c832d1475e152c5074891b" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">false_negative</span> <span class="o">=</span> <span class="n">confusion_matrix_</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">true_positive</span> <span class="o">/</span> <span class="p">(</span><span class="n">true_positive</span> <span class="o">+</span> <span class="n">false_negative</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.3108108108108108
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="specificity">
+<h5>Specificity<a class="headerlink" href="#specificity" title="Permalink to this headline">¶</a></h5>
+<p><img alt="specificity" src="https://wikimedia.org/api/rest_v1/media/math/render/svg/8f2c867f0641e498ec8a59de63697a3a45d66b07" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_negative</span> <span class="o">=</span> <span class="n">confusion_matrix_</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="n">true_negative</span> <span class="o">/</span> <span class="p">(</span><span class="n">true_negative</span> <span class="o">+</span> <span class="n">false_positive</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9968847352024922
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="accuracy-score">
+<h5>Accuracy Score<a class="headerlink" href="#accuracy-score" title="Permalink to this headline">¶</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9715
+</pre></div>
+</div>
+</div>
+</div>
+<p>or:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">true_predictions</span> <span class="o">=</span> <span class="n">confusion_matrix_</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">confusion_matrix_</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">true_predictions</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9715
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="section" id="id4">
@@ -907,7 +1017,7 @@ weighted avg       0.97      0.97      0.97      2000
   <th>Date:</th>            <td>Wed, 25 Nov 2020</td> <th>  Pseudo R-squ.:     </th>   <td>0.4619</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>08:17:18</td>     <th>  Log-Likelihood:    </th>  <td> -785.77</td> 
+  <th>Time:</th>                <td>08:51:32</td>     <th>  Log-Likelihood:    </th>  <td> -785.77</td> 
 </tr>
 <tr>
   <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th>  <td> -1460.3</td> 
