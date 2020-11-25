@@ -17,13 +17,13 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-r2_score(y_true=y_test, y_pred=y_pred_manual)
+r2_score(y_true=y_train, y_pred=manual_model.predict(X_train))
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m<ipython-input-21-9fee1ed2b9e8>[0m in [0;36m<module>[0;34m[0m
-[0;32m----> 1[0;31m [0mr2_score[0m[0;34m([0m[0my_true[0m[0;34m=[0m[0my_test[0m[0;34m,[0m [0my_pred[0m[0;34m=[0m[0my_pred_manual[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m<ipython-input-21-e7982e334498>[0m in [0;36m<module>[0;34m[0m
+[0;32m----> 1[0;31m [0mr2_score[0m[0;34m([0m[0my_true[0m[0;34m=[0m[0my_train[0m[0;34m,[0m [0my_pred[0m[0;34m=[0m[0mmanual_model[0m[0;34m.[0m[0mpredict[0m[0;34m([0m[0mX_train[0m[0;34m)[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
 [0;31mNameError[0m: name 'r2_score' is not defined
 NameError: name 'r2_score' is not defined
