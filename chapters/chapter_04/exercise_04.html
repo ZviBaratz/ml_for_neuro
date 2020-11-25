@@ -305,7 +305,11 @@
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
-     statsmodels
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       statsmodels
+      </span>
+     </code>
     </a>
    </li>
   </ul>
@@ -323,28 +327,30 @@
       </span>
      </code>
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#confusion-matrix">
-     Confusion Matrix
-    </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#calculation">
-       Calculation
+      <a class="reference internal nav-link" href="#confusion-matrix">
+       Confusion Matrix
       </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#calculation">
+         Calculation
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#visualization">
+         Visualization
+        </a>
+       </li>
+      </ul>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#visualization">
-       Visualization
+      <a class="reference internal nav-link" href="#classification-report">
+       Classification Report
       </a>
      </li>
     </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#classification-report">
-     Classification Report
-    </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id4">
@@ -741,7 +747,7 @@ memory usage: 390.6 KB
 </div>
 </div>
 <div class="section" id="id2">
-<h3>statsmodels<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">statsmodels</span></code><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sm_estimation</span> <span class="o">=</span> <span class="n">sm_model</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
@@ -776,11 +782,10 @@ Coefficients: [[ 2.72019068 -0.02263331 -0.61746372]]
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="confusion-matrix">
-<h3>Confusion Matrix<a class="headerlink" href="#confusion-matrix" title="Permalink to this headline">¶</a></h3>
+<h4>Confusion Matrix<a class="headerlink" href="#confusion-matrix" title="Permalink to this headline">¶</a></h4>
 <div class="section" id="calculation">
-<h4>Calculation<a class="headerlink" href="#calculation" title="Permalink to this headline">¶</a></h4>
+<h5>Calculation<a class="headerlink" href="#calculation" title="Permalink to this headline">¶</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
@@ -799,7 +804,7 @@ Coefficients: [[ 2.72019068 -0.02263331 -0.61746372]]
 </div>
 </div>
 <div class="section" id="visualization">
-<h4>Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">¶</a></h4>
+<h5>Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">¶</a></h5>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">plot_confusion_matrix</span>
@@ -820,7 +825,7 @@ Coefficients: [[ 2.72019068 -0.02263331 -0.61746372]]
 </div>
 </div>
 <div class="section" id="classification-report">
-<h3>Classification Report<a class="headerlink" href="#classification-report" title="Permalink to this headline">¶</a></h3>
+<h4>Classification Report<a class="headerlink" href="#classification-report" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
@@ -840,6 +845,7 @@ Coefficients: [[ 2.72019068 -0.02263331 -0.61746372]]
    macro avg       0.88      0.65      0.72      2000
 weighted avg       0.97      0.97      0.97      2000
 </pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -901,7 +907,7 @@ weighted avg       0.97      0.97      0.97      2000
   <th>Date:</th>            <td>Wed, 25 Nov 2020</td> <th>  Pseudo R-squ.:     </th>   <td>0.4619</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>08:14:46</td>     <th>  Log-Likelihood:    </th>  <td> -785.77</td> 
+  <th>Time:</th>                <td>08:17:18</td>     <th>  Log-Likelihood:    </th>  <td> -785.77</td> 
 </tr>
 <tr>
   <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th>  <td> -1460.3</td> 
