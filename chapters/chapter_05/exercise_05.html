@@ -1727,6 +1727,74 @@ NewLeague  [&#39;N&#39; &#39;A&#39;]
 </table>
 </div></div></div>
 </div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Lasso</span><span class="p">,</span> <span class="n">Ridge</span>
+
+
+<span class="n">coef_fig</span><span class="p">,</span> <span class="n">coef_ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1">#########</span>
+<span class="c1"># Lasso #</span>
+<span class="c1">#########</span>
+
+<span class="n">simple_lasso</span> <span class="o">=</span> <span class="n">Lasso</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">10_000</span><span class="p">)</span>
+<span class="n">lasso_coefficient_values</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">lasso_alphas</span> <span class="o">=</span> <span class="n">lasso_model</span><span class="o">.</span><span class="n">alphas_</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="n">lasso_alphas</span><span class="p">:</span>
+    <span class="n">simple_lasso</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">simple_lasso</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">lasso_coefficient_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simple_lasso</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+
+<span class="c1"># Coefficient values by alpha</span>
+<span class="n">coef_ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">lasso_alphas</span><span class="p">,</span> <span class="n">lasso_coefficient_values</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Chosen alpha</span>
+<span class="n">coef_ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">lasso_model</span><span class="o">.</span><span class="n">alpha_</span><span class="p">,</span>
+                  <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+                  <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+                  <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Chosen $\alpha$&quot;</span><span class="p">)</span>
+<span class="n">coef_ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">coef_ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\alpha$&#39;</span><span class="p">)</span>
+<span class="n">coef_ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Coefficient Values&quot;</span><span class="p">)</span>
+<span class="n">coef_ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Lasso: Coefficient Values by $\alpha$&quot;</span><span class="p">)</span>
+
+<span class="c1">#########</span>
+<span class="c1"># Ridge #</span>
+<span class="c1">#########</span>
+
+<span class="n">simple_ridge</span> <span class="o">=</span> <span class="n">Ridge</span><span class="p">()</span>
+<span class="n">ridge_coefficient_values</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">ridge_alphas</span> <span class="o">=</span> <span class="n">ridge_model</span><span class="o">.</span><span class="n">alphas</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="n">ridge_alphas</span><span class="p">:</span>
+    <span class="n">simple_ridge</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+    <span class="n">simple_ridge</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">ridge_coefficient_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simple_ridge</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+
+
+<span class="c1"># Coefficient values by alpha</span>
+<span class="n">coef_ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">ridge_alphas</span><span class="p">,</span>
+                   <span class="n">ridge_coefficient_values</span><span class="p">,</span>
+                   <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span>
+                   <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="c1"># Chosen alpha</span>
+<span class="n">coef_ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">ridge_model</span><span class="o">.</span><span class="n">alpha_</span><span class="p">,</span>
+                  <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span>
+                  <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+                  <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Chosen $\alpha$&quot;</span><span class="p">)</span>
+<span class="n">coef_ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">coef_ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\alpha$&#39;</span><span class="p">)</span>
+<span class="n">coef_ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Coefficient Values&quot;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">coef_ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Ridge: Coefficient Values by $\alpha$&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/exercise_05_49_0.png" src="../../_images/exercise_05_49_0.png" />
+</div>
+</div>
 </div>
 <div class="section" id="mean-squared-error-mse">
 <h3>Mean Squared Error (MSE)<a class="headerlink" href="#mean-squared-error-mse" title="Permalink to this headline">¶</a></h3>
@@ -1742,7 +1810,11 @@ NewLeague  [&#39;N&#39; &#39;A&#39;]
 <span class="n">lasso_mse</span> <span class="o">=</span> <span class="n">lasso_model</span><span class="o">.</span><span class="n">mse_path_</span>
 
 <span class="c1"># Cross-validation MSEs</span>
-<span class="n">mse_ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">lasso_alphas</span><span class="p">,</span> <span class="n">lasso_mse</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">mse_ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">lasso_alphas</span><span class="p">,</span>
+                   <span class="n">lasso_mse</span><span class="p">,</span>
+                   <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;dashed&quot;</span><span class="p">,</span>
+                   <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span>
+                   <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
 
 <span class="c1"># Mean MSE</span>
 <span class="n">mse_ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">lasso_alphas</span><span class="p">,</span>
@@ -1794,7 +1866,7 @@ NewLeague  [&#39;N&#39; &#39;A&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_05_50_0.png" src="../../_images/exercise_05_50_0.png" />
+<img alt="../../_images/exercise_05_51_0.png" src="../../_images/exercise_05_51_0.png" />
 </div>
 </div>
 </div>
