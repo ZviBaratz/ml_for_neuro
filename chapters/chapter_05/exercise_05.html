@@ -676,7 +676,11 @@ memory usage: 52.8+ KB
 </div>
 </div>
 </div>
-<p>Calling <code class="docutils literal notranslate"><span class="pre">info()</span></code> reveals that most (16/20) columns contain integers, except for <code class="docutils literal notranslate"><span class="pre">Salary</span></code> which is a <code class="docutils literal notranslate"><span class="pre">float</span></code> and <code class="docutils literal notranslate"><span class="pre">League</span></code>, <code class="docutils literal notranslate"><span class="pre">NewLeague</span></code>, and <code class="docutils literal notranslate"><span class="pre">Division</span></code> which are categorical. Even more importantly, it shows that <code class="docutils literal notranslate"><span class="pre">Salary</span></code> contains missing observations. Because <code class="docutils literal notranslate"><span class="pre">Salary</span></code> is our target variable, we don’t really have any use for these observations and would be better off simply dropping them from our dataset:</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+</div>
+</div>
+<p>Calling <code class="docutils literal notranslate"><span class="pre">info()</span></code> reveals that most (<span class="pasted-text">16</span>/<span class="pasted-text">19</span>) columns contain integers, except for <code class="docutils literal notranslate"><span class="pre">Salary</span></code> which is a <code class="docutils literal notranslate"><span class="pre">float</span></code> and <code class="docutils literal notranslate"><span class="pre">League</span></code>, <code class="docutils literal notranslate"><span class="pre">NewLeague</span></code>, and <code class="docutils literal notranslate"><span class="pre">Division</span></code> which are <code class="docutils literal notranslate"><span class="pre">object</span></code> (categorical). Even more importantly, it shows that <code class="docutils literal notranslate"><span class="pre">Salary</span></code> contains missing observations. Because <code class="docutils literal notranslate"><span class="pre">Salary</span></code> is our target variable, we don’t really have any use for these observations and would be better off simply dropping them from our dataset:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Salary&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -898,7 +902,8 @@ memory usage: 52.8+ KB
 </div>
 <div class="section" id="scaling">
 <h3>Scaling<a class="headerlink" href="#scaling" title="Permalink to this headline">¶</a></h3>
-<p>I seems like there’s fairly large variabiliy in scale between the different features, so standardizing our dataset might also be a good idea. First, let’s differntiate the features matrix (<code class="docutils literal notranslate"><span class="pre">X</span></code>) from the target vector (<code class="docutils literal notranslate"><span class="pre">y</span></code>):</p>
+<p>I seems like there’s fairly large variabiliy in scale between the different features, and in any case regularization requires some form of standardization.</p>
+<p>First, let’s differntiate the features matrix (<code class="docutils literal notranslate"><span class="pre">X</span></code>) from the target vector (<code class="docutils literal notranslate"><span class="pre">y</span></code>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">target_name</span> <span class="o">=</span> <span class="s2">&quot;Salary&quot;</span>
@@ -1433,7 +1438,7 @@ memory usage: 52.8+ KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_05_22_0.png" src="../../_images/exercise_05_22_0.png" />
+<img alt="../../_images/exercise_05_23_0.png" src="../../_images/exercise_05_23_0.png" />
 </div>
 </div>
 </div>
@@ -1518,7 +1523,7 @@ NewLeague  [&#39;N&#39; &#39;A&#39;]
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>By default, both <code class="docutils literal notranslate"><span class="pre">LassoCV</span></code> and <code class="docutils literal notranslate"><span class="pre">RidgeCV</span></code> will run 5-fold cross-validation. To change the splitting strategy, set the <code class="docutils literal notranslate"><span class="pre">cv</span></code> keyword argument to the number of folds you’d like to use.</p>
+<p>By default, both <code class="docutils literal notranslate"><span class="pre">LassoCV</span></code> will use 5-fold cross-validation and <code class="docutils literal notranslate"><span class="pre">RidgeCV</span></code> Generalized Cross-Validation, which is a form of efficient Leave-One-Out cross-validation.. To change the splitting strategy, set the <code class="docutils literal notranslate"><span class="pre">cv</span></code> keyword argument to the number of folds you’d like to use.</p>
 </div>
 </div>
 <div class="section" id="model-application">
@@ -1578,7 +1583,7 @@ NewLeague  [&#39;N&#39; &#39;A&#39;]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_05_41_0.png" src="../../_images/exercise_05_41_0.png" />
+<img alt="../../_images/exercise_05_42_0.png" src="../../_images/exercise_05_42_0.png" />
 </div>
 </div>
 </div>
@@ -1724,7 +1729,6 @@ NewLeague  [&#39;N&#39; &#39;A&#39;]
 </div>
 <div class="section" id="mean-squared-error-mse">
 <h3>Mean Squared Error (MSE)<a class="headerlink" href="#mean-squared-error-mse" title="Permalink to this headline">¶</a></h3>
-<p>By default, <code class="docutils literal notranslate"><span class="pre">LassoCV</span></code> uses 5-fold cross-validation and and <code class="docutils literal notranslate"><span class="pre">RidgeCV</span></code> uses Generalized Cross-Validation, which is a form of efficient Leave-One-Out cross-validation.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">mse_fig</span><span class="p">,</span> <span class="n">mse_ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
