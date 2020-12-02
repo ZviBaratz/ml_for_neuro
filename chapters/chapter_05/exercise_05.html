@@ -1523,7 +1523,8 @@ NewLeague  [&#39;N&#39; &#39;A&#39;]
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>By default, both <code class="docutils literal notranslate"><span class="pre">LassoCV</span></code> will use 5-fold cross-validation and <code class="docutils literal notranslate"><span class="pre">RidgeCV</span></code> Generalized Cross-Validation, which is a form of efficient Leave-One-Out cross-validation.. To change the splitting strategy, set the <code class="docutils literal notranslate"><span class="pre">cv</span></code> keyword argument to the number of folds you’d like to use.</p>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">LassoCV</span></code> will use 5-fold cross-validation with <span class="math notranslate nohighlight">\(R^2\)</span> as the scoring method and <code class="docutils literal notranslate"><span class="pre">RidgeCV</span></code> will use Generalized Cross-Validation, which is a form of efficient Leave-One-Out cross-validation, with negative mean squared error.</p>
+<p>To change the splitting strategy, set the <code class="docutils literal notranslate"><span class="pre">cv</span></code> keyword argument to the number of folds you’d like to use, to specify scoring and other search parameters see the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV"><code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code></a> class.</p>
 </div>
 </div>
 <div class="section" id="model-application">
@@ -1839,6 +1840,10 @@ NewLeague  [&#39;N&#39; &#39;A&#39;]
 </div>
 </div>
 <p>Note that calculating in-sample <span class="math notranslate nohighlight">\(R^2\)</span> scores will result in underestimating prediction error.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For a more generalized solution for parameter tuning, see <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV"><code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code></a>.</p>
+</div>
 </div>
 </div>
 </div>
