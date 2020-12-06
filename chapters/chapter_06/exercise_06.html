@@ -1,0 +1,3046 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exercise VI: Linear and Logistic Regression Review &#8212; Machine Learning for Neuroscience</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="References" href="../../zreferences.html" />
+    <link rel="prev" title="Exercise V: Regularization" href="../chapter_05/exercise_05.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  <img src="../../_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Machine Learning for Neuroscience</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active collapsible-parent">
+  <a class="reference internal" href="../../content.html">
+   Contents
+  </a>
+  <ul class="current collapse-ul">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter_01/exercise_01.html">
+     Exercise I: Exploratory Data Analysis (EDA)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter_02/exercise_02.html">
+     Exercise II: K-Nearest Neighbors (KNN)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter_03/exercise_03.html">
+     Exercise III: Linear Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter_04/exercise_04.html">
+     Exercise IV: Logistic Regression
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter_05/exercise_05.html">
+     Exercise V: Regularization
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Exercise VI: Linear and Logistic Regression Review
+    </a>
+   </li>
+  </ul>
+  <i class="fas fa-chevron-down">
+  </i>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../zreferences.html">
+   References
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/chapters/chapter_06/exercise_06.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        <a class="issues-button"
+            href="https://github.com/ZviBaratz/ml_for_neuro/issues/new?title=Issue%20on%20page%20%2Fchapters/chapter_06/exercise_06.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/ZviBaratz/ml_for_neuro/master?urlpath=tree/source/chapters/chapter_06/exercise_06.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#set-up">
+   Set up
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#general-inspection">
+   General Inspection
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-matrix">
+   Feature Matrix
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scaling">
+     Scaling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#target-vectors">
+   Target Vectors
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#train-test-split">
+   Train/Test Split
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#predicting-age-using-structural-brain-features">
+   Predicting Age Using Structural Brain Features
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-creation">
+     Model Creation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-application">
+     Model Application
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#model-evaluation">
+     Model Evaluation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#score">
+       Score
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#model-score-by-alpha">
+         Model Score by
+         <span class="math notranslate nohighlight">
+          \(\alpha\)
+         </span>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#predicted-values">
+       Predicted Values
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#test-r-2">
+         Test
+         <span class="math notranslate nohighlight">
+          \(R^2\)
+         </span>
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#test-mse-mean-squared-prediction-error">
+         Test MSE (Mean Squared Prediction Error)
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#coefficients">
+       Coefficients
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="exercise-vi-linear-and-logistic-regression-review">
+<h1>Exercise VI: Linear and Logistic Regression Review<a class="headerlink" href="#exercise-vi-linear-and-logistic-regression-review" title="Permalink to this headline">¶</a></h1>
+<p>In the following exercise we will follow an adapted version of <a class="reference external" href="https://talyarkoni.org/">Prof. Tal Yarkoni</a>’s workshop in  the <a class="reference external" href="https://neurohackademy.org/">NeuroHackademy</a> 2020 (available <a class="reference external" href="https://github.com/neurohackademy/nh2020-curriculum/tree/master/tu-machine-learning-yarkoni">here</a>).</p>
+<p>Our dataset includes features extracted from the <a class="reference external" href="http://fcon_1000.projects.nitrc.org/indi/abide/abide_II.html">Autism Brain Imaging Data Exchange II (ABIDE II)</a> project using <a class="reference external" href="https://surfer.nmr.mgh.harvard.edu/">FreeSurfer</a> (available <a class="reference external" href="https://github.com/rb643/Normative_modeling">here</a>) <a class="bibtex reference internal" href="../../zreferences.html#richard2019normative" id="id1">[2]</a>, as well as some demographic and phenotypic information about the subjects.</p>
+<p>To review the methods discussed in the course so far, we will try and use FreeSurfer’s estimated brain features to predict age and Autistic Spectrum Disorder (ASD) diagnosis as a review for both linear and logistic regression (respectively).</p>
+<div class="section" id="set-up">
+<h2>Set up<a class="headerlink" href="#set-up" title="Permalink to this headline">¶</a></h2>
+<p>To read a <code class="docutils literal notranslate"><span class="pre">.tsv</span></code> file we have to specify <code class="docutils literal notranslate"><span class="pre">delimiter=&quot;\t&quot;</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">csv_url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/neurohackademy/nh2020-curriculum/master/tu-machine-learning-yarkoni/data/abide2.tsv&quot;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_url</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Never hurts to clean up a little:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">IGNORED_COLUMNS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;age_resid&quot;</span><span class="p">,</span> <span class="s2">&quot;sex&quot;</span><span class="p">]</span>
+<span class="n">REPLACE_DICT</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;group&quot;</span><span class="p">:</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;ASD&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Control&quot;</span><span class="p">}}</span>
+
+<span class="n">data</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">IGNORED_COLUMNS</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">REPLACE_DICT</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="general-inspection">
+<h2>General Inspection<a class="headerlink" href="#general-inspection" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>site</th>
+      <th>subject</th>
+      <th>age</th>
+      <th>group</th>
+      <th>fsArea_L_V1_ROI</th>
+      <th>fsArea_L_MST_ROI</th>
+      <th>fsArea_L_V6_ROI</th>
+      <th>fsArea_L_V2_ROI</th>
+      <th>fsArea_L_V3_ROI</th>
+      <th>fsArea_L_V4_ROI</th>
+      <th>...</th>
+      <th>fsCT_R_p47r_ROI</th>
+      <th>fsCT_R_TGv_ROI</th>
+      <th>fsCT_R_MBelt_ROI</th>
+      <th>fsCT_R_LBelt_ROI</th>
+      <th>fsCT_R_A4_ROI</th>
+      <th>fsCT_R_STSva_ROI</th>
+      <th>fsCT_R_TE1m_ROI</th>
+      <th>fsCT_R_PI_ROI</th>
+      <th>fsCT_R_a32pr_ROI</th>
+      <th>fsCT_R_p24_ROI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>ABIDEII-KKI_1</td>
+      <td>29293</td>
+      <td>8.893151</td>
+      <td>ASD</td>
+      <td>2750.0</td>
+      <td>306.0</td>
+      <td>354.0</td>
+      <td>2123.0</td>
+      <td>1451.0</td>
+      <td>1128.0</td>
+      <td>...</td>
+      <td>3.362</td>
+      <td>2.827</td>
+      <td>2.777</td>
+      <td>2.526</td>
+      <td>3.202</td>
+      <td>3.024</td>
+      <td>3.354</td>
+      <td>2.629</td>
+      <td>2.699</td>
+      <td>3.179</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>ABIDEII-OHSU_1</td>
+      <td>28997</td>
+      <td>12.000000</td>
+      <td>ASD</td>
+      <td>2836.0</td>
+      <td>186.0</td>
+      <td>354.0</td>
+      <td>2261.0</td>
+      <td>1584.0</td>
+      <td>1241.0</td>
+      <td>...</td>
+      <td>2.809</td>
+      <td>3.539</td>
+      <td>2.944</td>
+      <td>2.769</td>
+      <td>3.530</td>
+      <td>3.079</td>
+      <td>3.282</td>
+      <td>2.670</td>
+      <td>2.746</td>
+      <td>3.324</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>ABIDEII-GU_1</td>
+      <td>28845</td>
+      <td>8.390000</td>
+      <td>Control</td>
+      <td>3394.0</td>
+      <td>223.0</td>
+      <td>373.0</td>
+      <td>2827.0</td>
+      <td>1816.0</td>
+      <td>1299.0</td>
+      <td>...</td>
+      <td>2.435</td>
+      <td>3.321</td>
+      <td>2.799</td>
+      <td>2.388</td>
+      <td>3.148</td>
+      <td>3.125</td>
+      <td>3.116</td>
+      <td>2.891</td>
+      <td>2.940</td>
+      <td>3.232</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>ABIDEII-NYU_1</td>
+      <td>29210</td>
+      <td>8.300000</td>
+      <td>ASD</td>
+      <td>3382.0</td>
+      <td>266.0</td>
+      <td>422.0</td>
+      <td>2686.0</td>
+      <td>1893.0</td>
+      <td>1359.0</td>
+      <td>...</td>
+      <td>3.349</td>
+      <td>3.344</td>
+      <td>2.694</td>
+      <td>3.030</td>
+      <td>3.258</td>
+      <td>2.774</td>
+      <td>3.383</td>
+      <td>2.696</td>
+      <td>3.014</td>
+      <td>3.264</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>ABIDEII-EMC_1</td>
+      <td>29894</td>
+      <td>7.772758</td>
+      <td>Control</td>
+      <td>3080.0</td>
+      <td>161.0</td>
+      <td>346.0</td>
+      <td>2105.0</td>
+      <td>1307.0</td>
+      <td>1004.0</td>
+      <td>...</td>
+      <td>2.428</td>
+      <td>2.940</td>
+      <td>2.809</td>
+      <td>2.607</td>
+      <td>3.430</td>
+      <td>2.752</td>
+      <td>2.645</td>
+      <td>3.111</td>
+      <td>3.219</td>
+      <td>4.128</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>999</th>
+      <td>ABIDEII-IU_1</td>
+      <td>29570</td>
+      <td>20.000000</td>
+      <td>Control</td>
+      <td>3321.0</td>
+      <td>290.0</td>
+      <td>381.0</td>
+      <td>2802.0</td>
+      <td>1827.0</td>
+      <td>1314.0</td>
+      <td>...</td>
+      <td>2.553</td>
+      <td>3.502</td>
+      <td>2.955</td>
+      <td>2.873</td>
+      <td>3.074</td>
+      <td>2.849</td>
+      <td>2.941</td>
+      <td>2.863</td>
+      <td>2.854</td>
+      <td>3.265</td>
+    </tr>
+    <tr>
+      <th>1000</th>
+      <td>ABIDEII-NYU_1</td>
+      <td>29233</td>
+      <td>10.862000</td>
+      <td>Control</td>
+      <td>2860.0</td>
+      <td>162.0</td>
+      <td>456.0</td>
+      <td>2460.0</td>
+      <td>1718.0</td>
+      <td>1225.0</td>
+      <td>...</td>
+      <td>2.437</td>
+      <td>3.658</td>
+      <td>2.537</td>
+      <td>2.482</td>
+      <td>3.425</td>
+      <td>2.819</td>
+      <td>3.304</td>
+      <td>2.688</td>
+      <td>3.200</td>
+      <td>3.086</td>
+    </tr>
+    <tr>
+      <th>1001</th>
+      <td>ABIDEII-SDSU_1</td>
+      <td>28862</td>
+      <td>11.200000</td>
+      <td>Control</td>
+      <td>3377.0</td>
+      <td>177.0</td>
+      <td>497.0</td>
+      <td>2810.0</td>
+      <td>1866.0</td>
+      <td>1343.0</td>
+      <td>...</td>
+      <td>2.770</td>
+      <td>3.422</td>
+      <td>2.925</td>
+      <td>3.028</td>
+      <td>3.285</td>
+      <td>2.717</td>
+      <td>3.073</td>
+      <td>2.899</td>
+      <td>3.029</td>
+      <td>3.292</td>
+    </tr>
+    <tr>
+      <th>1002</th>
+      <td>ABIDEII-KKI_1</td>
+      <td>29312</td>
+      <td>9.789041</td>
+      <td>Control</td>
+      <td>3322.0</td>
+      <td>297.0</td>
+      <td>426.0</td>
+      <td>2640.0</td>
+      <td>1726.0</td>
+      <td>1242.0</td>
+      <td>...</td>
+      <td>2.579</td>
+      <td>3.328</td>
+      <td>2.998</td>
+      <td>3.062</td>
+      <td>3.601</td>
+      <td>3.049</td>
+      <td>2.901</td>
+      <td>2.704</td>
+      <td>3.076</td>
+      <td>3.114</td>
+    </tr>
+    <tr>
+      <th>1003</th>
+      <td>ABIDEII-NYU_2</td>
+      <td>29164</td>
+      <td>6.194000</td>
+      <td>ASD</td>
+      <td>2649.0</td>
+      <td>140.0</td>
+      <td>307.0</td>
+      <td>2359.0</td>
+      <td>1446.0</td>
+      <td>1003.0</td>
+      <td>...</td>
+      <td>3.287</td>
+      <td>3.170</td>
+      <td>2.494</td>
+      <td>2.725</td>
+      <td>3.477</td>
+      <td>2.850</td>
+      <td>3.695</td>
+      <td>2.637</td>
+      <td>3.263</td>
+      <td>2.981</td>
+    </tr>
+  </tbody>
+</table>
+<p>1004 rows × 1444 columns</p>
+</div></div></div>
+</div>
+<p>First thing to note is that we have 1004 observations (subjects) and 1,446 features.</p>
+<p>There are 1,440 features representing four anatomical brain features estimated by FreeSurfer:</p>
+<ul class="simple">
+<li><p>Surface Area (<code class="docutils literal notranslate"><span class="pre">fsArea</span></code>)</p></li>
+<li><p>Volume (<code class="docutils literal notranslate"><span class="pre">fsVol</span></code>)</p></li>
+<li><p>Cortical Thickness (<code class="docutils literal notranslate"><span class="pre">fsCT</span></code>)</p></li>
+<li><p><a class="reference external" href="https://surfer.nmr.mgh.harvard.edu/fswiki/LGI">Local Gyrification Index</a> (<code class="docutils literal notranslate"><span class="pre">fsLGI</span></code>)</p></li>
+</ul>
+<p>over 360 brain regions of interest (ROIs) as defined by the <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4990127/">Human Connectome Project Multi-Modal Parcellation atlas (HCP-MMP1)</a>, as well as:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">site</span></code>: A code representing the site at which the data was acquired.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">subject</span></code>: Subject ID.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">age</span></code>: Age in years.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">group</span></code>: ASD diagnosis (<em>1=autism, 2=control</em>).</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 1004 entries, 0 to 1003
+Columns: 1444 entries, site to fsCT_R_p24_ROI
+dtypes: float64(1441), int64(1), object(2)
+memory usage: 11.1+ MB
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected, all the brain features and the recorded <code class="docutils literal notranslate"><span class="pre">age</span></code> are of type <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">subject</span></code> (which will of course be dropped in our features matrix) is an <code class="docutils literal notranslate"><span class="pre">int</span></code>, and <code class="docutils literal notranslate"><span class="pre">site</span></code> and <code class="docutils literal notranslate"><span class="pre">group</span></code> are categorical (<code class="docutils literal notranslate"><span class="pre">object</span></code>).</p>
+</div>
+<div class="section" id="feature-matrix">
+<h2>Feature Matrix<a class="headerlink" href="#feature-matrix" title="Permalink to this headline">¶</a></h2>
+<p>Our feature matrix is the same in both regression examples and composed exclusively of FreeSurfer’s estimation results of the 360 HCP-MMP1 ROIs:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">regex</span><span class="o">=</span><span class="s2">&quot;^fs&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># Select columns starting with &quot;fs&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fsArea_L_V1_ROI</th>
+      <th>fsArea_L_MST_ROI</th>
+      <th>fsArea_L_V6_ROI</th>
+      <th>fsArea_L_V2_ROI</th>
+      <th>fsArea_L_V3_ROI</th>
+      <th>fsArea_L_V4_ROI</th>
+      <th>fsArea_L_V8_ROI</th>
+      <th>fsArea_L_4_ROI</th>
+      <th>fsArea_L_3b_ROI</th>
+      <th>fsArea_L_FEF_ROI</th>
+      <th>...</th>
+      <th>fsCT_R_p47r_ROI</th>
+      <th>fsCT_R_TGv_ROI</th>
+      <th>fsCT_R_MBelt_ROI</th>
+      <th>fsCT_R_LBelt_ROI</th>
+      <th>fsCT_R_A4_ROI</th>
+      <th>fsCT_R_STSva_ROI</th>
+      <th>fsCT_R_TE1m_ROI</th>
+      <th>fsCT_R_PI_ROI</th>
+      <th>fsCT_R_a32pr_ROI</th>
+      <th>fsCT_R_p24_ROI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2750.0</td>
+      <td>306.0</td>
+      <td>354.0</td>
+      <td>2123.0</td>
+      <td>1451.0</td>
+      <td>1128.0</td>
+      <td>269.0</td>
+      <td>1751.0</td>
+      <td>1338.0</td>
+      <td>632.0</td>
+      <td>...</td>
+      <td>3.362</td>
+      <td>2.827</td>
+      <td>2.777</td>
+      <td>2.526</td>
+      <td>3.202</td>
+      <td>3.024</td>
+      <td>3.354</td>
+      <td>2.629</td>
+      <td>2.699</td>
+      <td>3.179</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2836.0</td>
+      <td>186.0</td>
+      <td>354.0</td>
+      <td>2261.0</td>
+      <td>1584.0</td>
+      <td>1241.0</td>
+      <td>259.0</td>
+      <td>1521.0</td>
+      <td>1105.0</td>
+      <td>302.0</td>
+      <td>...</td>
+      <td>2.809</td>
+      <td>3.539</td>
+      <td>2.944</td>
+      <td>2.769</td>
+      <td>3.530</td>
+      <td>3.079</td>
+      <td>3.282</td>
+      <td>2.670</td>
+      <td>2.746</td>
+      <td>3.324</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3394.0</td>
+      <td>223.0</td>
+      <td>373.0</td>
+      <td>2827.0</td>
+      <td>1816.0</td>
+      <td>1299.0</td>
+      <td>221.0</td>
+      <td>1657.0</td>
+      <td>1374.0</td>
+      <td>456.0</td>
+      <td>...</td>
+      <td>2.435</td>
+      <td>3.321</td>
+      <td>2.799</td>
+      <td>2.388</td>
+      <td>3.148</td>
+      <td>3.125</td>
+      <td>3.116</td>
+      <td>2.891</td>
+      <td>2.940</td>
+      <td>3.232</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3382.0</td>
+      <td>266.0</td>
+      <td>422.0</td>
+      <td>2686.0</td>
+      <td>1893.0</td>
+      <td>1359.0</td>
+      <td>234.0</td>
+      <td>1889.0</td>
+      <td>1545.0</td>
+      <td>407.0</td>
+      <td>...</td>
+      <td>3.349</td>
+      <td>3.344</td>
+      <td>2.694</td>
+      <td>3.030</td>
+      <td>3.258</td>
+      <td>2.774</td>
+      <td>3.383</td>
+      <td>2.696</td>
+      <td>3.014</td>
+      <td>3.264</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>3080.0</td>
+      <td>161.0</td>
+      <td>346.0</td>
+      <td>2105.0</td>
+      <td>1307.0</td>
+      <td>1004.0</td>
+      <td>254.0</td>
+      <td>1334.0</td>
+      <td>985.0</td>
+      <td>315.0</td>
+      <td>...</td>
+      <td>2.428</td>
+      <td>2.940</td>
+      <td>2.809</td>
+      <td>2.607</td>
+      <td>3.430</td>
+      <td>2.752</td>
+      <td>2.645</td>
+      <td>3.111</td>
+      <td>3.219</td>
+      <td>4.128</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>999</th>
+      <td>3321.0</td>
+      <td>290.0</td>
+      <td>381.0</td>
+      <td>2802.0</td>
+      <td>1827.0</td>
+      <td>1314.0</td>
+      <td>184.0</td>
+      <td>1992.0</td>
+      <td>1668.0</td>
+      <td>579.0</td>
+      <td>...</td>
+      <td>2.553</td>
+      <td>3.502</td>
+      <td>2.955</td>
+      <td>2.873</td>
+      <td>3.074</td>
+      <td>2.849</td>
+      <td>2.941</td>
+      <td>2.863</td>
+      <td>2.854</td>
+      <td>3.265</td>
+    </tr>
+    <tr>
+      <th>1000</th>
+      <td>2860.0</td>
+      <td>162.0</td>
+      <td>456.0</td>
+      <td>2460.0</td>
+      <td>1718.0</td>
+      <td>1225.0</td>
+      <td>240.0</td>
+      <td>2459.0</td>
+      <td>1721.0</td>
+      <td>574.0</td>
+      <td>...</td>
+      <td>2.437</td>
+      <td>3.658</td>
+      <td>2.537</td>
+      <td>2.482</td>
+      <td>3.425</td>
+      <td>2.819</td>
+      <td>3.304</td>
+      <td>2.688</td>
+      <td>3.200</td>
+      <td>3.086</td>
+    </tr>
+    <tr>
+      <th>1001</th>
+      <td>3377.0</td>
+      <td>177.0</td>
+      <td>497.0</td>
+      <td>2810.0</td>
+      <td>1866.0</td>
+      <td>1343.0</td>
+      <td>254.0</td>
+      <td>1758.0</td>
+      <td>1318.0</td>
+      <td>436.0</td>
+      <td>...</td>
+      <td>2.770</td>
+      <td>3.422</td>
+      <td>2.925</td>
+      <td>3.028</td>
+      <td>3.285</td>
+      <td>2.717</td>
+      <td>3.073</td>
+      <td>2.899</td>
+      <td>3.029</td>
+      <td>3.292</td>
+    </tr>
+    <tr>
+      <th>1002</th>
+      <td>3322.0</td>
+      <td>297.0</td>
+      <td>426.0</td>
+      <td>2640.0</td>
+      <td>1726.0</td>
+      <td>1242.0</td>
+      <td>318.0</td>
+      <td>1719.0</td>
+      <td>1310.0</td>
+      <td>444.0</td>
+      <td>...</td>
+      <td>2.579</td>
+      <td>3.328</td>
+      <td>2.998</td>
+      <td>3.062</td>
+      <td>3.601</td>
+      <td>3.049</td>
+      <td>2.901</td>
+      <td>2.704</td>
+      <td>3.076</td>
+      <td>3.114</td>
+    </tr>
+    <tr>
+      <th>1003</th>
+      <td>2649.0</td>
+      <td>140.0</td>
+      <td>307.0</td>
+      <td>2359.0</td>
+      <td>1446.0</td>
+      <td>1003.0</td>
+      <td>198.0</td>
+      <td>1807.0</td>
+      <td>1325.0</td>
+      <td>395.0</td>
+      <td>...</td>
+      <td>3.287</td>
+      <td>3.170</td>
+      <td>2.494</td>
+      <td>2.725</td>
+      <td>3.477</td>
+      <td>2.850</td>
+      <td>3.695</td>
+      <td>2.637</td>
+      <td>3.263</td>
+      <td>2.981</td>
+    </tr>
+  </tbody>
+</table>
+<p>1004 rows × 1440 columns</p>
+</div></div></div>
+</div>
+<div class="section" id="scaling">
+<h3>Scaling<a class="headerlink" href="#scaling" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="p">:])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>fsArea_L_V1_ROI</th>
+      <th>fsArea_L_MST_ROI</th>
+      <th>fsArea_L_V6_ROI</th>
+      <th>fsArea_L_V2_ROI</th>
+      <th>fsArea_L_V3_ROI</th>
+      <th>fsArea_L_V4_ROI</th>
+      <th>fsArea_L_V8_ROI</th>
+      <th>fsArea_L_4_ROI</th>
+      <th>fsArea_L_3b_ROI</th>
+      <th>fsArea_L_FEF_ROI</th>
+      <th>...</th>
+      <th>fsCT_R_p47r_ROI</th>
+      <th>fsCT_R_TGv_ROI</th>
+      <th>fsCT_R_MBelt_ROI</th>
+      <th>fsCT_R_LBelt_ROI</th>
+      <th>fsCT_R_A4_ROI</th>
+      <th>fsCT_R_STSva_ROI</th>
+      <th>fsCT_R_TE1m_ROI</th>
+      <th>fsCT_R_PI_ROI</th>
+      <th>fsCT_R_a32pr_ROI</th>
+      <th>fsCT_R_p24_ROI</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>-0.829942</td>
+      <td>1.164264</td>
+      <td>-0.617506</td>
+      <td>-1.429303</td>
+      <td>-1.262839</td>
+      <td>-0.828693</td>
+      <td>0.112244</td>
+      <td>-0.246071</td>
+      <td>-0.313098</td>
+      <td>1.956778</td>
+      <td>...</td>
+      <td>2.364904</td>
+      <td>-0.913419</td>
+      <td>0.315561</td>
+      <td>-0.580204</td>
+      <td>0.089160</td>
+      <td>0.650036</td>
+      <td>0.806525</td>
+      <td>-0.195324</td>
+      <td>-0.480189</td>
+      <td>-0.055639</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>-0.656456</td>
+      <td>-0.587979</td>
+      <td>-0.617506</td>
+      <td>-1.027515</td>
+      <td>-0.696653</td>
+      <td>-0.278204</td>
+      <td>-0.058090</td>
+      <td>-1.177284</td>
+      <td>-1.504883</td>
+      <td>-1.282974</td>
+      <td>...</td>
+      <td>0.768075</td>
+      <td>0.599082</td>
+      <td>0.842638</td>
+      <td>0.139142</td>
+      <td>1.103577</td>
+      <td>0.816385</td>
+      <td>0.614441</td>
+      <td>-0.068156</td>
+      <td>-0.346434</td>
+      <td>0.312323</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.469190</td>
+      <td>-0.047704</td>
+      <td>-0.334418</td>
+      <td>0.620402</td>
+      <td>0.290980</td>
+      <td>0.004348</td>
+      <td>-0.705356</td>
+      <td>-0.626653</td>
+      <td>-0.128959</td>
+      <td>0.228910</td>
+      <td>...</td>
+      <td>-0.311878</td>
+      <td>0.135985</td>
+      <td>0.384997</td>
+      <td>-0.988722</td>
+      <td>-0.077848</td>
+      <td>0.955513</td>
+      <td>0.171579</td>
+      <td>0.617309</td>
+      <td>0.205661</td>
+      <td>0.078857</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.444982</td>
+      <td>0.580183</td>
+      <td>0.395648</td>
+      <td>0.209878</td>
+      <td>0.618772</td>
+      <td>0.296643</td>
+      <td>-0.483923</td>
+      <td>0.312657</td>
+      <td>0.745699</td>
+      <td>-0.252144</td>
+      <td>...</td>
+      <td>2.327366</td>
+      <td>0.184844</td>
+      <td>0.053601</td>
+      <td>0.911773</td>
+      <td>0.262353</td>
+      <td>-0.106096</td>
+      <td>0.883893</td>
+      <td>0.012487</td>
+      <td>0.416254</td>
+      <td>0.160063</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>-0.164238</td>
+      <td>-0.953029</td>
+      <td>-0.736700</td>
+      <td>-1.481711</td>
+      <td>-1.875853</td>
+      <td>-1.432770</td>
+      <td>-0.143256</td>
+      <td>-1.934400</td>
+      <td>-2.118678</td>
+      <td>-1.155347</td>
+      <td>...</td>
+      <td>-0.332091</td>
+      <td>-0.673373</td>
+      <td>0.416558</td>
+      <td>-0.340422</td>
+      <td>0.794304</td>
+      <td>-0.172636</td>
+      <td>-1.084975</td>
+      <td>1.299673</td>
+      <td>0.999654</td>
+      <td>2.352611</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>999</th>
+      <td>0.321928</td>
+      <td>0.930632</td>
+      <td>-0.215224</td>
+      <td>0.547614</td>
+      <td>0.337807</td>
+      <td>0.077421</td>
+      <td>-1.335590</td>
+      <td>0.729679</td>
+      <td>1.374839</td>
+      <td>1.436454</td>
+      <td>...</td>
+      <td>0.028856</td>
+      <td>0.520483</td>
+      <td>0.877356</td>
+      <td>0.447010</td>
+      <td>-0.306711</td>
+      <td>0.120743</td>
+      <td>-0.295293</td>
+      <td>0.530463</td>
+      <td>-0.039082</td>
+      <td>0.162601</td>
+    </tr>
+    <tr>
+      <th>1000</th>
+      <td>-0.608041</td>
+      <td>-0.938427</td>
+      <td>0.902225</td>
+      <td>-0.448124</td>
+      <td>-0.126210</td>
+      <td>-0.356150</td>
+      <td>-0.381723</td>
+      <td>2.620446</td>
+      <td>1.645932</td>
+      <td>1.387367</td>
+      <td>...</td>
+      <td>-0.306103</td>
+      <td>0.851874</td>
+      <td>-0.441914</td>
+      <td>-0.710456</td>
+      <td>0.778840</td>
+      <td>0.030007</td>
+      <td>0.673133</td>
+      <td>-0.012326</td>
+      <td>0.945582</td>
+      <td>-0.291643</td>
+    </tr>
+    <tr>
+      <th>1001</th>
+      <td>0.434896</td>
+      <td>-0.719397</td>
+      <td>1.513097</td>
+      <td>0.570906</td>
+      <td>0.503831</td>
+      <td>0.218697</td>
+      <td>-0.143256</td>
+      <td>-0.217729</td>
+      <td>-0.415397</td>
+      <td>0.032562</td>
+      <td>...</td>
+      <td>0.655459</td>
+      <td>0.350539</td>
+      <td>0.782672</td>
+      <td>0.905852</td>
+      <td>0.345857</td>
+      <td>-0.278495</td>
+      <td>0.056862</td>
+      <td>0.642123</td>
+      <td>0.458942</td>
+      <td>0.231118</td>
+    </tr>
+    <tr>
+      <th>1002</th>
+      <td>0.323945</td>
+      <td>1.032846</td>
+      <td>0.455245</td>
+      <td>0.075949</td>
+      <td>-0.092154</td>
+      <td>-0.273333</td>
+      <td>0.946877</td>
+      <td>-0.375631</td>
+      <td>-0.456317</td>
+      <td>0.111101</td>
+      <td>...</td>
+      <td>0.103933</td>
+      <td>0.150855</td>
+      <td>1.013071</td>
+      <td>1.006501</td>
+      <td>1.323162</td>
+      <td>0.725649</td>
+      <td>-0.402007</td>
+      <td>0.037300</td>
+      <td>0.592697</td>
+      <td>-0.220588</td>
+    </tr>
+    <tr>
+      <th>1003</th>
+      <td>-1.033688</td>
+      <td>-1.259672</td>
+      <td>-1.317774</td>
+      <td>-0.742186</td>
+      <td>-1.284125</td>
+      <td>-1.437641</td>
+      <td>-1.097123</td>
+      <td>-0.019340</td>
+      <td>-0.379592</td>
+      <td>-0.369953</td>
+      <td>...</td>
+      <td>2.148336</td>
+      <td>-0.184784</td>
+      <td>-0.577629</td>
+      <td>0.008890</td>
+      <td>0.939662</td>
+      <td>0.123768</td>
+      <td>1.716259</td>
+      <td>-0.170511</td>
+      <td>1.124871</td>
+      <td>-0.558098</td>
+    </tr>
+  </tbody>
+</table>
+<p>1004 rows × 1440 columns</p>
+</div></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="target-vectors">
+<h2>Target Vectors<a class="headerlink" href="#target-vectors" title="Permalink to this headline">¶</a></h2>
+<p>We will create two target vectors for our two planned models, <code class="docutils literal notranslate"><span class="pre">age</span></code> and <code class="docutils literal notranslate"><span class="pre">asd_diagnosis</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;age&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">asd_diagnosis</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;group&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ASD&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="train-test-split">
+<h2>Train/Test Split<a class="headerlink" href="#train-test-split" title="Permalink to this headline">¶</a></h2>
+<p>This time, we will put aside 104 observations which will be used as a test dataset after training the model. In addition, 9 cross-validation groups (100 observations in each) will be used to estimate the model with the best performance.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">TRAIN_SIZE</span> <span class="o">=</span> <span class="mi">900</span>
+
+<span class="c1"># Features matrix</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="n">TRAIN_SIZE</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="n">TRAIN_SIZE</span><span class="p">:]</span>
+
+<span class="c1"># Target vectors</span>
+<span class="n">age_train</span><span class="p">,</span> <span class="n">age_test</span> <span class="o">=</span> <span class="n">age</span><span class="p">[:</span><span class="n">TRAIN_SIZE</span><span class="p">],</span> <span class="n">age</span><span class="p">[</span><span class="n">TRAIN_SIZE</span><span class="p">:]</span>
+<span class="n">asd_diagnosis_train</span><span class="p">,</span> <span class="n">asd_diagnosis_test</span> <span class="o">=</span> <span class="n">asd_diagnosis</span><span class="p">[:</span>
+                                                        <span class="n">TRAIN_SIZE</span><span class="p">],</span> <span class="n">asd_diagnosis</span><span class="p">[</span>
+                                                            <span class="n">TRAIN_SIZE</span><span class="p">:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="predicting-age-using-structural-brain-features">
+<h2>Predicting Age Using Structural Brain Features<a class="headerlink" href="#predicting-age-using-structural-brain-features" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="model-creation">
+<h3>Model Creation<a class="headerlink" href="#model-creation" title="Permalink to this headline">¶</a></h3>
+<p>We will use <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Lasso.html"><code class="docutils literal notranslate"><span class="pre">Lasso</span></code></a> estimator along with the <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html?highlight=gridsearchcv#sklearn.model_selection.GridSearchCV"><code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code></a> class to fine-tune regularization strength by comparing cross-validated models:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Lasso</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+
+<span class="n">linear_estimator</span> <span class="o">=</span> <span class="n">Lasso</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">)</span>
+
+<span class="c1"># Model search configuration</span>
+<span class="n">ALPHAS</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">1.02</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">PARAM_GRID</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="n">ALPHAS</span><span class="p">}</span>
+<span class="n">N_CROSS_VALIDATIONS</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">SCORING</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;r2&quot;</span><span class="p">,</span> <span class="s2">&quot;neg_mean_squared_error&quot;</span><span class="p">]</span>
+<span class="n">SCORER</span> <span class="o">=</span> <span class="s2">&quot;r2&quot;</span>
+<span class="n">SEARCH_CONFIGURATION</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;estimator&quot;</span><span class="p">:</span> <span class="n">linear_estimator</span><span class="p">,</span>
+                        <span class="s2">&quot;param_grid&quot;</span><span class="p">:</span> <span class="n">PARAM_GRID</span><span class="p">,</span>
+                        <span class="s2">&quot;scoring&quot;</span><span class="p">:</span> <span class="n">SCORING</span><span class="p">,</span>
+                        <span class="s2">&quot;refit&quot;</span><span class="p">:</span> <span class="n">SCORER</span><span class="p">,</span>
+                        <span class="s2">&quot;cv&quot;</span><span class="p">:</span> <span class="n">N_CROSS_VALIDATIONS</span><span class="p">,</span>
+                        <span class="s2">&quot;n_jobs&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">}</span>
+
+<span class="c1"># GridSearchCV instantiation</span>
+<span class="n">linear_model_searcher</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="o">**</span><span class="n">SEARCH_CONFIGURATION</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we are ready to fit our model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">linear_model_searcher</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">age_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="model-application">
+<h3>Model Application<a class="headerlink" href="#model-application" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predicted_ages</span> <span class="o">=</span> <span class="n">linear_model_searcher</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="model-evaluation">
+<h3>Model Evaluation<a class="headerlink" href="#model-evaluation" title="Permalink to this headline">¶</a></h3>
+<p>To get the parameters (of the search grid, in our case just <span class="math notranslate nohighlight">\(\alpha\)</span> values) of the chosen model:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_alpha</span> <span class="o">=</span> <span class="n">linear_model_searcher</span><span class="o">.</span><span class="n">best_params_</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span>
+<span class="n">best_alpha</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.18
+</pre></div>
+</div>
+</div>
+</div>
+<p>Or, retrieve a report of each iteration over the parameter grid:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">linear_search_results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">linear_model_searcher</span><span class="o">.</span><span class="n">cv_results_</span><span class="p">)</span>
+<span class="n">linear_search_results</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean_fit_time</th>
+      <th>std_fit_time</th>
+      <th>mean_score_time</th>
+      <th>std_score_time</th>
+      <th>param_alpha</th>
+      <th>params</th>
+      <th>split0_test_r2</th>
+      <th>split1_test_r2</th>
+      <th>split2_test_r2</th>
+      <th>split3_test_r2</th>
+      <th>...</th>
+      <th>split2_test_neg_mean_squared_error</th>
+      <th>split3_test_neg_mean_squared_error</th>
+      <th>split4_test_neg_mean_squared_error</th>
+      <th>split5_test_neg_mean_squared_error</th>
+      <th>split6_test_neg_mean_squared_error</th>
+      <th>split7_test_neg_mean_squared_error</th>
+      <th>split8_test_neg_mean_squared_error</th>
+      <th>mean_test_neg_mean_squared_error</th>
+      <th>std_test_neg_mean_squared_error</th>
+      <th>rank_test_neg_mean_squared_error</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>106.828765</td>
+      <td>48.260085</td>
+      <td>0.057773</td>
+      <td>0.011960</td>
+      <td>0.02</td>
+      <td>{'alpha': 0.02}</td>
+      <td>0.503054</td>
+      <td>-0.011382</td>
+      <td>0.561270</td>
+      <td>0.189901</td>
+      <td>...</td>
+      <td>-39.170804</td>
+      <td>-59.360045</td>
+      <td>-44.626779</td>
+      <td>-54.894747</td>
+      <td>-48.564552</td>
+      <td>-36.936414</td>
+      <td>-41.094578</td>
+      <td>-46.573108</td>
+      <td>9.149578</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>68.230968</td>
+      <td>21.912025</td>
+      <td>0.061322</td>
+      <td>0.004893</td>
+      <td>0.04</td>
+      <td>{'alpha': 0.04}</td>
+      <td>0.606203</td>
+      <td>0.255554</td>
+      <td>0.655823</td>
+      <td>0.358743</td>
+      <td>...</td>
+      <td>-30.728960</td>
+      <td>-46.988182</td>
+      <td>-38.604531</td>
+      <td>-46.021435</td>
+      <td>-40.386691</td>
+      <td>-26.865449</td>
+      <td>-31.486917</td>
+      <td>-37.115602</td>
+      <td>8.296596</td>
+      <td>39</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>34.680104</td>
+      <td>8.122444</td>
+      <td>0.062005</td>
+      <td>0.011254</td>
+      <td>0.06</td>
+      <td>{'alpha': 0.06}</td>
+      <td>0.659176</td>
+      <td>0.372371</td>
+      <td>0.685298</td>
+      <td>0.462139</td>
+      <td>...</td>
+      <td>-28.097290</td>
+      <td>-39.411827</td>
+      <td>-36.691897</td>
+      <td>-42.632734</td>
+      <td>-36.361111</td>
+      <td>-23.556103</td>
+      <td>-28.286981</td>
+      <td>-33.068442</td>
+      <td>7.450400</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>27.534882</td>
+      <td>7.949674</td>
+      <td>0.057743</td>
+      <td>0.007887</td>
+      <td>0.08</td>
+      <td>{'alpha': 0.08}</td>
+      <td>0.682749</td>
+      <td>0.434230</td>
+      <td>0.706136</td>
+      <td>0.524161</td>
+      <td>...</td>
+      <td>-26.236846</td>
+      <td>-34.867115</td>
+      <td>-34.600985</td>
+      <td>-40.838411</td>
+      <td>-35.253904</td>
+      <td>-21.875146</td>
+      <td>-26.367370</td>
+      <td>-30.851500</td>
+      <td>7.182521</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>26.041962</td>
+      <td>4.338310</td>
+      <td>0.055250</td>
+      <td>0.005722</td>
+      <td>0.1</td>
+      <td>{'alpha': 0.1}</td>
+      <td>0.689745</td>
+      <td>0.478695</td>
+      <td>0.717933</td>
+      <td>0.567138</td>
+      <td>...</td>
+      <td>-25.183579</td>
+      <td>-31.717964</td>
+      <td>-33.522037</td>
+      <td>-39.875245</td>
+      <td>-33.860573</td>
+      <td>-21.033431</td>
+      <td>-24.678894</td>
+      <td>-29.459883</td>
+      <td>7.194909</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>24.069459</td>
+      <td>2.960480</td>
+      <td>0.061556</td>
+      <td>0.007603</td>
+      <td>0.12</td>
+      <td>{'alpha': 0.12}</td>
+      <td>0.690994</td>
+      <td>0.502029</td>
+      <td>0.722779</td>
+      <td>0.593533</td>
+      <td>...</td>
+      <td>-24.750959</td>
+      <td>-29.783928</td>
+      <td>-33.022745</td>
+      <td>-39.684119</td>
+      <td>-32.743789</td>
+      <td>-20.485671</td>
+      <td>-24.147714</td>
+      <td>-28.771440</td>
+      <td>7.271858</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>21.353575</td>
+      <td>4.440448</td>
+      <td>0.061117</td>
+      <td>0.005404</td>
+      <td>0.14</td>
+      <td>{'alpha': 0.14}</td>
+      <td>0.691041</td>
+      <td>0.518402</td>
+      <td>0.723956</td>
+      <td>0.611341</td>
+      <td>...</td>
+      <td>-24.645837</td>
+      <td>-28.479036</td>
+      <td>-32.671576</td>
+      <td>-39.969415</td>
+      <td>-32.195410</td>
+      <td>-20.412620</td>
+      <td>-23.869934</td>
+      <td>-28.445173</td>
+      <td>7.390187</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>19.170944</td>
+      <td>4.728594</td>
+      <td>0.056899</td>
+      <td>0.007412</td>
+      <td>0.16</td>
+      <td>{'alpha': 0.16}</td>
+      <td>0.688677</td>
+      <td>0.532679</td>
+      <td>0.722001</td>
+      <td>0.622832</td>
+      <td>...</td>
+      <td>-24.820350</td>
+      <td>-27.637031</td>
+      <td>-32.573357</td>
+      <td>-40.483121</td>
+      <td>-32.025995</td>
+      <td>-20.343818</td>
+      <td>-23.688363</td>
+      <td>-28.348502</td>
+      <td>7.607252</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>15.520964</td>
+      <td>4.332400</td>
+      <td>0.059860</td>
+      <td>0.007021</td>
+      <td>0.18</td>
+      <td>{'alpha': 0.18}</td>
+      <td>0.686324</td>
+      <td>0.540734</td>
+      <td>0.718687</td>
+      <td>0.628953</td>
+      <td>...</td>
+      <td>-25.116251</td>
+      <td>-27.188529</td>
+      <td>-32.580127</td>
+      <td>-41.012852</td>
+      <td>-32.007936</td>
+      <td>-20.137320</td>
+      <td>-23.617777</td>
+      <td>-28.359644</td>
+      <td>7.810660</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>14.449219</td>
+      <td>3.372626</td>
+      <td>0.058175</td>
+      <td>0.006084</td>
+      <td>0.2</td>
+      <td>{'alpha': 0.2}</td>
+      <td>0.682847</td>
+      <td>0.546414</td>
+      <td>0.714746</td>
+      <td>0.631348</td>
+      <td>...</td>
+      <td>-25.468105</td>
+      <td>-27.013016</td>
+      <td>-32.655487</td>
+      <td>-41.758564</td>
+      <td>-32.140226</td>
+      <td>-20.031240</td>
+      <td>-23.609539</td>
+      <td>-28.497829</td>
+      <td>8.050553</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>13.525642</td>
+      <td>4.714342</td>
+      <td>0.060626</td>
+      <td>0.007501</td>
+      <td>0.22</td>
+      <td>{'alpha': 0.22}</td>
+      <td>0.679374</td>
+      <td>0.551558</td>
+      <td>0.709730</td>
+      <td>0.632799</td>
+      <td>...</td>
+      <td>-25.915934</td>
+      <td>-26.906670</td>
+      <td>-33.032059</td>
+      <td>-42.450825</td>
+      <td>-32.487970</td>
+      <td>-19.965838</td>
+      <td>-23.842488</td>
+      <td>-28.739132</td>
+      <td>8.282312</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>11.990971</td>
+      <td>5.254175</td>
+      <td>0.063732</td>
+      <td>0.002883</td>
+      <td>0.24</td>
+      <td>{'alpha': 0.24}</td>
+      <td>0.675662</td>
+      <td>0.555340</td>
+      <td>0.704439</td>
+      <td>0.633124</td>
+      <td>...</td>
+      <td>-26.388328</td>
+      <td>-26.882886</td>
+      <td>-33.384882</td>
+      <td>-43.201827</td>
+      <td>-33.005845</td>
+      <td>-19.931617</td>
+      <td>-24.170458</td>
+      <td>-29.037488</td>
+      <td>8.517538</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>10.852701</td>
+      <td>5.230362</td>
+      <td>0.054813</td>
+      <td>0.005134</td>
+      <td>0.26</td>
+      <td>{'alpha': 0.26}</td>
+      <td>0.671745</td>
+      <td>0.558166</td>
+      <td>0.699061</td>
+      <td>0.633689</td>
+      <td>...</td>
+      <td>-26.868489</td>
+      <td>-26.841502</td>
+      <td>-33.731679</td>
+      <td>-43.847348</td>
+      <td>-33.451164</td>
+      <td>-19.898418</td>
+      <td>-24.628695</td>
+      <td>-29.335258</td>
+      <td>8.721356</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>8.706458</td>
+      <td>4.571792</td>
+      <td>0.057038</td>
+      <td>0.007088</td>
+      <td>0.28</td>
+      <td>{'alpha': 0.28}</td>
+      <td>0.666992</td>
+      <td>0.556844</td>
+      <td>0.696691</td>
+      <td>0.634509</td>
+      <td>...</td>
+      <td>-27.080141</td>
+      <td>-26.781415</td>
+      <td>-34.100391</td>
+      <td>-44.442799</td>
+      <td>-33.881179</td>
+      <td>-19.825615</td>
+      <td>-25.053563</td>
+      <td>-29.615063</td>
+      <td>8.922492</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>8.199145</td>
+      <td>4.767366</td>
+      <td>0.056045</td>
+      <td>0.005764</td>
+      <td>0.3</td>
+      <td>{'alpha': 0.3}</td>
+      <td>0.662964</td>
+      <td>0.553892</td>
+      <td>0.695502</td>
+      <td>0.634619</td>
+      <td>...</td>
+      <td>-27.186277</td>
+      <td>-26.773308</td>
+      <td>-34.460324</td>
+      <td>-45.024105</td>
+      <td>-34.351261</td>
+      <td>-19.830211</td>
+      <td>-25.557649</td>
+      <td>-29.904626</td>
+      <td>9.090756</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>7.792785</td>
+      <td>4.888100</td>
+      <td>0.061203</td>
+      <td>0.007169</td>
+      <td>0.32</td>
+      <td>{'alpha': 0.32}</td>
+      <td>0.658722</td>
+      <td>0.551773</td>
+      <td>0.694397</td>
+      <td>0.633912</td>
+      <td>...</td>
+      <td>-27.284953</td>
+      <td>-26.825161</td>
+      <td>-34.826800</td>
+      <td>-45.594743</td>
+      <td>-34.794494</td>
+      <td>-19.870696</td>
+      <td>-26.021534</td>
+      <td>-30.195840</td>
+      <td>9.262144</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>7.917955</td>
+      <td>5.215853</td>
+      <td>0.057719</td>
+      <td>0.007480</td>
+      <td>0.34</td>
+      <td>{'alpha': 0.34}</td>
+      <td>0.654094</td>
+      <td>0.550730</td>
+      <td>0.693273</td>
+      <td>0.631903</td>
+      <td>...</td>
+      <td>-27.385340</td>
+      <td>-26.972352</td>
+      <td>-35.170402</td>
+      <td>-46.240379</td>
+      <td>-35.264057</td>
+      <td>-19.894694</td>
+      <td>-26.467817</td>
+      <td>-30.503897</td>
+      <td>9.460682</td>
+      <td>13</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>8.187751</td>
+      <td>5.816284</td>
+      <td>0.064306</td>
+      <td>0.010236</td>
+      <td>0.36</td>
+      <td>{'alpha': 0.36}</td>
+      <td>0.649107</td>
+      <td>0.549613</td>
+      <td>0.691141</td>
+      <td>0.630415</td>
+      <td>...</td>
+      <td>-27.575614</td>
+      <td>-27.081359</td>
+      <td>-35.501498</td>
+      <td>-46.931692</td>
+      <td>-35.729544</td>
+      <td>-19.959831</td>
+      <td>-26.948887</td>
+      <td>-30.834482</td>
+      <td>9.664758</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>7.096245</td>
+      <td>6.017948</td>
+      <td>0.060319</td>
+      <td>0.005203</td>
+      <td>0.38</td>
+      <td>{'alpha': 0.38}</td>
+      <td>0.643656</td>
+      <td>0.548448</td>
+      <td>0.688815</td>
+      <td>0.627922</td>
+      <td>...</td>
+      <td>-27.783345</td>
+      <td>-27.264076</td>
+      <td>-35.761438</td>
+      <td>-47.605756</td>
+      <td>-36.214623</td>
+      <td>-20.071218</td>
+      <td>-27.494018</td>
+      <td>-31.186226</td>
+      <td>9.858976</td>
+      <td>16</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>8.784201</td>
+      <td>7.781051</td>
+      <td>0.059428</td>
+      <td>0.007237</td>
+      <td>0.4</td>
+      <td>{'alpha': 0.4}</td>
+      <td>0.637551</td>
+      <td>0.546386</td>
+      <td>0.686468</td>
+      <td>0.624963</td>
+      <td>...</td>
+      <td>-27.992832</td>
+      <td>-27.480885</td>
+      <td>-35.973764</td>
+      <td>-48.280593</td>
+      <td>-36.653921</td>
+      <td>-20.195495</td>
+      <td>-28.081429</td>
+      <td>-31.549984</td>
+      <td>10.050291</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>6.933487</td>
+      <td>5.770359</td>
+      <td>0.059111</td>
+      <td>0.005474</td>
+      <td>0.42</td>
+      <td>{'alpha': 0.42}</td>
+      <td>0.631478</td>
+      <td>0.543817</td>
+      <td>0.684178</td>
+      <td>0.621813</td>
+      <td>...</td>
+      <td>-28.197303</td>
+      <td>-27.711648</td>
+      <td>-36.213880</td>
+      <td>-48.921437</td>
+      <td>-37.077192</td>
+      <td>-20.355206</td>
+      <td>-28.696292</td>
+      <td>-31.920739</td>
+      <td>10.228178</td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>4.087280</td>
+      <td>4.237577</td>
+      <td>0.056342</td>
+      <td>0.008681</td>
+      <td>0.44</td>
+      <td>{'alpha': 0.44}</td>
+      <td>0.625516</td>
+      <td>0.541287</td>
+      <td>0.682192</td>
+      <td>0.618406</td>
+      <td>...</td>
+      <td>-28.374678</td>
+      <td>-27.961300</td>
+      <td>-36.466884</td>
+      <td>-49.521877</td>
+      <td>-37.511209</td>
+      <td>-20.510732</td>
+      <td>-29.269046</td>
+      <td>-32.281924</td>
+      <td>10.402115</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>3.459133</td>
+      <td>2.718677</td>
+      <td>0.062953</td>
+      <td>0.005196</td>
+      <td>0.46</td>
+      <td>{'alpha': 0.46}</td>
+      <td>0.619753</td>
+      <td>0.538101</td>
+      <td>0.680175</td>
+      <td>0.614610</td>
+      <td>...</td>
+      <td>-28.554682</td>
+      <td>-28.239514</td>
+      <td>-36.699809</td>
+      <td>-50.056316</td>
+      <td>-37.921210</td>
+      <td>-20.656563</td>
+      <td>-29.793112</td>
+      <td>-32.627658</td>
+      <td>10.557089</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>3.585961</td>
+      <td>3.221258</td>
+      <td>0.053821</td>
+      <td>0.008720</td>
+      <td>0.48</td>
+      <td>{'alpha': 0.48}</td>
+      <td>0.614172</td>
+      <td>0.534394</td>
+      <td>0.677840</td>
+      <td>0.610748</td>
+      <td>...</td>
+      <td>-28.763173</td>
+      <td>-28.522475</td>
+      <td>-36.891759</td>
+      <td>-50.582447</td>
+      <td>-38.310084</td>
+      <td>-20.780455</td>
+      <td>-30.308025</td>
+      <td>-32.965306</td>
+      <td>10.704178</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>3.907631</td>
+      <td>3.993258</td>
+      <td>0.057463</td>
+      <td>0.007925</td>
+      <td>0.5</td>
+      <td>{'alpha': 0.5}</td>
+      <td>0.608676</td>
+      <td>0.532015</td>
+      <td>0.675250</td>
+      <td>0.607357</td>
+      <td>...</td>
+      <td>-28.994444</td>
+      <td>-28.770918</td>
+      <td>-37.090834</td>
+      <td>-51.127966</td>
+      <td>-38.708668</td>
+      <td>-20.888533</td>
+      <td>-30.851210</td>
+      <td>-33.300926</td>
+      <td>10.865298</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>3.592621</td>
+      <td>3.551526</td>
+      <td>0.057107</td>
+      <td>0.005751</td>
+      <td>0.52</td>
+      <td>{'alpha': 0.52}</td>
+      <td>0.604002</td>
+      <td>0.530078</td>
+      <td>0.672576</td>
+      <td>0.604230</td>
+      <td>...</td>
+      <td>-29.233162</td>
+      <td>-29.000103</td>
+      <td>-37.257441</td>
+      <td>-51.692567</td>
+      <td>-39.100869</td>
+      <td>-20.992486</td>
+      <td>-31.406300</td>
+      <td>-33.621164</td>
+      <td>11.018611</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>3.877621</td>
+      <td>2.874302</td>
+      <td>0.059175</td>
+      <td>0.004193</td>
+      <td>0.54</td>
+      <td>{'alpha': 0.54}</td>
+      <td>0.599752</td>
+      <td>0.528164</td>
+      <td>0.669687</td>
+      <td>0.602064</td>
+      <td>...</td>
+      <td>-29.491109</td>
+      <td>-29.158778</td>
+      <td>-37.420625</td>
+      <td>-52.259423</td>
+      <td>-39.491918</td>
+      <td>-21.090065</td>
+      <td>-31.975958</td>
+      <td>-33.930556</td>
+      <td>11.169030</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>4.025821</td>
+      <td>3.043974</td>
+      <td>0.058495</td>
+      <td>0.004955</td>
+      <td>0.56</td>
+      <td>{'alpha': 0.56}</td>
+      <td>0.595850</td>
+      <td>0.526003</td>
+      <td>0.667044</td>
+      <td>0.600111</td>
+      <td>...</td>
+      <td>-29.727068</td>
+      <td>-29.301863</td>
+      <td>-37.562602</td>
+      <td>-52.806015</td>
+      <td>-39.897034</td>
+      <td>-21.172501</td>
+      <td>-32.551423</td>
+      <td>-34.227956</td>
+      <td>11.313114</td>
+      <td>26</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>3.513285</td>
+      <td>2.407518</td>
+      <td>0.058703</td>
+      <td>0.010486</td>
+      <td>0.58</td>
+      <td>{'alpha': 0.58}</td>
+      <td>0.592018</td>
+      <td>0.523606</td>
+      <td>0.664627</td>
+      <td>0.597990</td>
+      <td>...</td>
+      <td>-29.942868</td>
+      <td>-29.457323</td>
+      <td>-37.677880</td>
+      <td>-53.350495</td>
+      <td>-40.292129</td>
+      <td>-21.260065</td>
+      <td>-33.119839</td>
+      <td>-34.519899</td>
+      <td>11.453881</td>
+      <td>27</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>4.453291</td>
+      <td>3.085433</td>
+      <td>0.062037</td>
+      <td>0.004949</td>
+      <td>0.6</td>
+      <td>{'alpha': 0.6}</td>
+      <td>0.588947</td>
+      <td>0.523076</td>
+      <td>0.662295</td>
+      <td>0.595799</td>
+      <td>...</td>
+      <td>-30.151102</td>
+      <td>-29.617890</td>
+      <td>-37.806201</td>
+      <td>-53.884847</td>
+      <td>-40.590692</td>
+      <td>-21.357351</td>
+      <td>-33.698119</td>
+      <td>-34.786069</td>
+      <td>11.585880</td>
+      <td>28</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>3.748670</td>
+      <td>2.550542</td>
+      <td>0.060631</td>
+      <td>0.005755</td>
+      <td>0.62</td>
+      <td>{'alpha': 0.62}</td>
+      <td>0.585774</td>
+      <td>0.523247</td>
+      <td>0.660295</td>
+      <td>0.593758</td>
+      <td>...</td>
+      <td>-30.329677</td>
+      <td>-29.767437</td>
+      <td>-37.940573</td>
+      <td>-54.351074</td>
+      <td>-40.883315</td>
+      <td>-21.441829</td>
+      <td>-34.294180</td>
+      <td>-35.039450</td>
+      <td>11.716062</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>3.610987</td>
+      <td>2.255535</td>
+      <td>0.059213</td>
+      <td>0.010154</td>
+      <td>0.64</td>
+      <td>{'alpha': 0.64}</td>
+      <td>0.582533</td>
+      <td>0.523112</td>
+      <td>0.658344</td>
+      <td>0.592297</td>
+      <td>...</td>
+      <td>-30.503870</td>
+      <td>-29.874468</td>
+      <td>-38.085346</td>
+      <td>-54.824501</td>
+      <td>-41.138724</td>
+      <td>-21.535341</td>
+      <td>-34.875068</td>
+      <td>-35.286818</td>
+      <td>11.847791</td>
+      <td>30</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>3.931312</td>
+      <td>2.626353</td>
+      <td>0.059693</td>
+      <td>0.009428</td>
+      <td>0.66</td>
+      <td>{'alpha': 0.66}</td>
+      <td>0.579175</td>
+      <td>0.522692</td>
+      <td>0.656137</td>
+      <td>0.590508</td>
+      <td>...</td>
+      <td>-30.700885</td>
+      <td>-30.005569</td>
+      <td>-38.165985</td>
+      <td>-55.272280</td>
+      <td>-41.340880</td>
+      <td>-21.650820</td>
+      <td>-35.406859</td>
+      <td>-35.523129</td>
+      <td>11.966923</td>
+      <td>31</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>3.537496</td>
+      <td>2.311445</td>
+      <td>0.058960</td>
+      <td>0.005020</td>
+      <td>0.68</td>
+      <td>{'alpha': 0.68}</td>
+      <td>0.576049</td>
+      <td>0.521914</td>
+      <td>0.653734</td>
+      <td>0.588966</td>
+      <td>...</td>
+      <td>-30.915404</td>
+      <td>-30.118579</td>
+      <td>-38.257534</td>
+      <td>-55.700426</td>
+      <td>-41.557411</td>
+      <td>-21.787762</td>
+      <td>-35.880853</td>
+      <td>-35.754219</td>
+      <td>12.075833</td>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>3.529554</td>
+      <td>2.309880</td>
+      <td>0.057573</td>
+      <td>0.004939</td>
+      <td>0.7</td>
+      <td>{'alpha': 0.7}</td>
+      <td>0.572868</td>
+      <td>0.521059</td>
+      <td>0.651485</td>
+      <td>0.587401</td>
+      <td>...</td>
+      <td>-31.116200</td>
+      <td>-30.233190</td>
+      <td>-38.358524</td>
+      <td>-56.141664</td>
+      <td>-41.783034</td>
+      <td>-21.928498</td>
+      <td>-36.207263</td>
+      <td>-35.972510</td>
+      <td>12.188828</td>
+      <td>33</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>3.286344</td>
+      <td>1.964732</td>
+      <td>0.062307</td>
+      <td>0.007826</td>
+      <td>0.72</td>
+      <td>{'alpha': 0.72}</td>
+      <td>0.569995</td>
+      <td>0.520160</td>
+      <td>0.649336</td>
+      <td>0.585614</td>
+      <td>...</td>
+      <td>-31.308060</td>
+      <td>-30.364142</td>
+      <td>-38.470993</td>
+      <td>-56.592114</td>
+      <td>-42.014833</td>
+      <td>-22.094319</td>
+      <td>-36.542283</td>
+      <td>-36.194373</td>
+      <td>12.295180</td>
+      <td>34</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>3.308016</td>
+      <td>1.846296</td>
+      <td>0.058818</td>
+      <td>0.006257</td>
+      <td>0.74</td>
+      <td>{'alpha': 0.74}</td>
+      <td>0.567768</td>
+      <td>0.519544</td>
+      <td>0.647751</td>
+      <td>0.583564</td>
+      <td>...</td>
+      <td>-31.449607</td>
+      <td>-30.514390</td>
+      <td>-38.591152</td>
+      <td>-57.047212</td>
+      <td>-42.245303</td>
+      <td>-22.273472</td>
+      <td>-36.887512</td>
+      <td>-36.406880</td>
+      <td>12.392943</td>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>3.227362</td>
+      <td>1.867155</td>
+      <td>0.059127</td>
+      <td>0.004634</td>
+      <td>0.76</td>
+      <td>{'alpha': 0.76}</td>
+      <td>0.565531</td>
+      <td>0.519379</td>
+      <td>0.646467</td>
+      <td>0.581403</td>
+      <td>...</td>
+      <td>-31.564260</td>
+      <td>-30.672717</td>
+      <td>-38.725738</td>
+      <td>-57.467458</td>
+      <td>-42.477415</td>
+      <td>-22.452167</td>
+      <td>-37.227115</td>
+      <td>-36.612965</td>
+      <td>12.488753</td>
+      <td>36</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>2.719014</td>
+      <td>1.491064</td>
+      <td>0.055187</td>
+      <td>0.008479</td>
+      <td>0.78</td>
+      <td>{'alpha': 0.78}</td>
+      <td>0.563330</td>
+      <td>0.518991</td>
+      <td>0.645226</td>
+      <td>0.579821</td>
+      <td>...</td>
+      <td>-31.675084</td>
+      <td>-30.788613</td>
+      <td>-38.880616</td>
+      <td>-57.828373</td>
+      <td>-42.720134</td>
+      <td>-22.621208</td>
+      <td>-37.559832</td>
+      <td>-36.809269</td>
+      <td>12.576442</td>
+      <td>37</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>2.541506</td>
+      <td>1.665447</td>
+      <td>0.059280</td>
+      <td>0.007613</td>
+      <td>0.8</td>
+      <td>{'alpha': 0.8}</td>
+      <td>0.561061</td>
+      <td>0.518379</td>
+      <td>0.643829</td>
+      <td>0.578681</td>
+      <td>...</td>
+      <td>-31.799799</td>
+      <td>-30.872189</td>
+      <td>-39.031368</td>
+      <td>-58.195578</td>
+      <td>-42.966721</td>
+      <td>-22.778852</td>
+      <td>-37.894443</td>
+      <td>-37.004890</td>
+      <td>12.668034</td>
+      <td>38</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>2.345667</td>
+      <td>1.363966</td>
+      <td>0.056952</td>
+      <td>0.010608</td>
+      <td>0.82</td>
+      <td>{'alpha': 0.82}</td>
+      <td>0.558700</td>
+      <td>0.517758</td>
+      <td>0.642345</td>
+      <td>0.577469</td>
+      <td>...</td>
+      <td>-31.932292</td>
+      <td>-30.961018</td>
+      <td>-39.180203</td>
+      <td>-58.574044</td>
+      <td>-43.218608</td>
+      <td>-22.911080</td>
+      <td>-38.223156</td>
+      <td>-37.201392</td>
+      <td>12.766249</td>
+      <td>40</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>2.459716</td>
+      <td>1.473106</td>
+      <td>0.061153</td>
+      <td>0.006658</td>
+      <td>0.84</td>
+      <td>{'alpha': 0.84}</td>
+      <td>0.556391</td>
+      <td>0.517013</td>
+      <td>0.640783</td>
+      <td>0.576251</td>
+      <td>...</td>
+      <td>-32.071710</td>
+      <td>-31.050256</td>
+      <td>-39.320820</td>
+      <td>-58.961770</td>
+      <td>-43.476787</td>
+      <td>-23.065855</td>
+      <td>-38.555587</td>
+      <td>-37.402199</td>
+      <td>12.861869</td>
+      <td>41</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>2.388901</td>
+      <td>1.278330</td>
+      <td>0.063534</td>
+      <td>0.004949</td>
+      <td>0.86</td>
+      <td>{'alpha': 0.86}</td>
+      <td>0.553947</td>
+      <td>0.516325</td>
+      <td>0.639201</td>
+      <td>0.574913</td>
+      <td>...</td>
+      <td>-32.212959</td>
+      <td>-31.148317</td>
+      <td>-39.450497</td>
+      <td>-59.349234</td>
+      <td>-43.741912</td>
+      <td>-23.228406</td>
+      <td>-38.893698</td>
+      <td>-37.606819</td>
+      <td>12.959092</td>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>2.424224</td>
+      <td>1.009763</td>
+      <td>0.058831</td>
+      <td>0.003642</td>
+      <td>0.88</td>
+      <td>{'alpha': 0.88}</td>
+      <td>0.551399</td>
+      <td>0.515923</td>
+      <td>0.637538</td>
+      <td>0.573433</td>
+      <td>...</td>
+      <td>-32.361489</td>
+      <td>-31.256721</td>
+      <td>-39.586735</td>
+      <td>-59.740364</td>
+      <td>-44.013672</td>
+      <td>-23.398627</td>
+      <td>-39.224863</td>
+      <td>-37.815672</td>
+      <td>13.059328</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>2.288238</td>
+      <td>0.994637</td>
+      <td>0.059968</td>
+      <td>0.007395</td>
+      <td>0.9</td>
+      <td>{'alpha': 0.9}</td>
+      <td>0.548753</td>
+      <td>0.515428</td>
+      <td>0.635655</td>
+      <td>0.571868</td>
+      <td>...</td>
+      <td>-32.529564</td>
+      <td>-31.371434</td>
+      <td>-39.728904</td>
+      <td>-60.142380</td>
+      <td>-44.287729</td>
+      <td>-23.589054</td>
+      <td>-39.561866</td>
+      <td>-38.034083</td>
+      <td>13.159501</td>
+      <td>44</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>2.455230</td>
+      <td>0.979651</td>
+      <td>0.058766</td>
+      <td>0.006443</td>
+      <td>0.92</td>
+      <td>{'alpha': 0.92}</td>
+      <td>0.546127</td>
+      <td>0.514954</td>
+      <td>0.633592</td>
+      <td>0.570216</td>
+      <td>...</td>
+      <td>-32.713737</td>
+      <td>-31.492463</td>
+      <td>-39.877869</td>
+      <td>-60.548382</td>
+      <td>-44.566649</td>
+      <td>-23.786053</td>
+      <td>-39.905611</td>
+      <td>-38.257856</td>
+      <td>13.258999</td>
+      <td>45</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>2.345004</td>
+      <td>1.196092</td>
+      <td>0.055871</td>
+      <td>0.005948</td>
+      <td>0.94</td>
+      <td>{'alpha': 0.94}</td>
+      <td>0.543400</td>
+      <td>0.514365</td>
+      <td>0.631479</td>
+      <td>0.568478</td>
+      <td>...</td>
+      <td>-32.902418</td>
+      <td>-31.619830</td>
+      <td>-40.029486</td>
+      <td>-60.960528</td>
+      <td>-44.852469</td>
+      <td>-23.985848</td>
+      <td>-40.258046</td>
+      <td>-38.487645</td>
+      <td>13.360535</td>
+      <td>46</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>2.426679</td>
+      <td>1.288891</td>
+      <td>0.057166</td>
+      <td>0.007967</td>
+      <td>0.96</td>
+      <td>{'alpha': 0.96}</td>
+      <td>0.540515</td>
+      <td>0.513662</td>
+      <td>0.629297</td>
+      <td>0.566814</td>
+      <td>...</td>
+      <td>-33.097188</td>
+      <td>-31.741768</td>
+      <td>-40.186584</td>
+      <td>-61.362780</td>
+      <td>-45.137670</td>
+      <td>-24.192741</td>
+      <td>-40.622376</td>
+      <td>-38.721612</td>
+      <td>13.461841</td>
+      <td>47</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>1.764047</td>
+      <td>0.952436</td>
+      <td>0.055471</td>
+      <td>0.011870</td>
+      <td>0.98</td>
+      <td>{'alpha': 0.98}</td>
+      <td>0.537544</td>
+      <td>0.512875</td>
+      <td>0.627035</td>
+      <td>0.565125</td>
+      <td>...</td>
+      <td>-33.299149</td>
+      <td>-31.865522</td>
+      <td>-40.348642</td>
+      <td>-61.780251</td>
+      <td>-45.426319</td>
+      <td>-24.405688</td>
+      <td>-40.987532</td>
+      <td>-38.961456</td>
+      <td>13.566300</td>
+      <td>48</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>1.377153</td>
+      <td>0.546168</td>
+      <td>0.042064</td>
+      <td>0.020088</td>
+      <td>1</td>
+      <td>{'alpha': 1.0}</td>
+      <td>0.534428</td>
+      <td>0.511962</td>
+      <td>0.624732</td>
+      <td>0.563257</td>
+      <td>...</td>
+      <td>-33.504828</td>
+      <td>-32.002392</td>
+      <td>-40.511685</td>
+      <td>-62.198157</td>
+      <td>-45.721022</td>
+      <td>-24.623493</td>
+      <td>-41.357430</td>
+      <td>-39.207479</td>
+      <td>13.671652</td>
+      <td>49</td>
+    </tr>
+  </tbody>
+</table>
+<p>50 rows × 30 columns</p>
+</div></div></div>
+</div>
+<div class="section" id="score">
+<h4>Score<a class="headerlink" href="#score" title="Permalink to this headline">¶</a></h4>
+<p>To get the best score (the score of the chosen model):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">linear_model_searcher</span><span class="o">.</span><span class="n">best_score_</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6755624448663734
+</pre></div>
+</div>
+</div>
+</div>
+<p>Other collected scores (such as <code class="docutils literal notranslate"><span class="pre">neg_mean_squared_error</span></code>, in our case) are available in the <code class="docutils literal notranslate"><span class="pre">cv_results_</span></code> dictionary, as demonstrated above.</p>
+<div class="section" id="model-score-by-alpha">
+<h5>Model Score by <span class="math notranslate nohighlight">\(\alpha\)</span><a class="headerlink" href="#model-score-by-alpha" title="Permalink to this headline">¶</a></h5>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Test Scores Across Folds by $\alpha$&quot;</span><span class="p">)</span>
+
+<span class="c1">#######</span>
+<span class="c1"># R^2 #</span>
+<span class="c1">#######</span>
+
+<span class="c1"># Plot mean r2 score</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="s2">&quot;param_alpha&quot;</span><span class="p">,</span> <span class="s2">&quot;mean_test_r2&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">linear_search_results</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$R^2$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot r2 STD across folds</span>
+<span class="n">r2_mean</span> <span class="o">=</span> <span class="n">linear_search_results</span><span class="p">[</span><span class="s2">&quot;mean_test_r2&quot;</span><span class="p">]</span>
+<span class="n">r2_std</span> <span class="o">=</span> <span class="n">linear_search_results</span><span class="p">[</span><span class="s2">&quot;std_test_r2&quot;</span><span class="p">]</span>
+<span class="n">r2_lower_limit</span> <span class="o">=</span> <span class="n">r2_mean</span> <span class="o">-</span> <span class="n">r2_std</span>
+<span class="n">r2_upper_limit</span> <span class="o">=</span> <span class="n">r2_mean</span> <span class="o">+</span> <span class="n">r2_std</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">ALPHAS</span><span class="p">,</span> <span class="n">r2_lower_limit</span><span class="p">,</span> <span class="n">r2_upper_limit</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;brown&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\alpha$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$R^2$&quot;</span><span class="p">)</span>
+
+<span class="c1">#######</span>
+<span class="c1"># MSE #</span>
+<span class="c1">#######</span>
+
+<span class="c1"># Convert negative MSE to MSE </span>
+<span class="n">mse_mean</span> <span class="o">=</span> <span class="o">-</span><span class="n">linear_search_results</span><span class="p">[</span><span class="s2">&quot;mean_test_neg_mean_squared_error&quot;</span><span class="p">]</span>
+
+<span class="c1"># Created another Axis instance with a shared X-axis</span>
+<span class="n">mse_ax</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+
+<span class="c1"># Plot mean MSE score</span>
+<span class="n">mse_ax</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">ALPHAS</span><span class="p">,</span> <span class="n">mse_mean</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;MSE&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot MSE STD across folds</span>
+<span class="n">mse_std</span> <span class="o">=</span> <span class="n">linear_search_results</span><span class="p">[</span><span class="s2">&quot;std_test_neg_mean_squared_error&quot;</span><span class="p">]</span>
+<span class="n">mse_lower_limit</span> <span class="o">=</span> <span class="n">mse_mean</span> <span class="o">-</span> <span class="n">mse_std</span>
+<span class="n">mse_upper_limit</span> <span class="o">=</span> <span class="n">mse_mean</span> <span class="o">+</span> <span class="n">mse_std</span>
+<span class="n">mse_ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">ALPHAS</span><span class="p">,</span> <span class="n">mse_lower_limit</span><span class="p">,</span> <span class="n">mse_upper_limit</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+
+<span class="n">mse_ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$MSE$&quot;</span><span class="p">)</span>
+
+<span class="c1">#########</span>
+<span class="c1"># alpha #</span>
+<span class="c1">#########</span>
+
+<span class="c1"># Chosen alpha</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">best_alpha</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Chosen $\alpha$&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Add legend</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/exercise_06_44_0.png" src="../../_images/exercise_06_44_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="predicted-values">
+<h4>Predicted Values<a class="headerlink" href="#predicted-values" title="Permalink to this headline">¶</a></h4>
+<p>Visualize predicted values against real values in the test dataset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">age_test</span><span class="p">,</span> <span class="n">predicted_ages</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">age_test</span><span class="p">,</span> <span class="n">age_test</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;Real Values&quot;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Predicted Values&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/exercise_06_47_0.png" src="../../_images/exercise_06_47_0.png" />
+</div>
+</div>
+<div class="section" id="test-r-2">
+<h5>Test <span class="math notranslate nohighlight">\(R^2\)</span><a class="headerlink" href="#test-r-2" title="Permalink to this headline">¶</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+
+<span class="n">r2_score</span><span class="p">(</span><span class="n">age_test</span><span class="p">,</span> <span class="n">predicted_ages</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6391643801920943
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="test-mse-mean-squared-prediction-error">
+<h5>Test MSE (Mean Squared Prediction Error)<a class="headerlink" href="#test-mse-mean-squared-prediction-error" title="Permalink to this headline">¶</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+
+<span class="n">mean_squared_error</span><span class="p">(</span><span class="n">age_test</span><span class="p">,</span> <span class="n">predicted_ages</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>20.716028437754964
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="coefficients">
+<h4>Coefficients<a class="headerlink" href="#coefficients" title="Permalink to this headline">¶</a></h4>
+<p>To retrieve the chosen model’s coefficients:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coefficients</span> <span class="o">=</span> <span class="n">linear_model_searcher</span><span class="o">.</span><span class="n">best_estimator_</span><span class="o">.</span><span class="n">coef_</span>
+<span class="n">coefficients</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([-0., -0.,  0., ..., -0., -0., -0.])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n_coefficients</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span>
+<span class="n">n_selected_coefficients</span> <span class="o">=</span> <span class="p">(</span><span class="n">coefficients</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">n_removed</span> <span class="o">=</span> <span class="n">n_coefficients</span> <span class="o">-</span> <span class="n">n_selected_coefficients</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_selected_coefficients</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n_coefficients</span><span class="si">}</span><span class="s2"> features selected (</span><span class="si">{</span><span class="n">n_removed</span><span class="si">}</span><span class="s2"> removed)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>153/1440 features selected (1287 removed)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Assuming features with larger coefficients have a greater influence on the model, we could query the top 10 ROIs by running:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get the indices of the 10 largest coefficient values</span>
+<span class="n">top_coefficient_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argpartition</span><span class="p">(</span><span class="n">coefficients</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">)[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
+
+<span class="c1"># Use these indices to print the appropriate feature names</span>
+<span class="k">for</span> <span class="n">column_name</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">top_coefficient_indices</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">column_name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fsArea_L_10r_ROI
+fsCT_R_PBelt_ROI
+fsCT_R_TGv_ROI
+fsVol_R_H_ROI
+fsCT_R_4_ROI
+fsCT_L_TE2p_ROI
+fsArea_R_d32_ROI
+fsLGI_L_H_ROI
+fsCT_L_VVC_ROI
+fsArea_R_52_ROI
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">GridSearchCV</span></code> class does not collect all of the coefficients estimated by the generated models. To be able to visualize these changes over our chosen range of regularization strength values (<span class="math notranslate nohighlight">\(\alpha\)</span>) we would have to manually fit these models and “collect” the coefficient values.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LassoCV</span>
+
+<span class="n">lasso_model</span> <span class="o">=</span> <span class="n">LassoCV</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">1_000_000</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="n">N_CROSS_VALIDATIONS</span><span class="p">)</span>
+<span class="n">lasso_coefficient_values</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="n">ALPHAS</span><span class="p">:</span>
+    <span class="n">lasso_model</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="n">alphas</span><span class="o">=</span><span class="p">[</span><span class="n">alpha</span><span class="p">])</span>
+    <span class="n">lasso_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">age_train</span><span class="p">)</span>
+    <span class="n">lasso_coefficient_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lasso_model</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Lasso: Coefficient Values by $\alpha$&quot;</span><span class="p">)</span>
+
+<span class="c1"># Coefficient values by alpha</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">ALPHAS</span><span class="p">,</span> <span class="n">lasso_coefficient_values</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+<span class="c1"># Chosen alpha</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">best_alpha</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Chosen $\alpha$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\alpha$&quot;&quot;)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Coefficient Values&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-25-be89d89d9e44&gt;&quot;</span><span class="gt">, line </span><span class="mi">11</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\alpha$&quot;&quot;)</span>
+                               <span class="o">^</span>
+<span class="ne">SyntaxError</span>: EOL while scanning string literal
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapters/chapter_06"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="../chapter_05/exercise_05.html" title="previous page">Exercise V: Regularization</a>
+    <a class='right-next' id="next-link" href="../../zreferences.html" title="next page">References</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Dr. Shlomi Lifshits, Zvi Baratz<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
