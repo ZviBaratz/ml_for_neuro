@@ -1443,12 +1443,14 @@ memory usage: 11.1+ MB
 <span class="n">N_CROSS_VALIDATIONS</span> <span class="o">=</span> <span class="mi">9</span>
 <span class="n">SCORING</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;r2&quot;</span><span class="p">,</span> <span class="s2">&quot;neg_mean_squared_error&quot;</span><span class="p">]</span>
 <span class="n">SCORER</span> <span class="o">=</span> <span class="s2">&quot;r2&quot;</span>
-<span class="n">SEARCH_CONFIGURATION</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;estimator&quot;</span><span class="p">:</span> <span class="n">linear_estimator</span><span class="p">,</span>
-                        <span class="s2">&quot;param_grid&quot;</span><span class="p">:</span> <span class="n">PARAM_GRID</span><span class="p">,</span>
-                        <span class="s2">&quot;scoring&quot;</span><span class="p">:</span> <span class="n">SCORING</span><span class="p">,</span>
-                        <span class="s2">&quot;refit&quot;</span><span class="p">:</span> <span class="n">SCORER</span><span class="p">,</span>
-                        <span class="s2">&quot;cv&quot;</span><span class="p">:</span> <span class="n">N_CROSS_VALIDATIONS</span><span class="p">,</span>
-                        <span class="s2">&quot;n_jobs&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">}</span>
+<span class="n">SEARCH_CONFIGURATION</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;estimator&quot;</span><span class="p">:</span> <span class="n">linear_estimator</span><span class="p">,</span>
+    <span class="s2">&quot;param_grid&quot;</span><span class="p">:</span> <span class="n">PARAM_GRID</span><span class="p">,</span>
+    <span class="s2">&quot;scoring&quot;</span><span class="p">:</span> <span class="n">SCORING</span><span class="p">,</span>
+    <span class="s2">&quot;refit&quot;</span><span class="p">:</span> <span class="n">SCORER</span><span class="p">,</span>
+    <span class="s2">&quot;cv&quot;</span><span class="p">:</span> <span class="n">N_CROSS_VALIDATIONS</span><span class="p">,</span>
+    <span class="s2">&quot;n_jobs&quot;</span><span class="p">:</span> <span class="mi">8</span>
+<span class="p">}</span>
 
 <span class="c1"># GridSearchCV instantiation</span>
 <span class="n">linear_model_searcher</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="o">**</span><span class="n">SEARCH_CONFIGURATION</span><span class="p">)</span>
@@ -1544,10 +1546,10 @@ memory usage: 11.1+ MB
   <tbody>
     <tr>
       <th>0</th>
-      <td>106.828765</td>
-      <td>48.260085</td>
-      <td>0.057773</td>
-      <td>0.011960</td>
+      <td>113.738383</td>
+      <td>53.623850</td>
+      <td>0.038169</td>
+      <td>0.009887</td>
       <td>0.02</td>
       <td>{'alpha': 0.02}</td>
       <td>0.503054</td>
@@ -1568,10 +1570,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>1</th>
-      <td>68.230968</td>
-      <td>21.912025</td>
-      <td>0.061322</td>
-      <td>0.004893</td>
+      <td>75.443875</td>
+      <td>25.053944</td>
+      <td>0.047047</td>
+      <td>0.001210</td>
       <td>0.04</td>
       <td>{'alpha': 0.04}</td>
       <td>0.606203</td>
@@ -1592,10 +1594,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>2</th>
-      <td>34.680104</td>
-      <td>8.122444</td>
-      <td>0.062005</td>
-      <td>0.011254</td>
+      <td>36.442195</td>
+      <td>8.672612</td>
+      <td>0.042291</td>
+      <td>0.006863</td>
       <td>0.06</td>
       <td>{'alpha': 0.06}</td>
       <td>0.659176</td>
@@ -1616,10 +1618,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>3</th>
-      <td>27.534882</td>
-      <td>7.949674</td>
-      <td>0.057743</td>
-      <td>0.007887</td>
+      <td>27.237756</td>
+      <td>7.777452</td>
+      <td>0.043556</td>
+      <td>0.005396</td>
       <td>0.08</td>
       <td>{'alpha': 0.08}</td>
       <td>0.682749</td>
@@ -1640,10 +1642,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>4</th>
-      <td>26.041962</td>
-      <td>4.338310</td>
-      <td>0.055250</td>
-      <td>0.005722</td>
+      <td>24.612335</td>
+      <td>3.052693</td>
+      <td>0.046560</td>
+      <td>0.002065</td>
       <td>0.1</td>
       <td>{'alpha': 0.1}</td>
       <td>0.689745</td>
@@ -1664,10 +1666,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>5</th>
-      <td>24.069459</td>
-      <td>2.960480</td>
-      <td>0.061556</td>
-      <td>0.007603</td>
+      <td>22.140777</td>
+      <td>4.121224</td>
+      <td>0.042635</td>
+      <td>0.010276</td>
       <td>0.12</td>
       <td>{'alpha': 0.12}</td>
       <td>0.690994</td>
@@ -1688,10 +1690,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>6</th>
-      <td>21.353575</td>
-      <td>4.440448</td>
-      <td>0.061117</td>
-      <td>0.005404</td>
+      <td>18.533615</td>
+      <td>3.502022</td>
+      <td>0.043305</td>
+      <td>0.006441</td>
       <td>0.14</td>
       <td>{'alpha': 0.14}</td>
       <td>0.691041</td>
@@ -1712,10 +1714,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>7</th>
-      <td>19.170944</td>
-      <td>4.728594</td>
-      <td>0.056899</td>
-      <td>0.007412</td>
+      <td>17.053410</td>
+      <td>4.545443</td>
+      <td>0.043158</td>
+      <td>0.007258</td>
       <td>0.16</td>
       <td>{'alpha': 0.16}</td>
       <td>0.688677</td>
@@ -1736,10 +1738,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>8</th>
-      <td>15.520964</td>
-      <td>4.332400</td>
-      <td>0.059860</td>
-      <td>0.007021</td>
+      <td>13.872513</td>
+      <td>3.924133</td>
+      <td>0.042234</td>
+      <td>0.005165</td>
       <td>0.18</td>
       <td>{'alpha': 0.18}</td>
       <td>0.686324</td>
@@ -1760,10 +1762,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>9</th>
-      <td>14.449219</td>
-      <td>3.372626</td>
-      <td>0.058175</td>
-      <td>0.006084</td>
+      <td>12.939693</td>
+      <td>2.841636</td>
+      <td>0.043436</td>
+      <td>0.005065</td>
       <td>0.2</td>
       <td>{'alpha': 0.2}</td>
       <td>0.682847</td>
@@ -1784,10 +1786,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>10</th>
-      <td>13.525642</td>
-      <td>4.714342</td>
-      <td>0.060626</td>
-      <td>0.007501</td>
+      <td>12.061640</td>
+      <td>4.299540</td>
+      <td>0.040467</td>
+      <td>0.006196</td>
       <td>0.22</td>
       <td>{'alpha': 0.22}</td>
       <td>0.679374</td>
@@ -1808,10 +1810,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>11</th>
-      <td>11.990971</td>
-      <td>5.254175</td>
-      <td>0.063732</td>
-      <td>0.002883</td>
+      <td>10.794434</td>
+      <td>4.587345</td>
+      <td>0.046511</td>
+      <td>0.001815</td>
       <td>0.24</td>
       <td>{'alpha': 0.24}</td>
       <td>0.675662</td>
@@ -1832,10 +1834,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>12</th>
-      <td>10.852701</td>
-      <td>5.230362</td>
-      <td>0.054813</td>
-      <td>0.005134</td>
+      <td>9.704784</td>
+      <td>4.612090</td>
+      <td>0.042905</td>
+      <td>0.009836</td>
       <td>0.26</td>
       <td>{'alpha': 0.26}</td>
       <td>0.671745</td>
@@ -1856,10 +1858,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>13</th>
-      <td>8.706458</td>
-      <td>4.571792</td>
-      <td>0.057038</td>
-      <td>0.007088</td>
+      <td>7.749715</td>
+      <td>4.347197</td>
+      <td>0.046681</td>
+      <td>0.000324</td>
       <td>0.28</td>
       <td>{'alpha': 0.28}</td>
       <td>0.666992</td>
@@ -1880,10 +1882,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>14</th>
-      <td>8.199145</td>
-      <td>4.767366</td>
-      <td>0.056045</td>
-      <td>0.005764</td>
+      <td>7.352828</td>
+      <td>4.241079</td>
+      <td>0.044539</td>
+      <td>0.005707</td>
       <td>0.3</td>
       <td>{'alpha': 0.3}</td>
       <td>0.662964</td>
@@ -1904,10 +1906,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>15</th>
-      <td>7.792785</td>
-      <td>4.888100</td>
-      <td>0.061203</td>
-      <td>0.007169</td>
+      <td>6.779355</td>
+      <td>4.270383</td>
+      <td>0.045851</td>
+      <td>0.007399</td>
       <td>0.32</td>
       <td>{'alpha': 0.32}</td>
       <td>0.658722</td>
@@ -1928,10 +1930,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>16</th>
-      <td>7.917955</td>
-      <td>5.215853</td>
-      <td>0.057719</td>
-      <td>0.007480</td>
+      <td>7.145123</td>
+      <td>4.876875</td>
+      <td>0.041424</td>
+      <td>0.004508</td>
       <td>0.34</td>
       <td>{'alpha': 0.34}</td>
       <td>0.654094</td>
@@ -1952,10 +1954,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>17</th>
-      <td>8.187751</td>
-      <td>5.816284</td>
-      <td>0.064306</td>
-      <td>0.010236</td>
+      <td>7.103043</td>
+      <td>5.534891</td>
+      <td>0.042671</td>
+      <td>0.009594</td>
       <td>0.36</td>
       <td>{'alpha': 0.36}</td>
       <td>0.649107</td>
@@ -1976,10 +1978,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>18</th>
-      <td>7.096245</td>
-      <td>6.017948</td>
-      <td>0.060319</td>
-      <td>0.005203</td>
+      <td>6.361309</td>
+      <td>5.355941</td>
+      <td>0.045201</td>
+      <td>0.006424</td>
       <td>0.38</td>
       <td>{'alpha': 0.38}</td>
       <td>0.643656</td>
@@ -2000,10 +2002,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>19</th>
-      <td>8.784201</td>
-      <td>7.781051</td>
-      <td>0.059428</td>
-      <td>0.007237</td>
+      <td>7.989897</td>
+      <td>7.010042</td>
+      <td>0.041542</td>
+      <td>0.006081</td>
       <td>0.4</td>
       <td>{'alpha': 0.4}</td>
       <td>0.637551</td>
@@ -2024,10 +2026,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>20</th>
-      <td>6.933487</td>
-      <td>5.770359</td>
-      <td>0.059111</td>
-      <td>0.005474</td>
+      <td>6.900096</td>
+      <td>5.456924</td>
+      <td>0.045781</td>
+      <td>0.005066</td>
       <td>0.42</td>
       <td>{'alpha': 0.42}</td>
       <td>0.631478</td>
@@ -2048,10 +2050,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>21</th>
-      <td>4.087280</td>
-      <td>4.237577</td>
-      <td>0.056342</td>
-      <td>0.008681</td>
+      <td>4.041993</td>
+      <td>4.002242</td>
+      <td>0.043188</td>
+      <td>0.008825</td>
       <td>0.44</td>
       <td>{'alpha': 0.44}</td>
       <td>0.625516</td>
@@ -2072,10 +2074,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>22</th>
-      <td>3.459133</td>
-      <td>2.718677</td>
-      <td>0.062953</td>
-      <td>0.005196</td>
+      <td>3.591641</td>
+      <td>3.271101</td>
+      <td>0.041772</td>
+      <td>0.007621</td>
       <td>0.46</td>
       <td>{'alpha': 0.46}</td>
       <td>0.619753</td>
@@ -2096,10 +2098,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>23</th>
-      <td>3.585961</td>
-      <td>3.221258</td>
-      <td>0.053821</td>
-      <td>0.008720</td>
+      <td>3.445474</td>
+      <td>3.131496</td>
+      <td>0.043101</td>
+      <td>0.006848</td>
       <td>0.48</td>
       <td>{'alpha': 0.48}</td>
       <td>0.614172</td>
@@ -2120,10 +2122,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>24</th>
-      <td>3.907631</td>
-      <td>3.993258</td>
-      <td>0.057463</td>
-      <td>0.007925</td>
+      <td>4.205041</td>
+      <td>4.211140</td>
+      <td>0.042236</td>
+      <td>0.007408</td>
       <td>0.5</td>
       <td>{'alpha': 0.5}</td>
       <td>0.608676</td>
@@ -2144,10 +2146,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>25</th>
-      <td>3.592621</td>
-      <td>3.551526</td>
-      <td>0.057107</td>
-      <td>0.005751</td>
+      <td>3.717410</td>
+      <td>3.589547</td>
+      <td>0.042398</td>
+      <td>0.006608</td>
       <td>0.52</td>
       <td>{'alpha': 0.52}</td>
       <td>0.604002</td>
@@ -2168,10 +2170,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>26</th>
-      <td>3.877621</td>
-      <td>2.874302</td>
-      <td>0.059175</td>
-      <td>0.004193</td>
+      <td>4.221325</td>
+      <td>3.141459</td>
+      <td>0.040527</td>
+      <td>0.005697</td>
       <td>0.54</td>
       <td>{'alpha': 0.54}</td>
       <td>0.599752</td>
@@ -2192,10 +2194,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>27</th>
-      <td>4.025821</td>
-      <td>3.043974</td>
-      <td>0.058495</td>
-      <td>0.004955</td>
+      <td>4.196610</td>
+      <td>2.979797</td>
+      <td>0.044537</td>
+      <td>0.005092</td>
       <td>0.56</td>
       <td>{'alpha': 0.56}</td>
       <td>0.595850</td>
@@ -2216,10 +2218,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>28</th>
-      <td>3.513285</td>
-      <td>2.407518</td>
-      <td>0.058703</td>
-      <td>0.010486</td>
+      <td>3.879634</td>
+      <td>2.826958</td>
+      <td>0.043825</td>
+      <td>0.005767</td>
       <td>0.58</td>
       <td>{'alpha': 0.58}</td>
       <td>0.592018</td>
@@ -2240,10 +2242,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>29</th>
-      <td>4.453291</td>
-      <td>3.085433</td>
-      <td>0.062037</td>
-      <td>0.004949</td>
+      <td>4.552726</td>
+      <td>2.999179</td>
+      <td>0.043462</td>
+      <td>0.006269</td>
       <td>0.6</td>
       <td>{'alpha': 0.6}</td>
       <td>0.588947</td>
@@ -2264,10 +2266,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>30</th>
-      <td>3.748670</td>
-      <td>2.550542</td>
-      <td>0.060631</td>
-      <td>0.005755</td>
+      <td>4.231263</td>
+      <td>2.803401</td>
+      <td>0.044400</td>
+      <td>0.005570</td>
       <td>0.62</td>
       <td>{'alpha': 0.62}</td>
       <td>0.585774</td>
@@ -2288,10 +2290,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>31</th>
-      <td>3.610987</td>
-      <td>2.255535</td>
-      <td>0.059213</td>
-      <td>0.010154</td>
+      <td>4.076540</td>
+      <td>2.685818</td>
+      <td>0.041550</td>
+      <td>0.008518</td>
       <td>0.64</td>
       <td>{'alpha': 0.64}</td>
       <td>0.582533</td>
@@ -2312,10 +2314,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>32</th>
-      <td>3.931312</td>
-      <td>2.626353</td>
-      <td>0.059693</td>
-      <td>0.009428</td>
+      <td>4.001161</td>
+      <td>2.540417</td>
+      <td>0.043724</td>
+      <td>0.005321</td>
       <td>0.66</td>
       <td>{'alpha': 0.66}</td>
       <td>0.579175</td>
@@ -2336,10 +2338,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>33</th>
-      <td>3.537496</td>
-      <td>2.311445</td>
-      <td>0.058960</td>
-      <td>0.005020</td>
+      <td>3.760970</td>
+      <td>2.226158</td>
+      <td>0.040638</td>
+      <td>0.005138</td>
       <td>0.68</td>
       <td>{'alpha': 0.68}</td>
       <td>0.576049</td>
@@ -2360,10 +2362,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>34</th>
-      <td>3.529554</td>
-      <td>2.309880</td>
-      <td>0.057573</td>
-      <td>0.004939</td>
+      <td>3.758115</td>
+      <td>2.149041</td>
+      <td>0.042095</td>
+      <td>0.007625</td>
       <td>0.7</td>
       <td>{'alpha': 0.7}</td>
       <td>0.572868</td>
@@ -2384,10 +2386,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>35</th>
-      <td>3.286344</td>
-      <td>1.964732</td>
-      <td>0.062307</td>
-      <td>0.007826</td>
+      <td>3.576009</td>
+      <td>1.984111</td>
+      <td>0.043815</td>
+      <td>0.005096</td>
       <td>0.72</td>
       <td>{'alpha': 0.72}</td>
       <td>0.569995</td>
@@ -2408,10 +2410,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>36</th>
-      <td>3.308016</td>
-      <td>1.846296</td>
-      <td>0.058818</td>
-      <td>0.006257</td>
+      <td>3.576412</td>
+      <td>1.870406</td>
+      <td>0.044023</td>
+      <td>0.006530</td>
       <td>0.74</td>
       <td>{'alpha': 0.74}</td>
       <td>0.567768</td>
@@ -2432,10 +2434,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>37</th>
-      <td>3.227362</td>
-      <td>1.867155</td>
-      <td>0.059127</td>
-      <td>0.004634</td>
+      <td>3.558086</td>
+      <td>1.883223</td>
+      <td>0.042899</td>
+      <td>0.005261</td>
       <td>0.76</td>
       <td>{'alpha': 0.76}</td>
       <td>0.565531</td>
@@ -2456,10 +2458,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>38</th>
-      <td>2.719014</td>
-      <td>1.491064</td>
-      <td>0.055187</td>
-      <td>0.008479</td>
+      <td>2.867024</td>
+      <td>1.418749</td>
+      <td>0.043756</td>
+      <td>0.005451</td>
       <td>0.78</td>
       <td>{'alpha': 0.78}</td>
       <td>0.563330</td>
@@ -2480,10 +2482,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>39</th>
-      <td>2.541506</td>
-      <td>1.665447</td>
-      <td>0.059280</td>
-      <td>0.007613</td>
+      <td>2.650092</td>
+      <td>1.581490</td>
+      <td>0.044421</td>
+      <td>0.004070</td>
       <td>0.8</td>
       <td>{'alpha': 0.8}</td>
       <td>0.561061</td>
@@ -2504,10 +2506,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>40</th>
-      <td>2.345667</td>
-      <td>1.363966</td>
-      <td>0.056952</td>
-      <td>0.010608</td>
+      <td>2.580386</td>
+      <td>1.478552</td>
+      <td>0.041514</td>
+      <td>0.006692</td>
       <td>0.82</td>
       <td>{'alpha': 0.82}</td>
       <td>0.558700</td>
@@ -2528,10 +2530,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>41</th>
-      <td>2.459716</td>
-      <td>1.473106</td>
-      <td>0.061153</td>
-      <td>0.006658</td>
+      <td>2.450061</td>
+      <td>1.259622</td>
+      <td>0.042659</td>
+      <td>0.005803</td>
       <td>0.84</td>
       <td>{'alpha': 0.84}</td>
       <td>0.556391</td>
@@ -2552,10 +2554,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>42</th>
-      <td>2.388901</td>
-      <td>1.278330</td>
-      <td>0.063534</td>
-      <td>0.004949</td>
+      <td>2.544837</td>
+      <td>1.345962</td>
+      <td>0.041056</td>
+      <td>0.007998</td>
       <td>0.86</td>
       <td>{'alpha': 0.86}</td>
       <td>0.553947</td>
@@ -2576,10 +2578,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>43</th>
-      <td>2.424224</td>
-      <td>1.009763</td>
-      <td>0.058831</td>
-      <td>0.003642</td>
+      <td>2.560011</td>
+      <td>1.180788</td>
+      <td>0.041515</td>
+      <td>0.008418</td>
       <td>0.88</td>
       <td>{'alpha': 0.88}</td>
       <td>0.551399</td>
@@ -2600,10 +2602,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>44</th>
-      <td>2.288238</td>
-      <td>0.994637</td>
-      <td>0.059968</td>
-      <td>0.007395</td>
+      <td>2.478396</td>
+      <td>1.084111</td>
+      <td>0.043254</td>
+      <td>0.005858</td>
       <td>0.9</td>
       <td>{'alpha': 0.9}</td>
       <td>0.548753</td>
@@ -2624,10 +2626,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>45</th>
-      <td>2.455230</td>
-      <td>0.979651</td>
-      <td>0.058766</td>
-      <td>0.006443</td>
+      <td>2.453234</td>
+      <td>1.128425</td>
+      <td>0.045150</td>
+      <td>0.005058</td>
       <td>0.92</td>
       <td>{'alpha': 0.92}</td>
       <td>0.546127</td>
@@ -2648,10 +2650,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>46</th>
-      <td>2.345004</td>
-      <td>1.196092</td>
-      <td>0.055871</td>
-      <td>0.005948</td>
+      <td>2.387766</td>
+      <td>1.119863</td>
+      <td>0.042186</td>
+      <td>0.005430</td>
       <td>0.94</td>
       <td>{'alpha': 0.94}</td>
       <td>0.543400</td>
@@ -2672,10 +2674,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>47</th>
-      <td>2.426679</td>
-      <td>1.288891</td>
-      <td>0.057166</td>
-      <td>0.007967</td>
+      <td>2.425406</td>
+      <td>1.175999</td>
+      <td>0.042891</td>
+      <td>0.007488</td>
       <td>0.96</td>
       <td>{'alpha': 0.96}</td>
       <td>0.540515</td>
@@ -2696,10 +2698,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>48</th>
-      <td>1.764047</td>
-      <td>0.952436</td>
-      <td>0.055471</td>
-      <td>0.011870</td>
+      <td>1.837068</td>
+      <td>0.943687</td>
+      <td>0.037072</td>
+      <td>0.009051</td>
       <td>0.98</td>
       <td>{'alpha': 0.98}</td>
       <td>0.537544</td>
@@ -2720,10 +2722,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>49</th>
-      <td>1.377153</td>
-      <td>0.546168</td>
-      <td>0.042064</td>
-      <td>0.020088</td>
+      <td>1.363819</td>
+      <td>0.576055</td>
+      <td>0.030943</td>
+      <td>0.015902</td>
       <td>1</td>
       <td>{'alpha': 1.0}</td>
       <td>0.534428</td>
@@ -2757,7 +2759,7 @@ memory usage: 11.1+ MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6755624448663734
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6755624448663735
 </pre></div>
 </div>
 </div>
@@ -2777,14 +2779,22 @@ memory usage: 11.1+ MB
 <span class="c1">#######</span>
 
 <span class="c1"># Plot mean r2 score</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="s2">&quot;param_alpha&quot;</span><span class="p">,</span> <span class="s2">&quot;mean_test_r2&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">linear_search_results</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$R^2$&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="s2">&quot;param_alpha&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;mean_test_r2&quot;</span><span class="p">,</span>
+            <span class="n">data</span><span class="o">=</span><span class="n">linear_search_results</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$R^2$&quot;</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
 
 <span class="c1"># Plot r2 STD across folds</span>
 <span class="n">r2_mean</span> <span class="o">=</span> <span class="n">linear_search_results</span><span class="p">[</span><span class="s2">&quot;mean_test_r2&quot;</span><span class="p">]</span>
 <span class="n">r2_std</span> <span class="o">=</span> <span class="n">linear_search_results</span><span class="p">[</span><span class="s2">&quot;std_test_r2&quot;</span><span class="p">]</span>
 <span class="n">r2_lower_limit</span> <span class="o">=</span> <span class="n">r2_mean</span> <span class="o">-</span> <span class="n">r2_std</span>
 <span class="n">r2_upper_limit</span> <span class="o">=</span> <span class="n">r2_mean</span> <span class="o">+</span> <span class="n">r2_std</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">ALPHAS</span><span class="p">,</span> <span class="n">r2_lower_limit</span><span class="p">,</span> <span class="n">r2_upper_limit</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;brown&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">ALPHAS</span><span class="p">,</span>
+                <span class="n">r2_lower_limit</span><span class="p">,</span>
+                <span class="n">r2_upper_limit</span><span class="p">,</span>
+                <span class="n">color</span><span class="o">=</span><span class="s2">&quot;brown&quot;</span><span class="p">,</span>
+                <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\alpha$&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$R^2$&quot;</span><span class="p">)</span>
@@ -2793,7 +2803,7 @@ memory usage: 11.1+ MB
 <span class="c1"># MSE #</span>
 <span class="c1">#######</span>
 
-<span class="c1"># Convert negative MSE to MSE </span>
+<span class="c1"># Convert negative MSE to MSE</span>
 <span class="n">mse_mean</span> <span class="o">=</span> <span class="o">-</span><span class="n">linear_search_results</span><span class="p">[</span><span class="s2">&quot;mean_test_neg_mean_squared_error&quot;</span><span class="p">]</span>
 
 <span class="c1"># Created another Axis instance with a shared X-axis</span>
@@ -2806,7 +2816,11 @@ memory usage: 11.1+ MB
 <span class="n">mse_std</span> <span class="o">=</span> <span class="n">linear_search_results</span><span class="p">[</span><span class="s2">&quot;std_test_neg_mean_squared_error&quot;</span><span class="p">]</span>
 <span class="n">mse_lower_limit</span> <span class="o">=</span> <span class="n">mse_mean</span> <span class="o">-</span> <span class="n">mse_std</span>
 <span class="n">mse_upper_limit</span> <span class="o">=</span> <span class="n">mse_mean</span> <span class="o">+</span> <span class="n">mse_std</span>
-<span class="n">mse_ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">ALPHAS</span><span class="p">,</span> <span class="n">mse_lower_limit</span><span class="p">,</span> <span class="n">mse_upper_limit</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">mse_ax</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">ALPHAS</span><span class="p">,</span>
+                    <span class="n">mse_lower_limit</span><span class="p">,</span>
+                    <span class="n">mse_upper_limit</span><span class="p">,</span>
+                    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+                    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
 
 <span class="n">mse_ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;$MSE$&quot;</span><span class="p">)</span>
 
@@ -2816,7 +2830,6 @@ memory usage: 11.1+ MB
 
 <span class="c1"># Chosen alpha</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">best_alpha</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Chosen $\alpha$&quot;</span><span class="p">)</span>
-
 
 <span class="c1"># Add legend</span>
 <span class="n">_</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">))</span>
@@ -2905,7 +2918,9 @@ memory usage: 11.1+ MB
 <span class="n">n_selected_coefficients</span> <span class="o">=</span> <span class="p">(</span><span class="n">coefficients</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 <span class="n">n_removed</span> <span class="o">=</span> <span class="n">n_coefficients</span> <span class="o">-</span> <span class="n">n_selected_coefficients</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_selected_coefficients</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n_coefficients</span><span class="si">}</span><span class="s2"> features selected (</span><span class="si">{</span><span class="n">n_removed</span><span class="si">}</span><span class="s2"> removed)&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_selected_coefficients</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">n_coefficients</span><span class="si">}</span><span class="s2"> features selected (</span><span class="si">{</span><span class="n">n_removed</span><span class="si">}</span><span class="s2"> removed)&quot;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2922,22 +2937,27 @@ memory usage: 11.1+ MB
 <span class="n">top_coefficient_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argpartition</span><span class="p">(</span><span class="n">coefficients</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">)[</span><span class="o">-</span><span class="mi">10</span><span class="p">:]</span>
 
 <span class="c1"># Use these indices to print the appropriate feature names</span>
-<span class="k">for</span> <span class="n">column_name</span> <span class="ow">in</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">top_coefficient_indices</span><span class="p">]:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">column_name</span><span class="p">)</span>
+<span class="n">top_feature_coef_values</span> <span class="o">=</span> <span class="n">coefficients</span><span class="p">[</span><span class="n">top_coefficient_indices</span><span class="p">]</span>
+<span class="n">top_feature_names</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">top_coefficient_indices</span><span class="p">]</span>
+<span class="n">top_features</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">top_feature_coef_values</span><span class="p">,</span>
+                         <span class="n">index</span><span class="o">=</span><span class="n">top_feature_names</span><span class="p">,</span>
+                         <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Top Coefficient Values&quot;</span><span class="p">)</span>
+<span class="n">top_features</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fsArea_L_10r_ROI
-fsCT_R_PBelt_ROI
-fsCT_R_TGv_ROI
-fsVol_R_H_ROI
-fsCT_R_4_ROI
-fsCT_L_TE2p_ROI
-fsArea_R_d32_ROI
-fsLGI_L_H_ROI
-fsCT_L_VVC_ROI
-fsArea_R_52_ROI
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fsCT_L_VVC_ROI      0.869553
+fsArea_R_52_ROI     0.730360
+fsLGI_L_H_ROI       0.729083
+fsArea_R_d32_ROI    0.684735
+fsCT_L_TE2p_ROI     0.601766
+fsCT_R_TGv_ROI      0.528893
+fsVol_R_H_ROI       0.495890
+fsCT_R_4_ROI        0.460769
+fsCT_R_PBelt_ROI    0.456622
+fsArea_L_10r_ROI    0.440051
+Name: Top Coefficient Values, dtype: float64
 </pre></div>
 </div>
 </div>
@@ -2954,6 +2974,8 @@ fsArea_R_52_ROI
     <span class="n">lasso_model</span><span class="o">.</span><span class="n">set_params</span><span class="p">(</span><span class="n">alphas</span><span class="o">=</span><span class="p">[</span><span class="n">alpha</span><span class="p">])</span>
     <span class="n">lasso_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">age_train</span><span class="p">)</span>
     <span class="n">lasso_coefficient_values</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">lasso_model</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+
+<span class="n">lasso_coefficient_values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">lasso_coefficient_values</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -2966,22 +2988,25 @@ fsArea_R_52_ROI
 
 <span class="c1"># Coefficient values by alpha</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">ALPHAS</span><span class="p">,</span> <span class="n">lasso_coefficient_values</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\alpha$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Coefficient Values&quot;</span><span class="p">)</span>
+
+<span class="c1"># Number of selected features</span>
+<span class="n">n_selected_features</span> <span class="o">=</span> <span class="p">(</span><span class="n">lasso_coefficient_values</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">n_features_ax</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="n">n_features_ax</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">ALPHAS</span><span class="p">,</span> <span class="n">n_selected_features</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;# Selected Features&quot;</span><span class="p">)</span>
+<span class="n">n_features_ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Number of Selected Features&quot;</span><span class="p">)</span>
 
 <span class="c1"># Chosen alpha</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">best_alpha</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;Chosen $\alpha$&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\alpha$&quot;&quot;)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;Coefficient Values&quot;</span><span class="p">)</span>
+
+
+<span class="n">_</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.825</span><span class="p">,</span> <span class="mf">0.84</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">  File</span><span class="nn"> &quot;&lt;ipython-input-25-be89d89d9e44&gt;&quot;</span><span class="gt">, line </span><span class="mi">11</span>
-    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\alpha$&quot;&quot;)</span>
-                               <span class="o">^</span>
-<span class="ne">SyntaxError</span>: EOL while scanning string literal
-</pre></div>
-</div>
+<img alt="../../_images/exercise_06_60_0.png" src="../../_images/exercise_06_60_0.png" />
 </div>
 </div>
 </div>
