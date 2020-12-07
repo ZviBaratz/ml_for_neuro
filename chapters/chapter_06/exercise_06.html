@@ -340,6 +340,40 @@
   <a class="reference internal nav-link" href="#predicting-asd-diagnosis">
    Predicting ASD Diagnosis
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Model Creation
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     Model Application
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     Model Evaluation
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#confusion-matrix">
+       Confusion Matrix
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#classification-report">
+       Classification Report
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       Coefficients
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -1539,10 +1573,10 @@ memory usage: 11.1+ MB
   <tbody>
     <tr>
       <th>0</th>
-      <td>140.980365</td>
-      <td>95.481155</td>
-      <td>0.057305</td>
-      <td>0.007955</td>
+      <td>137.707193</td>
+      <td>99.020595</td>
+      <td>0.042066</td>
+      <td>0.005520</td>
       <td>0.01</td>
       <td>{'alpha': 0.01}</td>
       <td>0.128750</td>
@@ -1563,10 +1597,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>1</th>
-      <td>144.047783</td>
-      <td>59.689449</td>
-      <td>0.059069</td>
-      <td>0.004950</td>
+      <td>146.514099</td>
+      <td>62.329438</td>
+      <td>0.047906</td>
+      <td>0.002505</td>
       <td>0.0109854</td>
       <td>{'alpha': 0.010985411419875584}</td>
       <td>0.172036</td>
@@ -1587,10 +1621,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>2</th>
-      <td>139.125404</td>
-      <td>54.098773</td>
-      <td>0.057078</td>
-      <td>0.005094</td>
+      <td>143.153309</td>
+      <td>55.481427</td>
+      <td>0.043058</td>
+      <td>0.005625</td>
       <td>0.0120679</td>
       <td>{'alpha': 0.012067926406393288}</td>
       <td>0.210728</td>
@@ -1611,10 +1645,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>3</th>
-      <td>114.539118</td>
-      <td>54.653642</td>
-      <td>0.054465</td>
-      <td>0.006122</td>
+      <td>116.491581</td>
+      <td>56.161390</td>
+      <td>0.047810</td>
+      <td>0.000085</td>
       <td>0.0132571</td>
       <td>{'alpha': 0.013257113655901088}</td>
       <td>0.245872</td>
@@ -1635,10 +1669,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>4</th>
-      <td>100.932911</td>
-      <td>48.035306</td>
-      <td>0.057057</td>
-      <td>0.006828</td>
+      <td>103.395004</td>
+      <td>50.112070</td>
+      <td>0.042243</td>
+      <td>0.005720</td>
       <td>0.0145635</td>
       <td>{'alpha': 0.014563484775012436}</td>
       <td>0.279215</td>
@@ -2184,10 +2218,10 @@ memory usage: 11.1+ MB
 <span class="sd">    measurement: str</span>
 <span class="sd">        String identifier for the desired type of measurement</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    
+
     <span class="c1"># Create a copy of the HCP-MMP1 atlas array</span>
     <span class="n">template</span> <span class="o">=</span> <span class="n">HCP_DATA</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-    
+
     <span class="c1"># Replace region indices in the template with their matching coefficient values</span>
     <span class="k">for</span> <span class="n">hemisphere</span> <span class="ow">in</span> <span class="n">HEMISPHERE_DICT</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
         <span class="c1"># Query appropriate rows</span>
@@ -2199,10 +2233,10 @@ memory usage: 11.1+ MB
         <span class="k">for</span> <span class="n">region_id</span> <span class="ow">in</span> <span class="n">REGION_IDS</span><span class="p">:</span>
             <span class="n">template_id</span> <span class="o">=</span> <span class="n">region_id</span> <span class="k">if</span> <span class="n">hemisphere</span> <span class="o">==</span> <span class="s2">&quot;Left&quot;</span> <span class="k">else</span> <span class="n">region_id</span> <span class="o">+</span> <span class="mi">180</span>
             <span class="n">template</span><span class="p">[</span><span class="n">template</span> <span class="o">==</span> <span class="n">template_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">region_id</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
-    
-    <span class="c1"># Create a `nibabel.nifti1.Nifti1Image` instance for `plot_glass_brain`    </span>
+
+    <span class="c1"># Create a `nibabel.nifti1.Nifti1Image` instance for `plot_glass_brain`</span>
     <span class="n">coefficients_nifti</span> <span class="o">=</span> <span class="n">new_img_like</span><span class="p">(</span><span class="n">HCP_IMAGE</span><span class="p">,</span> <span class="n">template</span><span class="p">,</span> <span class="n">HCP_IMAGE</span><span class="o">.</span><span class="n">affine</span><span class="p">)</span>
-    
+
     <span class="n">_</span> <span class="o">=</span> <span class="n">plotting</span><span class="o">.</span><span class="n">plot_glass_brain</span><span class="p">(</span><span class="n">coefficients_nifti</span><span class="p">,</span>
                                   <span class="n">display_mode</span><span class="o">=</span><span class="s1">&#39;ortho&#39;</span><span class="p">,</span>
                                   <span class="n">colorbar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
@@ -2228,10 +2262,117 @@ memory usage: 11.1+ MB
 <h2>Predicting ASD Diagnosis<a class="headerlink" href="#predicting-asd-diagnosis" title="Permalink to this headline">¶</a></h2>
 <p>We’ll use <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>’s <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegressionCV.html"><code class="docutils literal notranslate"><span class="pre">LogisticRegressionCV</span></code></a> to select a model predicting ASD diagnosis using the provided features.</p>
 <p><code class="docutils literal notranslate"><span class="pre">LogisticRegressionCV</span></code> implements an <span class="math notranslate nohighlight">\(\ell_2\)</span> (i.e. “ridge”) penalty by default and allows us to easily hypertune our model using a grid of regularization strength values.</p>
+<div class="section" id="id2">
+<h3>Model Creation<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegressionCV</span>
+
+<span class="c1"># The LogisticRegression class uses inverse regularization strength values</span>
+<span class="n">Cs</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">ALPHAS</span>
+
+<span class="n">logistic_model</span> <span class="o">=</span> <span class="n">LogisticRegressionCV</span><span class="p">(</span><span class="n">Cs</span><span class="o">=</span><span class="n">Cs</span><span class="p">,</span>
+                                      <span class="n">cv</span><span class="o">=</span><span class="n">N_CROSS_VALIDATIONS</span><span class="p">,</span>
+                                      <span class="n">scoring</span><span class="o">=</span><span class="s2">&quot;roc_auc&quot;</span><span class="p">,</span>
+                                      <span class="n">max_iter</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span>
+                                     <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">logistic_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">asd_diagnosis_train</span><span class="p">)</span>
 </pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3>Model Application<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">predicted_asd_diagnosis</span> <span class="o">=</span> <span class="n">logistic_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>Model Evaluation<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>To simply report the selected model’s regularization strength and score:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">selected_alpha</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">logistic_model</span><span class="o">.</span><span class="n">C_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">logistic_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">asd_diagnosis_test</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Selected regularization strength:&quot;</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">selected_alpha</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Score (</span><span class="si">{</span><span class="n">logistic_model</span><span class="o">.</span><span class="n">scoring</span><span class="si">}</span><span class="s2">):&quot;</span><span class="o">.</span><span class="n">ljust</span><span class="p">(</span><span class="mi">40</span><span class="p">),</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Selected regularization strength:        0.7543
+Score (roc_auc):                         0.6023
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="confusion-matrix">
+<h4>Confusion Matrix<a class="headerlink" href="#confusion-matrix" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">plot_confusion_matrix</span>
+
+<span class="n">disp</span> <span class="o">=</span> <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">logistic_model</span><span class="p">,</span>
+                             <span class="n">X_test</span><span class="p">,</span>
+                             <span class="n">asd_diagnosis_test</span><span class="p">,</span>
+                             <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">Greens</span><span class="p">,</span>
+                             <span class="n">normalize</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">)</span>
+<span class="n">_</span> <span class="o">=</span> <span class="n">disp</span><span class="o">.</span><span class="n">ax_</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Confusion Matrix&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/exercise_06_76_0.png" src="../../_images/exercise_06_76_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="classification-report">
+<h4>Classification Report<a class="headerlink" href="#classification-report" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+
+<span class="n">report</span> <span class="o">=</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">asd_diagnosis_test</span><span class="p">,</span> <span class="n">predicted_asd_diagnosis</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">report</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+       False       0.67      0.67      0.67        58
+        True       0.59      0.59      0.59        46
+
+    accuracy                           0.63       104
+   macro avg       0.63      0.63      0.63       104
+weighted avg       0.63      0.63      0.63       104
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id5">
+<h4>Coefficients<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coefficient_values</span> <span class="o">=</span> <span class="n">parse_coefficient_values</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">logistic_model</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">measurement</span> <span class="ow">in</span> <span class="n">MEASUREMENT_DICT</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="n">plot_coefficient_values</span><span class="p">(</span><span class="n">coefficient_values</span><span class="p">,</span> <span class="n">measurement</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/exercise_06_80_0.png" src="../../_images/exercise_06_80_0.png" />
+<img alt="../../_images/exercise_06_80_1.png" src="../../_images/exercise_06_80_1.png" />
+<img alt="../../_images/exercise_06_80_2.png" src="../../_images/exercise_06_80_2.png" />
+<img alt="../../_images/exercise_06_80_3.png" src="../../_images/exercise_06_80_3.png" />
+</div>
 </div>
 </div>
 </div>
