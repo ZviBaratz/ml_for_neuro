@@ -503,13 +503,13 @@
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-      setosa       1.00      1.00      1.00        11
-  versicolor       0.92      1.00      0.96        11
-   virginica       1.00      0.88      0.93         8
+      setosa       1.00      1.00      1.00        10
+  versicolor       0.83      1.00      0.91        10
+   virginica       1.00      0.80      0.89        10
 
-    accuracy                           0.97        30
-   macro avg       0.97      0.96      0.96        30
-weighted avg       0.97      0.97      0.97        30
+    accuracy                           0.93        30
+   macro avg       0.94      0.93      0.93        30
+weighted avg       0.94      0.93      0.93        30
 </pre></div>
 </div>
 </div>
@@ -983,7 +983,8 @@ weighted avg       0.69      0.68      0.68       104
     <span class="n">data</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">PARAM_COLUMN_NAMES</span>
     <span class="n">param_fig</span><span class="p">,</span> <span class="n">param_ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
     <span class="n">param_ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span>
-        <span class="s2">&quot;GridSearchCV Test-set Accuracy by Number of Estimators and Max. Depth&quot;</span><span class="p">)</span>
+        <span class="s2">&quot;GridSearchCV Test-set Accuracy by Number of Estimators and Max. Depth&quot;</span>
+    <span class="p">)</span>
 
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">grp</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;Max Depth&quot;</span><span class="p">])):</span>
         <span class="n">grp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;line&quot;</span><span class="p">,</span>
@@ -1027,9 +1028,9 @@ weighted avg       0.69      0.68      0.68       104
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model_searcher_2</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span>
-                              <span class="n">param_grid</span><span class="o">=</span><span class="n">PARAM_GRID</span><span class="p">,</span>
-                              <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-                               <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+                                <span class="n">param_grid</span><span class="o">=</span><span class="n">PARAM_GRID</span><span class="p">,</span>
+                                <span class="n">return_train_score</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                <span class="n">cv</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
