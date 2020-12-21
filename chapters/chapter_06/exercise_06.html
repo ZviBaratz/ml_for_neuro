@@ -40,7 +40,6 @@
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/language_data.js"></script>
     <script src="../../_static/togglebutton.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -48,6 +47,8 @@
     <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -134,6 +135,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../chapter_07/exercise_07.html">
      Exercise VII: Decision Trees and Random Forests
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter_08/exercise_08.html">
+     Exercise VIII: K-Means Clustering and PCA
     </a>
    </li>
   </ul>
@@ -1600,10 +1606,10 @@ memory usage: 11.1+ MB
   <tbody>
     <tr>
       <th>0</th>
-      <td>147.367663</td>
-      <td>93.615244</td>
-      <td>0.045966</td>
-      <td>0.010131</td>
+      <td>145.111751</td>
+      <td>89.388011</td>
+      <td>0.046734</td>
+      <td>0.015174</td>
       <td>0.001</td>
       <td>{'alpha': 0.001}</td>
       <td>0.104771</td>
@@ -1624,10 +1630,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>1</th>
-      <td>137.883240</td>
-      <td>60.791117</td>
-      <td>0.052407</td>
-      <td>0.007993</td>
+      <td>133.203517</td>
+      <td>54.703106</td>
+      <td>0.043498</td>
+      <td>0.005495</td>
       <td>0.0011514</td>
       <td>{'alpha': 0.0011513953993264468}</td>
       <td>0.166932</td>
@@ -1648,10 +1654,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>2</th>
-      <td>134.073541</td>
-      <td>58.896218</td>
-      <td>0.050911</td>
-      <td>0.004817</td>
+      <td>127.195839</td>
+      <td>52.388251</td>
+      <td>0.048133</td>
+      <td>0.003379</td>
       <td>0.00132571</td>
       <td>{'alpha': 0.0013257113655901094}</td>
       <td>0.224170</td>
@@ -1672,10 +1678,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>3</th>
-      <td>100.729478</td>
-      <td>47.939447</td>
-      <td>0.048379</td>
-      <td>0.000303</td>
+      <td>94.531961</td>
+      <td>45.886160</td>
+      <td>0.045940</td>
+      <td>0.006245</td>
       <td>0.00152642</td>
       <td>{'alpha': 0.0015264179671752333}</td>
       <td>0.274601</td>
@@ -1696,10 +1702,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>4</th>
-      <td>101.840340</td>
-      <td>55.961331</td>
-      <td>0.054453</td>
-      <td>0.007844</td>
+      <td>90.428266</td>
+      <td>48.554379</td>
+      <td>0.050549</td>
+      <td>0.006053</td>
       <td>0.00175751</td>
       <td>{'alpha': 0.0017575106248547913}</td>
       <td>0.319358</td>
@@ -1733,7 +1739,7 @@ memory usage: 11.1+ MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.30833618218727005
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.3083361821872701
 </pre></div>
 </div>
 </div>
