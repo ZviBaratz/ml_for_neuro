@@ -357,61 +357,182 @@
 </div>
 </div>
 <p>Let’s try and evaluate how well did PCA manage to find small number of components to explain the variance:</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+
+<span class="n">DEFAULT_FIG_KWARGS</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;figsize&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">6</span><span class="p">)}</span>
+<span class="n">DEFAULT_COMPONENT_AX_KWARGS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;purple&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;linewidth&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Individual Component&quot;</span>
+<span class="p">}</span>
+<span class="n">DEFAULT_CUMULATIVE_AX_KWARGS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;orange&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;linewidth&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Cumulative&quot;</span>
+<span class="p">}</span>
+<span class="n">DEFAULT_CUSTOMIZATIONS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Explained Variance Ratio by Number of Principal Components&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;xlabel&quot;</span><span class="p">:</span> <span class="s2">&quot;Number of Principal Components&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;ylabel&quot;</span><span class="p">:</span> <span class="s2">&quot;Explained Variance Ratio&quot;</span>
+<span class="p">}</span>
+<span class="n">DEFAULT_LEGEND_LOCATION</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.85</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">organize_kwargs</span><span class="p">(</span><span class="n">user_kwargs</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+                    <span class="n">default_kwargs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Update default keyword argument configuration with user provided</span>
+<span class="sd">    configuration.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    user_kwargs: Union[dict, None]</span>
+<span class="sd">        Dictionary of user provided keyword argument configurations, or</span>
+<span class="sd">        None</span>
+<span class="sd">    default_kwargs: dict</span>
+<span class="sd">        Default keyword argument configuration to be updated with user</span>
+<span class="sd">        configuration</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        Complete keyword argument configuration</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">kwargs</span> <span class="o">=</span> <span class="n">user_kwargs</span> <span class="ow">or</span> <span class="p">{}</span>
+    <span class="n">default_kwargs</span> <span class="o">=</span> <span class="n">default_kwargs</span> <span class="ow">or</span> <span class="p">{}</span>
+    <span class="k">return</span> <span class="p">{</span><span class="o">**</span><span class="n">default_kwargs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">}</span>
+
+
+<span class="k">def</span> <span class="nf">plot_explained_variance_ratio</span><span class="p">(</span>
+        <span class="n">pca</span><span class="p">:</span> <span class="n">PCA</span><span class="p">,</span>
+        <span class="n">fig_kwargs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">component_ax_kwargs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">cumulative_ax_kwargs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">customizations</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">legend_location</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="n">DEFAULT_LEGEND_LOCATION</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot explained variance by component number for a fitted PCA estimator.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pca : PCA</span>
+<span class="sd">        Fitted PCA model</span>
+<span class="sd">    fig_kwargs : dict</span>
+<span class="sd">        Keyword arguments passed to the created figure</span>
+<span class="sd">    component_ax_kwargs : dict</span>
+<span class="sd">        Keyword arguments passed in the explained variance by individual</span>
+<span class="sd">        component plot call</span>
+<span class="sd">    cumulative_ax_kwargs : dict</span>
+<span class="sd">        Keyword arguments passed in the cumulative explained variance by</span>
+<span class="sd">        component plot call</span>
+<span class="sd">    customizations : dict</span>
+<span class="sd">        Keyword arguments passed to the axis&#39; `set()` method</span>
+<span class="sd">    legend_location: Tuple(float, float)</span>
+<span class="sd">        Legend location within figure</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Tuple(Figure, Axes)</span>
+<span class="sd">        Create figure and axes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Prepare figure and axes kwargs</span>
+    <span class="n">fig_kwargs</span> <span class="o">=</span> <span class="n">organize_kwargs</span><span class="p">(</span><span class="n">fig_kwargs</span><span class="p">,</span> <span class="n">DEFAULT_FIG_KWARGS</span><span class="p">)</span>
+    <span class="n">component_ax_kwargs</span> <span class="o">=</span> <span class="n">organize_kwargs</span><span class="p">(</span><span class="n">component_ax_kwargs</span><span class="p">,</span>
+                                          <span class="n">DEFAULT_COMPONENT_AX_KWARGS</span><span class="p">)</span>
+    <span class="n">cumulative_ax_kwargs</span> <span class="o">=</span> <span class="n">organize_kwargs</span><span class="p">(</span><span class="n">cumulative_ax_kwargs</span><span class="p">,</span>
+                                           <span class="n">DEFAULT_CUMULATIVE_AX_KWARGS</span><span class="p">)</span>
+    <span class="n">customizations</span> <span class="o">=</span> <span class="n">organize_kwargs</span><span class="p">(</span><span class="n">customizations</span><span class="p">,</span> <span class="n">DEFAULT_CUSTOMIZATIONS</span><span class="p">)</span>
+
+    <span class="c1"># Create figure</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="o">**</span><span class="n">fig_kwargs</span><span class="p">)</span>
+    <span class="n">x_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">pca</span><span class="o">.</span><span class="n">n_components_</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1"># Plot explained variance ratio by component</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">,</span> <span class="o">**</span><span class="n">component_ax_kwargs</span><span class="p">)</span>
+
+    <span class="c1"># Plot cumulative explained variance</span>
+    <span class="n">cumulative_sum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_range</span><span class="p">,</span> <span class="n">cumulative_sum</span><span class="p">,</span> <span class="o">**</span><span class="n">cumulative_ax_kwargs</span><span class="p">)</span>
+
+    <span class="c1">#</span>
+    <span class="c1"># Customizations</span>
+    <span class="c1">#</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="o">**</span><span class="n">customizations</span><span class="p">)</span>
+
+    <span class="c1"># Add legend</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="n">legend_location</span><span class="p">)</span>
+
+    <span class="c1"># Fix x-axis tick labels to show integers</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x_range</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">x_range</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell tag_hide-input tag_remove-output docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">MaxNLocator</span>
-<span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
-
-<span class="n">IRIS_PCA_X_RANGE</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">IRIS_N_COMPONENTS</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># Create figure</span>
-<span class="n">pca_fig</span><span class="p">,</span> <span class="n">pca_ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-
-<span class="c1"># Plot explained variance ratio by component</span>
-<span class="n">pca_ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">IRIS_PCA_X_RANGE</span><span class="p">,</span>
-            <span class="n">iris_pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">,</span>
-            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span>
-            <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Explained Variance Ratio&quot;</span><span class="p">)</span>
-
-<span class="c1"># Plot cumulative explained variance</span>
-<span class="n">pca_ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">IRIS_PCA_X_RANGE</span><span class="p">,</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">iris_pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">),</span>
-            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span>
-            <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Cumulative Explained Variance&quot;</span><span class="p">)</span>
-
-<span class="c1"># Customizations</span>
-<span class="n">pca_ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Explained Variance by Number of Principal Components&quot;</span><span class="p">,</span>
-           <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Number of Principal Components&quot;</span><span class="p">,</span>
-           <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Explained Variance Ratio&quot;</span><span class="p">)</span>
-
-<span class="n">pca_fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.85</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">))</span>
-
-<span class="c1"># Fix x-axis tick labels to show integers</span>
-<span class="n">pca_ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">IRIS_PCA_X_RANGE</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">pca_ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">IRIS_PCA_X_RANGE</span><span class="p">)</span>
+<span class="n">fig_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;figsize&quot;</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">)}</span>
+<span class="n">iris_explained_variance_fig</span><span class="p">,</span> <span class="n">iris_explained_variance_ax</span> <span class="o">=</span> <span class="n">plot_explained_variance_ratio</span><span class="p">(</span>
+    <span class="n">iris_pca</span><span class="p">,</span> <span class="n">fig_kwargs</span><span class="o">=</span><span class="n">fig_kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
 
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;iris_explained_variance_fig&quot;</span><span class="p">,</span> <span class="n">pca_fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">5</span><span class="o">-</span><span class="mi">0</span><span class="n">c8938c0f276</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">myst_nb</span> <span class="kn">import</span> <span class="n">glue</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;iris_explained_variance_fig&quot;</span><span class="p">,</span> <span class="n">pca_fig</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="ne">NameError</span>: name &#39;pca_fig&#39; is not defined
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">explained_variance_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="p">{</span>
-        <span class="s2">&quot;Explained Variance Ratio&quot;</span><span class="p">:</span>
-        <span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">,</span>
-        <span class="s2">&quot;Cumulative Explained Variance Ratio&quot;</span><span class="p">:</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
-    <span class="p">},</span>
-    <span class="n">index</span><span class="o">=</span><span class="n">IRIS_PCA_X_RANGE</span><span class="p">)</span>
-<span class="n">explained_variance_df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;# Components&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_explained_variance_df</span><span class="p">(</span><span class="n">pca</span><span class="p">:</span> <span class="n">PCA</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a formatted dataframe to display the plot&#39;s information conveniently</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    pca : PCA</span>
+<span class="sd">        Fitted PCA model</span>
+<span class="sd">        </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        Explained variance (per component and cumulative)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">results_dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;Individual Component&quot;</span><span class="p">:</span> <span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">,</span>
+        <span class="s2">&quot;Cumulative&quot;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">explained_variance_dict</span><span class="p">,</span>
+                      <span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">iris_pca</span><span class="o">.</span><span class="n">n_components_</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;# Components&quot;</span>
+    <span class="k">return</span> <span class="n">df</span>
 
+
+<span class="n">explained_variance_df</span> <span class="o">=</span> <span class="n">create_explained_variance_df</span><span class="p">(</span><span class="n">iris_pca</span><span class="p">)</span>
 <span class="n">explained_variance_df_repr</span> <span class="o">=</span> <span class="n">explained_variance_df</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">set_table_styles</span><span class="p">([</span>
     <span class="nb">dict</span><span class="p">(</span><span class="n">selector</span><span class="o">=</span><span class="s2">&quot;th&quot;</span><span class="p">,</span> <span class="n">props</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;font-size&quot;</span><span class="p">,</span> <span class="s2">&quot;12px&quot;</span><span class="p">)]),</span>
     <span class="nb">dict</span><span class="p">(</span><span class="n">selector</span><span class="o">=</span><span class="s2">&quot;td&quot;</span><span class="p">,</span> <span class="n">props</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;font-size&quot;</span><span class="p">,</span> <span class="s2">&quot;12px&quot;</span><span class="p">)]),</span>
@@ -422,18 +543,6 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">4</span><span class="o">-</span><span class="mi">5844</span><span class="n">a0a18a8e</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span>     <span class="p">{</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span>         <span class="s2">&quot;Explained Variance Ratio&quot;</span><span class="p">:</span>
-<span class="ne">----&gt; </span><span class="mi">4</span>         <span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>         <span class="s2">&quot;Cumulative Explained Variance Ratio&quot;</span><span class="p">:</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>         <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
-
-<span class="ne">NameError</span>: name &#39;pca&#39; is not defined
-</pre></div>
-</div>
 </div>
 </div>
 <div class="sphinx-bs container pb-4 docutils">
@@ -442,6 +551,34 @@
 <div class="card w-100 shadow docutils">
 <div class="card-body docutils">
 <div class="figure align-default" id="iris-explained-variance-df" style="width: 300px">
+<div class="cell_output docutils container">
+<div class="output text_html"><style  type="text/css" >
+    #T_8487b0f6_43a8_11eb_9b2b_4b5891e32d9c th {
+          font-size: 12px;
+    }    #T_8487b0f6_43a8_11eb_9b2b_4b5891e32d9c td {
+          font-size: 12px;
+    }</style><table id="T_8487b0f6_43a8_11eb_9b2b_4b5891e32d9c" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >Explained Variance Ratio</th>        <th class="col_heading level0 col1" >Cumulative Explained Variance Ratio</th>    </tr>    <tr>        <th class="index_name level0" ># Components</th>        <th class="blank" ></th>        <th class="blank" ></th>    </tr></thead><tbody>
+                <tr>
+                        <th id="T_8487b0f6_43a8_11eb_9b2b_4b5891e32d9clevel0_row0" class="row_heading level0 row0" >1</th>
+                        <td id="T_8487b0f6_43a8_11eb_9b2b_4b5891e32d9crow0_col0" class="data row0 col0" >0.729624</td>
+                        <td id="T_8487b0f6_43a8_11eb_9b2b_4b5891e32d9crow0_col1" class="data row0 col1" >0.729624</td>
+            </tr>
+            <tr>
+                        <th id="T_8487b0f6_43a8_11eb_9b2b_4b5891e32d9clevel0_row1" class="row_heading level0 row1" >2</th>
+                        <td id="T_8487b0f6_43a8_11eb_9b2b_4b5891e32d9crow1_col0" class="data row1 col0" >0.228508</td>
+                        <td id="T_8487b0f6_43a8_11eb_9b2b_4b5891e32d9crow1_col1" class="data row1 col1" >0.958132</td>
+            </tr>
+            <tr>
+                        <th id="T_8487b0f6_43a8_11eb_9b2b_4b5891e32d9clevel0_row2" class="row_heading level0 row2" >3</th>
+                        <td id="T_8487b0f6_43a8_11eb_9b2b_4b5891e32d9crow2_col0" class="data row2 col0" >0.036689</td>
+                        <td id="T_8487b0f6_43a8_11eb_9b2b_4b5891e32d9crow2_col1" class="data row2 col1" >0.994821</td>
+            </tr>
+            <tr>
+                        <th id="T_8487b0f6_43a8_11eb_9b2b_4b5891e32d9clevel0_row3" class="row_heading level0 row3" >4</th>
+                        <td id="T_8487b0f6_43a8_11eb_9b2b_4b5891e32d9crow3_col0" class="data row3 col0" >0.005179</td>
+                        <td id="T_8487b0f6_43a8_11eb_9b2b_4b5891e32d9crow3_col1" class="data row3 col1" >1.000000</td>
+            </tr>
+    </tbody></table></div></div>
 </div>
 </div>
 </div>
@@ -450,9 +587,6 @@
 <div class="card w-100 shadow docutils">
 <div class="card-body docutils">
 <div class="figure align-default" id="iris-explained-variance-fig" style="width: 300px">
-<div class="cell_output docutils container">
-<img alt="../../_images/exercise_08_8_0.png" src="../../_images/exercise_08_8_0.png" />
-</div>
 </div>
 </div>
 </div>
@@ -467,7 +601,7 @@
 <p>To calculate the coordinates of the dataset in the dimensions of the calculated principal components, we have to call <a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html#sklearn.decomposition.PCA.transform"><code class="docutils literal notranslate"><span class="pre">tranform()</span></code></a>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_iris_reduced</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_iris</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X_iris_reduced</span> <span class="o">=</span> <span class="n">iris_pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_iris</span><span class="p">)</span>
 <span class="n">X_iris_reduced</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
@@ -507,7 +641,7 @@
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "ed0232e24af64aef8dbf94b9d2dfe339", "version_major": 2, "version_minor": 0}
+{"model_id": "e997429a5d35471398457accac6e17a1", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -521,7 +655,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_08_17_0.png" src="../../_images/exercise_08_17_0.png" />
+<img alt="../../_images/exercise_08_19_0.png" src="../../_images/exercise_08_19_0.png" />
 </div>
 </div>
 <p>Ah, we can already guess the <code class="docutils literal notranslate"><span class="pre">setosa</span></code> class to be that discernible cloud on the left of both dimensionality-reduced scatters.</p>
@@ -581,7 +715,7 @@
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "936c729fd83547488a9d25f4aa1eab19", "version_major": 2, "version_minor": 0}
+{"model_id": "f47b1a8167144abb8577dfd56c7a57d2", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -611,7 +745,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_08_22_0.png" src="../../_images/exercise_08_22_0.png" />
+<img alt="../../_images/exercise_08_24_0.png" src="../../_images/exercise_08_24_0.png" />
 </div>
 </div>
 <div class="section" id="clustering-evaluation">
@@ -642,7 +776,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_08_25_0.png" src="../../_images/exercise_08_25_0.png" />
+<img alt="../../_images/exercise_08_27_0.png" src="../../_images/exercise_08_27_0.png" />
 </div>
 </div>
 <p>Amazingly, dropping the dimensionality of our dataset did not effect our ability to identify clusters of iris classes at all for 3 or 2 dimensions, but actually <strong>increased</strong> our accuracy in 1 dimension.</p>
@@ -669,7 +803,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_08_27_0.png" src="../../_images/exercise_08_27_0.png" />
+<img alt="../../_images/exercise_08_29_0.png" src="../../_images/exercise_08_29_0.png" />
 </div>
 </div>
 </div>
@@ -1039,45 +1173,14 @@
 </div>
 </div>
 <p>Let’s try and evaluate how well did PCA manage to find small number of components to explain the variance:</p>
-<div class="cell tag_hide-input docutils container">
+<div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="kn">from</span> <span class="nn">matplotlib.ticker</span> <span class="kn">import</span> <span class="n">MaxNLocator</span>
-
-<span class="n">PCA_X_RANGE</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">N_COMPONENTS</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># Create figure</span>
-<span class="n">pca_fig</span><span class="p">,</span> <span class="n">pca_ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
-
-<span class="c1"># Plot explained variance ratio by component</span>
-<span class="n">pca_ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">PCA_X_RANGE</span><span class="p">,</span>
-            <span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">,</span>
-            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">,</span>
-            <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Individual Component&quot;</span><span class="p">)</span>
-<span class="c1"># Plot cumulative explained variance ratio</span>
-<span class="n">pca_ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">PCA_X_RANGE</span><span class="p">,</span>
-            <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">),</span>
-            <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span>
-            <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-            <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Cumulative&quot;</span><span class="p">)</span>
-<span class="c1"># Customizations</span>
-<span class="n">pca_ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;Explained Variance by Number of Principal Components&quot;</span><span class="p">,</span>
-           <span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;Number of Principal Components&quot;</span><span class="p">,</span>
-           <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;Explained Variance Ratio&quot;</span><span class="p">)</span>
-
-<span class="n">pca_fig</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.85</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">))</span>
-
-<span class="c1"># Fix x-axis tick labels to show integers</span>
-<span class="n">pca_ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">PCA_X_RANGE</span><span class="p">)</span>
-<span class="n">_</span> <span class="o">=</span> <span class="n">pca_ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="n">PCA_X_RANGE</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">_</span> <span class="o">=</span> <span class="n">plot_explained_variance_ratio</span><span class="p">(</span><span class="n">pca</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_08_38_0.png" src="../../_images/exercise_08_38_0.png" />
+<img alt="../../_images/exercise_08_40_0.png" src="../../_images/exercise_08_40_0.png" />
 </div>
 </div>
 <div class="cell tag_remove-input docutils container">
@@ -1117,7 +1220,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_08_44_0.png" src="../../_images/exercise_08_44_0.png" />
+<img alt="../../_images/exercise_08_46_0.png" src="../../_images/exercise_08_46_0.png" />
 </div>
 </div>
 <p>It seems like the best degree of separation was obtained for <span class="math notranslate nohighlight">\(k=2\)</span>. Let’s visualize the two clusters and to obtain some qualitative understanding of how well (or badly) our model did:</p>
@@ -1144,7 +1247,7 @@
 </div>
 <div class="cell_output docutils container">
 <script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "efd2e38fce714e74bbb262c791add347", "version_major": 2, "version_minor": 0}
+{"model_id": "dde0663840e3462b8df849e0cb331677", "version_major": 2, "version_minor": 0}
 </script></div>
 </div>
 <p>Indeed, it seems our model’s ability to cluster ASD subtypes using three principal components is rather poor.</p>

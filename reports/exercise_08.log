@@ -17,33 +17,18 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-explained_variance_df = pd.DataFrame(
-    {
-        "Explained Variance Ratio":
-        pca.explained_variance_ratio_,
-        "Cumulative Explained Variance Ratio":
-        np.cumsum(pca.explained_variance_ratio_)
-    },
-    index=IRIS_PCA_X_RANGE)
-explained_variance_df.index.name = "# Components"
+from myst_nb import glue
 
-explained_variance_df_repr = explained_variance_df.style.set_table_styles([
-    dict(selector="th", props=[("font-size", "12px")]),
-    dict(selector="td", props=[("font-size", "12px")]),
-])
-
-glue("iris_explained_variance_df", explained_variance_df_repr, display=False)
+glue("iris_explained_variance_fig", pca_fig, display=False)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mNameError[0m                                 Traceback (most recent call last)
-[0;32m<ipython-input-4-5844a0a18a8e>[0m in [0;36m<module>[0;34m[0m
-[1;32m      2[0m     {
-[1;32m      3[0m         [0;34m"Explained Variance Ratio"[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[0;32m----> 4[0;31m         [0mpca[0m[0;34m.[0m[0mexplained_variance_ratio_[0m[0;34m,[0m[0;34m[0m[0;34m[0m[0m
-[0m[1;32m      5[0m         [0;34m"Cumulative Explained Variance Ratio"[0m[0;34m:[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      6[0m         [0mnp[0m[0;34m.[0m[0mcumsum[0m[0;34m([0m[0mpca[0m[0;34m.[0m[0mexplained_variance_ratio_[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-
-[0;31mNameError[0m: name 'pca' is not defined
-NameError: name 'pca' is not defined
+[0;32m<ipython-input-5-0c8938c0f276>[0m in [0;36m<module>[0;34m[0m
+[1;32m      1[0m [0;32mfrom[0m [0mmyst_nb[0m [0;32mimport[0m [0mglue[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      2[0m [0;34m[0m[0m
+[0;32m----> 3[0;31m [0mglue[0m[0;34m([0m[0;34m"iris_explained_variance_fig"[0m[0;34m,[0m [0mpca_fig[0m[0;34m,[0m [0mdisplay[0m[0;34m=[0m[0;32mFalse[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0m
+[0;31mNameError[0m: name 'pca_fig' is not defined
+NameError: name 'pca_fig' is not defined
 
