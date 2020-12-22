@@ -85,7 +85,9 @@ def plot_reduced(
         # Create 2D scatter plot
         fig, ax = plt.subplots(figsize=(6, 4))
         if classification_success is None:
-            ax.scatter(*X_reduced.T)
+            if true_labels is not None:
+                color = true_labels
+            ax.scatter(*X_reduced.T, c=color)
         else:
             success = X_reduced[classification_success]
             failure = X_reduced[~classification_success]
