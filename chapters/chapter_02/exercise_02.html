@@ -48,7 +48,7 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -140,6 +140,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../chapter_08/exercise_08.html">
      Exercise VIII: K-Means Clustering and PCA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter_09/exercise_09.html">
+     Exercise IX: The Haxby Experiment (2001)
     </a>
    </li>
   </ul>
@@ -463,288 +468,288 @@ latter are NOT linearly separable from each other.
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style  type="text/css" >
-    #T_6b646f46_448f_11eb_8355_000d3a04e52c th {
+    #T_75de8_ th {
           font-size: 14px;
-    }    #T_6b646f46_448f_11eb_8355_000d3a04e52c td {
+    }    #T_75de8_ td {
           font-size: 12px;
-    }#T_6b646f46_448f_11eb_8355_000d3a04e52crow0_col0{
+    }#T_75de8_row0_col0{
             background-color:  #d5d5e8;
             color:  #000000;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow0_col1,#T_6b646f46_448f_11eb_8355_000d3a04e52crow8_col0{
+        }#T_75de8_row0_col1,#T_75de8_row8_col0{
             background-color:  #03517e;
             color:  #f1f1f1;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow0_col2,#T_6b646f46_448f_11eb_8355_000d3a04e52crow1_col2,#T_6b646f46_448f_11eb_8355_000d3a04e52crow4_col2{
+        }#T_75de8_row0_col2,#T_75de8_row1_col2,#T_75de8_row4_col2{
             background-color:  #fbf4f9;
             color:  #000000;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow0_col3,#T_6b646f46_448f_11eb_8355_000d3a04e52crow1_col3,#T_6b646f46_448f_11eb_8355_000d3a04e52crow2_col2,#T_6b646f46_448f_11eb_8355_000d3a04e52crow2_col3,#T_6b646f46_448f_11eb_8355_000d3a04e52crow3_col0,#T_6b646f46_448f_11eb_8355_000d3a04e52crow3_col3,#T_6b646f46_448f_11eb_8355_000d3a04e52crow4_col3,#T_6b646f46_448f_11eb_8355_000d3a04e52crow5_col1,#T_6b646f46_448f_11eb_8355_000d3a04e52crow11_col1{
+        }#T_75de8_row0_col3,#T_75de8_row1_col3,#T_75de8_row2_col2,#T_75de8_row2_col3,#T_75de8_row3_col0,#T_75de8_row3_col3,#T_75de8_row4_col3,#T_75de8_row5_col1,#T_75de8_row11_col1{
             background-color:  #fff7fb;
             color:  #000000;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow0_col4,#T_6b646f46_448f_11eb_8355_000d3a04e52crow1_col4,#T_6b646f46_448f_11eb_8355_000d3a04e52crow2_col4,#T_6b646f46_448f_11eb_8355_000d3a04e52crow3_col4,#T_6b646f46_448f_11eb_8355_000d3a04e52crow4_col4{
+        }#T_75de8_row0_col4,#T_75de8_row1_col4,#T_75de8_row2_col4,#T_75de8_row3_col4,#T_75de8_row4_col4{
             background-color:  #fff7fb;
             color:  #000000;
             background-color:  rgba(255, 0, 0, 0.3);
             border:  1px solid black;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow1_col0{
+        }#T_75de8_row1_col0{
             background-color:  #eae6f1;
             color:  #000000;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow1_col1,#T_6b646f46_448f_11eb_8355_000d3a04e52crow8_col1,#T_6b646f46_448f_11eb_8355_000d3a04e52crow10_col1,#T_6b646f46_448f_11eb_8355_000d3a04e52crow12_col1,#T_6b646f46_448f_11eb_8355_000d3a04e52crow14_col1{
+        }#T_75de8_row1_col1,#T_75de8_row8_col1,#T_75de8_row10_col1,#T_75de8_row12_col1,#T_75de8_row14_col1{
             background-color:  #86b0d3;
             color:  #000000;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow2_col0,#T_6b646f46_448f_11eb_8355_000d3a04e52crow3_col2{
+        }#T_75de8_row2_col0,#T_75de8_row3_col2{
             background-color:  #f8f1f8;
             color:  #000000;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow2_col1{
+        }#T_75de8_row2_col1{
             background-color:  #328dbf;
             color:  #000000;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow3_col1{
+        }#T_75de8_row3_col1{
             background-color:  #5ea0ca;
             color:  #000000;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow4_col0{
+        }#T_75de8_row4_col0{
             background-color:  #e0dded;
             color:  #000000;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow4_col1,#T_6b646f46_448f_11eb_8355_000d3a04e52crow9_col0,#T_6b646f46_448f_11eb_8355_000d3a04e52crow10_col3,#T_6b646f46_448f_11eb_8355_000d3a04e52crow13_col2,#T_6b646f46_448f_11eb_8355_000d3a04e52crow13_col3{
+        }#T_75de8_row4_col1,#T_75de8_row9_col0,#T_75de8_row10_col3,#T_75de8_row13_col2,#T_75de8_row13_col3{
             background-color:  #023858;
             color:  #f1f1f1;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow5_col0,#T_6b646f46_448f_11eb_8355_000d3a04e52crow11_col0{
+        }#T_75de8_row5_col0,#T_75de8_row11_col0{
             background-color:  #056caa;
             color:  #f1f1f1;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow5_col2{
+        }#T_75de8_row5_col2{
             background-color:  #04598c;
             color:  #f1f1f1;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow5_col3{
+        }#T_75de8_row5_col3{
             background-color:  #3991c1;
             color:  #000000;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow5_col4,#T_6b646f46_448f_11eb_8355_000d3a04e52crow6_col4,#T_6b646f46_448f_11eb_8355_000d3a04e52crow7_col4,#T_6b646f46_448f_11eb_8355_000d3a04e52crow8_col4,#T_6b646f46_448f_11eb_8355_000d3a04e52crow9_col4{
+        }#T_75de8_row5_col4,#T_75de8_row6_col4,#T_75de8_row7_col4,#T_75de8_row8_col4,#T_75de8_row9_col4{
             background-color:  #73a9cf;
             color:  #000000;
             background-color:  rgba(0, 255, 0, 0.3);
             border:  1px solid black;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow6_col0{
+        }#T_75de8_row6_col0{
             background-color:  #2081b9;
             color:  #000000;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow6_col1,#T_6b646f46_448f_11eb_8355_000d3a04e52crow9_col1{
+        }#T_75de8_row6_col1,#T_75de8_row9_col1{
             background-color:  #c9cee4;
             color:  #000000;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow6_col2{
+        }#T_75de8_row6_col2{
             background-color:  #046299;
             color:  #f1f1f1;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow6_col3{
+        }#T_75de8_row6_col3{
             background-color:  #7eadd1;
             color:  #000000;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow7_col0,#T_6b646f46_448f_11eb_8355_000d3a04e52crow13_col1{
+        }#T_75de8_row7_col0,#T_75de8_row13_col1{
             background-color:  #04649d;
             color:  #f1f1f1;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow7_col1{
+        }#T_75de8_row7_col1{
             background-color:  #a9bfdc;
             color:  #000000;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow7_col2{
+        }#T_75de8_row7_col2{
             background-color:  #0c74b2;
             color:  #f1f1f1;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow7_col3{
+        }#T_75de8_row7_col3{
             background-color:  #67a4cc;
             color:  #000000;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow8_col2{
+        }#T_75de8_row8_col2{
             background-color:  #056fae;
             color:  #f1f1f1;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow8_col3,#T_6b646f46_448f_11eb_8355_000d3a04e52crow9_col3{
+        }#T_75de8_row8_col3,#T_75de8_row9_col3{
             background-color:  #509ac6;
             color:  #000000;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow9_col2{
+        }#T_75de8_row9_col2{
             background-color:  #045e93;
             color:  #f1f1f1;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow10_col0{
+        }#T_75de8_row10_col0{
             background-color:  #03446a;
             color:  #f1f1f1;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow10_col2,#T_6b646f46_448f_11eb_8355_000d3a04e52crow12_col2{
+        }#T_75de8_row10_col2,#T_75de8_row12_col2{
             background-color:  #03456c;
             color:  #f1f1f1;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow10_col4,#T_6b646f46_448f_11eb_8355_000d3a04e52crow11_col4,#T_6b646f46_448f_11eb_8355_000d3a04e52crow12_col4,#T_6b646f46_448f_11eb_8355_000d3a04e52crow13_col4,#T_6b646f46_448f_11eb_8355_000d3a04e52crow14_col4{
+        }#T_75de8_row10_col4,#T_75de8_row11_col4,#T_75de8_row12_col4,#T_75de8_row13_col4,#T_75de8_row14_col4{
             background-color:  #023858;
             color:  #f1f1f1;
             background-color:  rgba(0, 0, 255, 0.3);
             border:  1px solid black;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow11_col2{
+        }#T_75de8_row11_col2{
             background-color:  #045280;
             color:  #f1f1f1;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow11_col3{
+        }#T_75de8_row11_col3{
             background-color:  #05659f;
             color:  #f1f1f1;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow12_col0{
+        }#T_75de8_row12_col0{
             background-color:  #045b8f;
             color:  #f1f1f1;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow12_col3{
+        }#T_75de8_row12_col3{
             background-color:  #045d92;
             color:  #f1f1f1;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow13_col0{
+        }#T_75de8_row13_col0{
             background-color:  #0d75b3;
             color:  #f1f1f1;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow14_col0{
+        }#T_75de8_row14_col0{
             background-color:  #4697c4;
             color:  #000000;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow14_col2{
+        }#T_75de8_row14_col2{
             background-color:  #034b76;
             color:  #f1f1f1;
             text-align:  center;
-        }#T_6b646f46_448f_11eb_8355_000d3a04e52crow14_col3{
+        }#T_75de8_row14_col3{
             background-color:  #056dac;
             color:  #f1f1f1;
             text-align:  center;
-        }</style><table id="T_6b646f46_448f_11eb_8355_000d3a04e52c" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >sepal length (cm)</th>        <th class="col_heading level0 col1" >sepal width (cm)</th>        <th class="col_heading level0 col2" >petal length (cm)</th>        <th class="col_heading level0 col3" >petal width (cm)</th>        <th class="col_heading level0 col4" >class</th>    </tr></thead><tbody>
+        }</style><table id="T_75de8_" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >sepal length (cm)</th>        <th class="col_heading level0 col1" >sepal width (cm)</th>        <th class="col_heading level0 col2" >petal length (cm)</th>        <th class="col_heading level0 col3" >petal width (cm)</th>        <th class="col_heading level0 col4" >class</th>    </tr></thead><tbody>
                 <tr>
-                        <th id="T_6b646f46_448f_11eb_8355_000d3a04e52clevel0_row0" class="row_heading level0 row0" >0</th>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow0_col0" class="data row0 col0" >5.10</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow0_col1" class="data row0 col1" >3.50</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow0_col2" class="data row0 col2" >1.40</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow0_col3" class="data row0 col3" >0.20</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow0_col4" class="data row0 col4" >setosa</td>
+                        <th id="T_75de8_level0_row0" class="row_heading level0 row0" >0</th>
+                        <td id="T_75de8_row0_col0" class="data row0 col0" >5.10</td>
+                        <td id="T_75de8_row0_col1" class="data row0 col1" >3.50</td>
+                        <td id="T_75de8_row0_col2" class="data row0 col2" >1.40</td>
+                        <td id="T_75de8_row0_col3" class="data row0 col3" >0.20</td>
+                        <td id="T_75de8_row0_col4" class="data row0 col4" >setosa</td>
             </tr>
             <tr>
-                        <th id="T_6b646f46_448f_11eb_8355_000d3a04e52clevel0_row1" class="row_heading level0 row1" >1</th>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow1_col0" class="data row1 col0" >4.90</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow1_col1" class="data row1 col1" >3.00</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow1_col2" class="data row1 col2" >1.40</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow1_col3" class="data row1 col3" >0.20</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow1_col4" class="data row1 col4" >setosa</td>
+                        <th id="T_75de8_level0_row1" class="row_heading level0 row1" >1</th>
+                        <td id="T_75de8_row1_col0" class="data row1 col0" >4.90</td>
+                        <td id="T_75de8_row1_col1" class="data row1 col1" >3.00</td>
+                        <td id="T_75de8_row1_col2" class="data row1 col2" >1.40</td>
+                        <td id="T_75de8_row1_col3" class="data row1 col3" >0.20</td>
+                        <td id="T_75de8_row1_col4" class="data row1 col4" >setosa</td>
             </tr>
             <tr>
-                        <th id="T_6b646f46_448f_11eb_8355_000d3a04e52clevel0_row2" class="row_heading level0 row2" >2</th>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow2_col0" class="data row2 col0" >4.70</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow2_col1" class="data row2 col1" >3.20</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow2_col2" class="data row2 col2" >1.30</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow2_col3" class="data row2 col3" >0.20</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow2_col4" class="data row2 col4" >setosa</td>
+                        <th id="T_75de8_level0_row2" class="row_heading level0 row2" >2</th>
+                        <td id="T_75de8_row2_col0" class="data row2 col0" >4.70</td>
+                        <td id="T_75de8_row2_col1" class="data row2 col1" >3.20</td>
+                        <td id="T_75de8_row2_col2" class="data row2 col2" >1.30</td>
+                        <td id="T_75de8_row2_col3" class="data row2 col3" >0.20</td>
+                        <td id="T_75de8_row2_col4" class="data row2 col4" >setosa</td>
             </tr>
             <tr>
-                        <th id="T_6b646f46_448f_11eb_8355_000d3a04e52clevel0_row3" class="row_heading level0 row3" >3</th>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow3_col0" class="data row3 col0" >4.60</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow3_col1" class="data row3 col1" >3.10</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow3_col2" class="data row3 col2" >1.50</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow3_col3" class="data row3 col3" >0.20</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow3_col4" class="data row3 col4" >setosa</td>
+                        <th id="T_75de8_level0_row3" class="row_heading level0 row3" >3</th>
+                        <td id="T_75de8_row3_col0" class="data row3 col0" >4.60</td>
+                        <td id="T_75de8_row3_col1" class="data row3 col1" >3.10</td>
+                        <td id="T_75de8_row3_col2" class="data row3 col2" >1.50</td>
+                        <td id="T_75de8_row3_col3" class="data row3 col3" >0.20</td>
+                        <td id="T_75de8_row3_col4" class="data row3 col4" >setosa</td>
             </tr>
             <tr>
-                        <th id="T_6b646f46_448f_11eb_8355_000d3a04e52clevel0_row4" class="row_heading level0 row4" >4</th>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow4_col0" class="data row4 col0" >5.00</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow4_col1" class="data row4 col1" >3.60</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow4_col2" class="data row4 col2" >1.40</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow4_col3" class="data row4 col3" >0.20</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow4_col4" class="data row4 col4" >setosa</td>
+                        <th id="T_75de8_level0_row4" class="row_heading level0 row4" >4</th>
+                        <td id="T_75de8_row4_col0" class="data row4 col0" >5.00</td>
+                        <td id="T_75de8_row4_col1" class="data row4 col1" >3.60</td>
+                        <td id="T_75de8_row4_col2" class="data row4 col2" >1.40</td>
+                        <td id="T_75de8_row4_col3" class="data row4 col3" >0.20</td>
+                        <td id="T_75de8_row4_col4" class="data row4 col4" >setosa</td>
             </tr>
             <tr>
-                        <th id="T_6b646f46_448f_11eb_8355_000d3a04e52clevel0_row5" class="row_heading level0 row5" >72</th>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow5_col0" class="data row5 col0" >6.30</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow5_col1" class="data row5 col1" >2.50</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow5_col2" class="data row5 col2" >4.90</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow5_col3" class="data row5 col3" >1.50</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow5_col4" class="data row5 col4" >versicolor</td>
+                        <th id="T_75de8_level0_row5" class="row_heading level0 row5" >72</th>
+                        <td id="T_75de8_row5_col0" class="data row5 col0" >6.30</td>
+                        <td id="T_75de8_row5_col1" class="data row5 col1" >2.50</td>
+                        <td id="T_75de8_row5_col2" class="data row5 col2" >4.90</td>
+                        <td id="T_75de8_row5_col3" class="data row5 col3" >1.50</td>
+                        <td id="T_75de8_row5_col4" class="data row5 col4" >versicolor</td>
             </tr>
             <tr>
-                        <th id="T_6b646f46_448f_11eb_8355_000d3a04e52clevel0_row6" class="row_heading level0 row6" >73</th>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow6_col0" class="data row6 col0" >6.10</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow6_col1" class="data row6 col1" >2.80</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow6_col2" class="data row6 col2" >4.70</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow6_col3" class="data row6 col3" >1.20</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow6_col4" class="data row6 col4" >versicolor</td>
+                        <th id="T_75de8_level0_row6" class="row_heading level0 row6" >73</th>
+                        <td id="T_75de8_row6_col0" class="data row6 col0" >6.10</td>
+                        <td id="T_75de8_row6_col1" class="data row6 col1" >2.80</td>
+                        <td id="T_75de8_row6_col2" class="data row6 col2" >4.70</td>
+                        <td id="T_75de8_row6_col3" class="data row6 col3" >1.20</td>
+                        <td id="T_75de8_row6_col4" class="data row6 col4" >versicolor</td>
             </tr>
             <tr>
-                        <th id="T_6b646f46_448f_11eb_8355_000d3a04e52clevel0_row7" class="row_heading level0 row7" >74</th>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow7_col0" class="data row7 col0" >6.40</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow7_col1" class="data row7 col1" >2.90</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow7_col2" class="data row7 col2" >4.30</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow7_col3" class="data row7 col3" >1.30</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow7_col4" class="data row7 col4" >versicolor</td>
+                        <th id="T_75de8_level0_row7" class="row_heading level0 row7" >74</th>
+                        <td id="T_75de8_row7_col0" class="data row7 col0" >6.40</td>
+                        <td id="T_75de8_row7_col1" class="data row7 col1" >2.90</td>
+                        <td id="T_75de8_row7_col2" class="data row7 col2" >4.30</td>
+                        <td id="T_75de8_row7_col3" class="data row7 col3" >1.30</td>
+                        <td id="T_75de8_row7_col4" class="data row7 col4" >versicolor</td>
             </tr>
             <tr>
-                        <th id="T_6b646f46_448f_11eb_8355_000d3a04e52clevel0_row8" class="row_heading level0 row8" >75</th>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow8_col0" class="data row8 col0" >6.60</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow8_col1" class="data row8 col1" >3.00</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow8_col2" class="data row8 col2" >4.40</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow8_col3" class="data row8 col3" >1.40</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow8_col4" class="data row8 col4" >versicolor</td>
+                        <th id="T_75de8_level0_row8" class="row_heading level0 row8" >75</th>
+                        <td id="T_75de8_row8_col0" class="data row8 col0" >6.60</td>
+                        <td id="T_75de8_row8_col1" class="data row8 col1" >3.00</td>
+                        <td id="T_75de8_row8_col2" class="data row8 col2" >4.40</td>
+                        <td id="T_75de8_row8_col3" class="data row8 col3" >1.40</td>
+                        <td id="T_75de8_row8_col4" class="data row8 col4" >versicolor</td>
             </tr>
             <tr>
-                        <th id="T_6b646f46_448f_11eb_8355_000d3a04e52clevel0_row9" class="row_heading level0 row9" >76</th>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow9_col0" class="data row9 col0" >6.80</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow9_col1" class="data row9 col1" >2.80</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow9_col2" class="data row9 col2" >4.80</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow9_col3" class="data row9 col3" >1.40</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow9_col4" class="data row9 col4" >versicolor</td>
+                        <th id="T_75de8_level0_row9" class="row_heading level0 row9" >76</th>
+                        <td id="T_75de8_row9_col0" class="data row9 col0" >6.80</td>
+                        <td id="T_75de8_row9_col1" class="data row9 col1" >2.80</td>
+                        <td id="T_75de8_row9_col2" class="data row9 col2" >4.80</td>
+                        <td id="T_75de8_row9_col3" class="data row9 col3" >1.40</td>
+                        <td id="T_75de8_row9_col4" class="data row9 col4" >versicolor</td>
             </tr>
             <tr>
-                        <th id="T_6b646f46_448f_11eb_8355_000d3a04e52clevel0_row10" class="row_heading level0 row10" >145</th>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow10_col0" class="data row10 col0" >6.70</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow10_col1" class="data row10 col1" >3.00</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow10_col2" class="data row10 col2" >5.20</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow10_col3" class="data row10 col3" >2.30</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow10_col4" class="data row10 col4" >virginica</td>
+                        <th id="T_75de8_level0_row10" class="row_heading level0 row10" >145</th>
+                        <td id="T_75de8_row10_col0" class="data row10 col0" >6.70</td>
+                        <td id="T_75de8_row10_col1" class="data row10 col1" >3.00</td>
+                        <td id="T_75de8_row10_col2" class="data row10 col2" >5.20</td>
+                        <td id="T_75de8_row10_col3" class="data row10 col3" >2.30</td>
+                        <td id="T_75de8_row10_col4" class="data row10 col4" >virginica</td>
             </tr>
             <tr>
-                        <th id="T_6b646f46_448f_11eb_8355_000d3a04e52clevel0_row11" class="row_heading level0 row11" >146</th>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow11_col0" class="data row11 col0" >6.30</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow11_col1" class="data row11 col1" >2.50</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow11_col2" class="data row11 col2" >5.00</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow11_col3" class="data row11 col3" >1.90</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow11_col4" class="data row11 col4" >virginica</td>
+                        <th id="T_75de8_level0_row11" class="row_heading level0 row11" >146</th>
+                        <td id="T_75de8_row11_col0" class="data row11 col0" >6.30</td>
+                        <td id="T_75de8_row11_col1" class="data row11 col1" >2.50</td>
+                        <td id="T_75de8_row11_col2" class="data row11 col2" >5.00</td>
+                        <td id="T_75de8_row11_col3" class="data row11 col3" >1.90</td>
+                        <td id="T_75de8_row11_col4" class="data row11 col4" >virginica</td>
             </tr>
             <tr>
-                        <th id="T_6b646f46_448f_11eb_8355_000d3a04e52clevel0_row12" class="row_heading level0 row12" >147</th>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow12_col0" class="data row12 col0" >6.50</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow12_col1" class="data row12 col1" >3.00</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow12_col2" class="data row12 col2" >5.20</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow12_col3" class="data row12 col3" >2.00</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow12_col4" class="data row12 col4" >virginica</td>
+                        <th id="T_75de8_level0_row12" class="row_heading level0 row12" >147</th>
+                        <td id="T_75de8_row12_col0" class="data row12 col0" >6.50</td>
+                        <td id="T_75de8_row12_col1" class="data row12 col1" >3.00</td>
+                        <td id="T_75de8_row12_col2" class="data row12 col2" >5.20</td>
+                        <td id="T_75de8_row12_col3" class="data row12 col3" >2.00</td>
+                        <td id="T_75de8_row12_col4" class="data row12 col4" >virginica</td>
             </tr>
             <tr>
-                        <th id="T_6b646f46_448f_11eb_8355_000d3a04e52clevel0_row13" class="row_heading level0 row13" >148</th>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow13_col0" class="data row13 col0" >6.20</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow13_col1" class="data row13 col1" >3.40</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow13_col2" class="data row13 col2" >5.40</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow13_col3" class="data row13 col3" >2.30</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow13_col4" class="data row13 col4" >virginica</td>
+                        <th id="T_75de8_level0_row13" class="row_heading level0 row13" >148</th>
+                        <td id="T_75de8_row13_col0" class="data row13 col0" >6.20</td>
+                        <td id="T_75de8_row13_col1" class="data row13 col1" >3.40</td>
+                        <td id="T_75de8_row13_col2" class="data row13 col2" >5.40</td>
+                        <td id="T_75de8_row13_col3" class="data row13 col3" >2.30</td>
+                        <td id="T_75de8_row13_col4" class="data row13 col4" >virginica</td>
             </tr>
             <tr>
-                        <th id="T_6b646f46_448f_11eb_8355_000d3a04e52clevel0_row14" class="row_heading level0 row14" >149</th>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow14_col0" class="data row14 col0" >5.90</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow14_col1" class="data row14 col1" >3.00</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow14_col2" class="data row14 col2" >5.10</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow14_col3" class="data row14 col3" >1.80</td>
-                        <td id="T_6b646f46_448f_11eb_8355_000d3a04e52crow14_col4" class="data row14 col4" >virginica</td>
+                        <th id="T_75de8_level0_row14" class="row_heading level0 row14" >149</th>
+                        <td id="T_75de8_row14_col0" class="data row14 col0" >5.90</td>
+                        <td id="T_75de8_row14_col1" class="data row14 col1" >3.00</td>
+                        <td id="T_75de8_row14_col2" class="data row14 col2" >5.10</td>
+                        <td id="T_75de8_row14_col3" class="data row14 col3" >1.80</td>
+                        <td id="T_75de8_row14_col4" class="data row14 col4" >virginica</td>
             </tr>
     </tbody></table></div></div>
 </div>

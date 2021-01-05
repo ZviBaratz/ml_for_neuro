@@ -48,7 +48,7 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -140,6 +140,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../chapter_08/exercise_08.html">
      Exercise VIII: K-Means Clustering and PCA
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../chapter_09/exercise_09.html">
+     Exercise IX: The Haxby Experiment (2001)
     </a>
    </li>
   </ul>
@@ -447,6 +452,12 @@
 <span class="n">converters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="n">fix_boolean</span><span class="p">,</span> <span class="s2">&quot;student&quot;</span><span class="p">:</span> <span class="n">fix_boolean</span><span class="p">}</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;default.xlsx&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">converters</span><span class="o">=</span><span class="n">converters</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.9/x64/lib/python3.7/site-packages/ipykernel_launcher.py:8: FutureWarning: Your version of xlrd is 1.2.0. In xlrd &gt;= 2.0, only the xls format is supported. As a result, the openpyxl engine will be used if it is installed and the engine argument is not specified. Install openpyxl instead.
+  
 </pre></div>
 </div>
 </div>
@@ -1035,10 +1046,10 @@ weighted avg       0.97      0.97      0.97      2000
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>   <td>     3</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Tue, 22 Dec 2020</td> <th>  Pseudo R-squ.:     </th>   <td>0.4619</td>  
+  <th>Date:</th>            <td>Tue, 05 Jan 2021</td> <th>  Pseudo R-squ.:     </th>   <td>0.4619</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>19:54:11</td>     <th>  Log-Likelihood:    </th>  <td> -785.77</td> 
+  <th>Time:</th>                <td>19:45:14</td>     <th>  Log-Likelihood:    </th>  <td> -785.77</td> 
 </tr>
 <tr>
   <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th>  <td> -1460.3</td> 
