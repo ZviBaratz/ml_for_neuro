@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exercise VI: Revisiting Linear and Logistic Regression &#8212; Machine Learning for Neuroscience</title>
     
-  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -44,12 +41,12 @@
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -60,14 +57,14 @@
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Exercise VII: Decision Trees and Random Forests" href="../chapter_07/exercise_07.html" />
     <link rel="prev" title="Exercise V: Regularization" href="../chapter_05/exercise_05.html" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -76,32 +73,41 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../../index.html">
-  
-  <img src="../../_static/logo.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Machine Learning for Neuroscience</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Neuroscience</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../intro.html">
    Introduction
   </a>
  </li>
 </ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 current active collapsible-parent">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../../content.html">
    Contents
   </a>
-  <ul class="current collapse-ul">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../chapter_01/exercise_01.html">
      Exercise I: Exploratory Data Analysis (EDA)
@@ -109,7 +115,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../chapter_02/exercise_02.html">
-     Exercise II: K-Nearest Neighbors (KNN)
+     Exercise II: k-Nearest Neighbors (k-NN)
     </a>
    </li>
    <li class="toctree-l2">
@@ -153,8 +159,6 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../zreferences.html">
@@ -163,6 +167,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -178,21 +183,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -210,7 +215,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -225,14 +230,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -251,16 +256,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#set-up">
    Set up
@@ -410,8 +415,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -1616,11 +1621,11 @@ memory usage: 11.1+ MB
   <tbody>
     <tr>
       <th>0</th>
-      <td>153.714244</td>
-      <td>97.354791</td>
-      <td>0.045437</td>
-      <td>0.013341</td>
-      <td>0.001000</td>
+      <td>149.822359</td>
+      <td>95.197879</td>
+      <td>0.050764</td>
+      <td>0.013198</td>
+      <td>0.001</td>
       <td>{'alpha': 0.001}</td>
       <td>0.104771</td>
       <td>0.319438</td>
@@ -1640,10 +1645,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>1</th>
-      <td>149.912472</td>
-      <td>67.830005</td>
-      <td>0.048848</td>
-      <td>0.008030</td>
+      <td>139.065154</td>
+      <td>60.275672</td>
+      <td>0.057647</td>
+      <td>0.006519</td>
       <td>0.001151</td>
       <td>{'alpha': 0.0011513953993264468}</td>
       <td>0.166932</td>
@@ -1664,10 +1669,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>2</th>
-      <td>143.537475</td>
-      <td>64.129480</td>
-      <td>0.054037</td>
-      <td>0.006652</td>
+      <td>133.943100</td>
+      <td>59.298698</td>
+      <td>0.059544</td>
+      <td>0.005107</td>
       <td>0.001326</td>
       <td>{'alpha': 0.0013257113655901094}</td>
       <td>0.224170</td>
@@ -1688,10 +1693,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>3</th>
-      <td>109.524408</td>
-      <td>50.275372</td>
-      <td>0.053403</td>
-      <td>0.006110</td>
+      <td>97.620320</td>
+      <td>44.488360</td>
+      <td>0.058034</td>
+      <td>0.004274</td>
       <td>0.001526</td>
       <td>{'alpha': 0.0015264179671752333}</td>
       <td>0.274601</td>
@@ -1712,10 +1717,10 @@ memory usage: 11.1+ MB
     </tr>
     <tr>
       <th>4</th>
-      <td>113.356870</td>
-      <td>60.849115</td>
-      <td>0.058681</td>
-      <td>0.009974</td>
+      <td>102.269242</td>
+      <td>55.320960</td>
+      <td>0.057761</td>
+      <td>0.004481</td>
       <td>0.001758</td>
       <td>{'alpha': 0.0017575106248547913}</td>
       <td>0.319358</td>
@@ -2049,7 +2054,7 @@ memory usage: 11.1+ MB
       <th>6</th>
       <th>Cortical Thinkness</th>
       <td>V4</td>
-      <td>0.008310</td>
+      <td>0.00831</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">7</th>
@@ -2210,7 +2215,7 @@ memory usage: 11.1+ MB
       <th>63</th>
       <th>Cortical Volume</th>
       <td>8BM</td>
-      <td>-0.070400</td>
+      <td>-0.0704</td>
     </tr>
     <tr>
       <th>52</th>
@@ -2288,10 +2293,14 @@ memory usage: 11.1+ MB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_06_67_0.png" src="../../_images/exercise_06_67_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/nilearn/datasets/__init__.py:96: FutureWarning: Fetchers from the nilearn.datasets module will be updated in version 0.9 to return python strings instead of bytes and Pandas dataframes instead of Numpy arrays.
+  &quot;Numpy arrays.&quot;, FutureWarning)
+</pre></div>
+</div>
 <img alt="../../_images/exercise_06_67_1.png" src="../../_images/exercise_06_67_1.png" />
 <img alt="../../_images/exercise_06_67_2.png" src="../../_images/exercise_06_67_2.png" />
 <img alt="../../_images/exercise_06_67_3.png" src="../../_images/exercise_06_67_3.png" />
+<img alt="../../_images/exercise_06_67_4.png" src="../../_images/exercise_06_67_4.png" />
 </div>
 </div>
 </div>
@@ -2367,7 +2376,11 @@ Score (roc_auc):                         0.6023
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_06_78_0.png" src="../../_images/exercise_06_78_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function plot_confusion_matrix is deprecated; Function `plot_confusion_matrix` is deprecated in 1.0 and will be removed in 1.2. Use one of the class methods: ConfusionMatrixDisplay.from_predictions or ConfusionMatrixDisplay.from_estimator.
+  warnings.warn(msg, category=FutureWarning)
+</pre></div>
+</div>
+<img alt="../../_images/exercise_06_78_1.png" src="../../_images/exercise_06_78_1.png" />
 </div>
 </div>
 </div>
@@ -2488,7 +2501,27 @@ weighted avg       0.63      0.63      0.63       104
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_06_82_0.png" src="../../_images/exercise_06_82_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function plot_roc_curve is deprecated; Function `plot_roc_curve` is deprecated in 1.0 and will be removed in 1.2. Use one of the class methods: RocCurveDisplay.from_predictions or RocCurveDisplay.from_estimator.
+  warnings.warn(msg, category=FutureWarning)
+/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function plot_roc_curve is deprecated; Function `plot_roc_curve` is deprecated in 1.0 and will be removed in 1.2. Use one of the class methods: RocCurveDisplay.from_predictions or RocCurveDisplay.from_estimator.
+  warnings.warn(msg, category=FutureWarning)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function plot_roc_curve is deprecated; Function `plot_roc_curve` is deprecated in 1.0 and will be removed in 1.2. Use one of the class methods: RocCurveDisplay.from_predictions or RocCurveDisplay.from_estimator.
+  warnings.warn(msg, category=FutureWarning)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function plot_roc_curve is deprecated; Function `plot_roc_curve` is deprecated in 1.0 and will be removed in 1.2. Use one of the class methods: RocCurveDisplay.from_predictions or RocCurveDisplay.from_estimator.
+  warnings.warn(msg, category=FutureWarning)
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function plot_roc_curve is deprecated; Function `plot_roc_curve` is deprecated in 1.0 and will be removed in 1.2. Use one of the class methods: RocCurveDisplay.from_predictions or RocCurveDisplay.from_estimator.
+  warnings.warn(msg, category=FutureWarning)
+/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function plot_roc_curve is deprecated; Function `plot_roc_curve` is deprecated in 1.0 and will be removed in 1.2. Use one of the class methods: RocCurveDisplay.from_predictions or RocCurveDisplay.from_estimator.
+  warnings.warn(msg, category=FutureWarning)
+</pre></div>
+</div>
+<img alt="../../_images/exercise_06_82_4.png" src="../../_images/exercise_06_82_4.png" />
 </div>
 </div>
 </div>
@@ -2536,17 +2569,37 @@ weighted avg       0.63      0.63      0.63       104
 
               </div>
               
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../chapter_05/exercise_05.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Exercise V: Regularization</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../chapter_07/exercise_07.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Exercise VII: Decision Trees and Random Forests</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="../chapter_05/exercise_05.html" title="previous page">Exercise V: Regularization</a>
-    <a class='right-next' id="next-link" href="../chapter_07/exercise_07.html" title="next page">Exercise VII: Decision Trees and Random Forests</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -2561,11 +2614,9 @@ weighted avg       0.63      0.63      0.63       104
 
       </div>
     </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>

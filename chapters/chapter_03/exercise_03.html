@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exercise III: Linear Regression &#8212; Machine Learning for Neuroscience</title>
     
-  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -19,14 +20,10 @@
 
     
       
-  <link rel="stylesheet"
-    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
 
     
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.40e2e510f6b7d1648584402491bb10fe.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
@@ -34,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -44,12 +41,12 @@
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../../_static/sphinx-book-theme.d31b09fe5c1d09cb49b26a786de4a05d.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.0/dist/embed-amd.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
         const thebe_selector_input = "pre"
@@ -59,15 +56,15 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Exercise IV: Logistic Regression" href="../chapter_04/exercise_04.html" />
-    <link rel="prev" title="Exercise II: K-Nearest Neighbors (KNN)" href="../chapter_02/exercise_02.html" />
-
+    <link rel="prev" title="Exercise II: k-Nearest Neighbors (k-NN)" href="../chapter_02/exercise_02.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
-
-
-
+    
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
     
 
     <div class="container-xl">
@@ -76,32 +73,41 @@
 <div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
     
         <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../../index.html">
-  
-  <img src="../../_static/logo.png" class="logo" alt="logo">
-  
-  
-  <h1 class="site-logo" id="site-title">Machine Learning for Neuroscience</h1>
-  
-</a>
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Machine Learning for Neuroscience</h1>
+      
+    </a>
 </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../../intro.html">
    Introduction
   </a>
  </li>
 </ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1 current active collapsible-parent">
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../../content.html">
    Contents
   </a>
-  <ul class="current collapse-ul">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../chapter_01/exercise_01.html">
      Exercise I: Exploratory Data Analysis (EDA)
@@ -109,7 +115,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../chapter_02/exercise_02.html">
-     Exercise II: K-Nearest Neighbors (KNN)
+     Exercise II: k-Nearest Neighbors (k-NN)
     </a>
    </li>
    <li class="toctree-l2 current active">
@@ -153,8 +159,6 @@
     </a>
    </li>
   </ul>
-  <i class="fas fa-chevron-down">
-  </i>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../zreferences.html">
@@ -163,6 +167,7 @@
  </li>
 </ul>
 
+    </div>
 </nav> <!-- To handle the deprecated key -->
 
 <div class="navbar_extra_footer">
@@ -178,21 +183,21 @@
           
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
-    <div class="row topbar fixed-top container-xl">
-    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
-    </div>
-    <div class="col pl-2 topbar-main">
-        
-        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-arrow-left"></i>
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
-        
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
             class="fas fa-download"></i></button>
@@ -210,7 +215,7 @@
     </div>
 </div>
 
-        <!-- Source interaction buttons -->
+            <!-- Source interaction buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -225,14 +230,14 @@
     </div>
 </div>
 
+            <!-- Full screen (wrap in <a> to have style consistency -->
 
-        <!-- Full screen (wrap in <a> to have style consistency -->
-        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                title="Fullscreen mode"><i
-                    class="fas fa-expand"></i></button></a>
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
 
-        <!-- Launch buttons -->
+            <!-- Launch buttons -->
 
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
@@ -251,16 +256,16 @@
     </div>
 </div>
 
-    </div>
-
-    <!-- Table of contents -->
-    <div class="d-none d-md-block col-md-2 bd-toc show">
-        
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
         </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#diabetes">
    Diabetes
@@ -394,8 +399,8 @@
  </li>
 </ul>
 
-        </nav>
-        
+            </nav>
+        </div>
     </div>
 </div>
     <div id="main-content" class="row">
@@ -473,11 +478,11 @@ quantitative measure of disease progression one year after baseline.
       - sex
       - bmi     body mass index
       - bp      average blood pressure
-      - s1      tc, T-Cells (a type of white blood cells)
+      - s1      tc, total serum cholesterol
       - s2      ldl, low-density lipoproteins
       - s3      hdl, high-density lipoproteins
-      - s4      tch, thyroid stimulating hormone
-      - s5      ltg, lamotrigine
+      - s4      tch, total cholesterol / HDL
+      - s5      ltg, possibly log of serum triglycerides level
       - s6      glu, blood sugar level
 
 Note: Each of these 10 feature variables have been mean centered and scaled by the standard deviation times `n_samples` (i.e. the sum of squares of each column totals 1).
@@ -517,661 +522,789 @@ Bradley Efron, Trevor Hastie, Iain Johnstone and Robert Tibshirani (2004) &quot;
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><style  type="text/css" >
-    #T_94f5c_ th {
-          font-size: 13px;
-    }    #T_94f5c_ td {
-          font-size: 11px;
-    }#T_94f5c_row0_col0,#T_94f5c_row4_col9{
-            text-align:  center;
-            background-color:  #0d75b3;
-            color:  #f1f1f1;
-        }#T_94f5c_row0_col1,#T_94f5c_row0_col3,#T_94f5c_row2_col0,#T_94f5c_row2_col1,#T_94f5c_row4_col1,#T_94f5c_row5_col2,#T_94f5c_row6_col1,#T_94f5c_row7_col1,#T_94f5c_row7_col7,#T_94f5c_row7_col8,#T_94f5c_row9_col2,#T_94f5c_row10_col1,#T_94f5c_row11_col1,#T_94f5c_row12_col1,#T_94f5c_row12_col5,#T_94f5c_row12_col9,#T_94f5c_row13_col1,#T_94f5c_row15_col4,#T_94f5c_row15_col6{
-            text-align:  center;
-            background-color:  #023858;
-            color:  #f1f1f1;
-        }#T_94f5c_row0_col2{
-            text-align:  center;
-            background-color:  #05659f;
-            color:  #f1f1f1;
-        }#T_94f5c_row0_col4,#T_94f5c_row1_col8{
-            text-align:  center;
-            background-color:  #f9f2f8;
-            color:  #000000;
-        }#T_94f5c_row0_col5,#T_94f5c_row7_col0{
-            text-align:  center;
-            background-color:  #d5d5e8;
-            color:  #000000;
-        }#T_94f5c_row0_col6,#T_94f5c_row4_col6{
-            text-align:  center;
-            background-color:  #efe9f3;
-            color:  #000000;
-        }#T_94f5c_row0_col7,#T_94f5c_row2_col7,#T_94f5c_row6_col7,#T_94f5c_row10_col7{
-            text-align:  center;
-            background-color:  #7bacd1;
-            color:  #000000;
-        }#T_94f5c_row0_col8{
-            text-align:  center;
-            background-color:  #1b7eb7;
-            color:  #000000;
-        }#T_94f5c_row0_col9{
-            text-align:  center;
-            background-color:  #5ea0ca;
-            color:  #000000;
-        }#T_94f5c_row0_col10{
-            text-align:  center;
-            border-left:  4px solid black;
-            background-color:  #4c99c5;
-            color:  #000000;
-        }#T_94f5c_row1_col0{
-            text-align:  center;
-            background-color:  #75a9cf;
-            color:  #000000;
-        }#T_94f5c_row1_col1,#T_94f5c_row1_col9,#T_94f5c_row3_col0,#T_94f5c_row3_col1,#T_94f5c_row5_col1,#T_94f5c_row7_col6,#T_94f5c_row8_col1,#T_94f5c_row8_col4,#T_94f5c_row8_col5,#T_94f5c_row8_col7,#T_94f5c_row9_col1,#T_94f5c_row10_col8,#T_94f5c_row14_col1,#T_94f5c_row15_col1,#T_94f5c_row15_col2,#T_94f5c_row15_col3{
-            text-align:  center;
-            background-color:  #fff7fb;
-            color:  #000000;
-        }#T_94f5c_row1_col2{
-            text-align:  center;
-            background-color:  #ebe6f2;
-            color:  #000000;
-        }#T_94f5c_row1_col3,#T_94f5c_row6_col2{
-            text-align:  center;
-            background-color:  #63a2cb;
-            color:  #000000;
-        }#T_94f5c_row1_col4{
-            text-align:  center;
-            background-color:  #bcc7e1;
-            color:  #000000;
-        }#T_94f5c_row1_col5,#T_94f5c_row4_col0,#T_94f5c_row7_col3,#T_94f5c_row11_col6{
-            text-align:  center;
-            background-color:  #b4c4df;
-            color:  #000000;
-        }#T_94f5c_row1_col6{
-            text-align:  center;
-            background-color:  #4697c4;
-            color:  #000000;
-        }#T_94f5c_row1_col7,#T_94f5c_row11_col7,#T_94f5c_row15_col7{
-            text-align:  center;
-            background-color:  #d7d6e9;
-            color:  #000000;
-        }#T_94f5c_row1_col10{
-            text-align:  center;
-            border-left:  4px solid black;
-            background-color:  #ede7f2;
-            color:  #000000;
-        }#T_94f5c_row2_col2{
-            text-align:  center;
-            background-color:  #157ab5;
-            color:  #000000;
-        }#T_94f5c_row2_col3,#T_94f5c_row10_col3{
-            text-align:  center;
-            background-color:  #0c74b2;
-            color:  #f1f1f1;
-        }#T_94f5c_row2_col4{
-            text-align:  center;
-            background-color:  #fbf3f9;
-            color:  #000000;
-        }#T_94f5c_row2_col5{
-            text-align:  center;
-            background-color:  #d4d4e8;
-            color:  #000000;
-        }#T_94f5c_row2_col6,#T_94f5c_row10_col6{
-            text-align:  center;
-            background-color:  #e7e3f0;
-            color:  #000000;
-        }#T_94f5c_row2_col8,#T_94f5c_row14_col5{
-            text-align:  center;
-            background-color:  #529bc7;
-            color:  #000000;
-        }#T_94f5c_row2_col9,#T_94f5c_row5_col4,#T_94f5c_row14_col9{
-            text-align:  center;
-            background-color:  #79abd0;
-            color:  #000000;
-        }#T_94f5c_row2_col10{
-            text-align:  center;
-            border-left:  4px solid black;
-            background-color:  #69a5cc;
-            color:  #000000;
-        }#T_94f5c_row3_col2,#T_94f5c_row13_col5{
-            text-align:  center;
-            background-color:  #a8bedc;
-            color:  #000000;
-        }#T_94f5c_row3_col3{
-            text-align:  center;
-            background-color:  #8fb4d6;
-            color:  #000000;
-        }#T_94f5c_row3_col4,#T_94f5c_row4_col4{
-            text-align:  center;
-            background-color:  #83afd3;
-            color:  #000000;
-        }#T_94f5c_row3_col5{
-            text-align:  center;
-            background-color:  #328dbf;
-            color:  #000000;
-        }#T_94f5c_row3_col6,#T_94f5c_row12_col3{
-            text-align:  center;
-            background-color:  #eae6f1;
-            color:  #000000;
-        }#T_94f5c_row3_col7,#T_94f5c_row4_col7,#T_94f5c_row5_col8,#T_94f5c_row12_col7{
-            text-align:  center;
-            background-color:  #0872b1;
-            color:  #f1f1f1;
-        }#T_94f5c_row3_col8{
-            text-align:  center;
-            background-color:  #1278b4;
-            color:  #f1f1f1;
-        }#T_94f5c_row3_col9,#T_94f5c_row8_col6{
-            text-align:  center;
-            background-color:  #3f93c2;
-            color:  #000000;
-        }#T_94f5c_row3_col10{
-            text-align:  center;
-            border-left:  4px solid black;
-            background-color:  #034e7b;
-            color:  #f1f1f1;
-        }#T_94f5c_row4_col2,#T_94f5c_row4_col3,#T_94f5c_row14_col3{
-            text-align:  center;
-            background-color:  #0567a2;
-            color:  #f1f1f1;
-        }#T_94f5c_row4_col5,#T_94f5c_row5_col7{
-            text-align:  center;
-            background-color:  #2182b9;
-            color:  #000000;
-        }#T_94f5c_row4_col8{
-            text-align:  center;
-            background-color:  #2987bc;
-            color:  #000000;
-        }#T_94f5c_row4_col10{
-            text-align:  center;
-            border-left:  4px solid black;
-            background-color:  #0771b1;
-            color:  #f1f1f1;
-        }#T_94f5c_row5_col0{
-            text-align:  center;
-            background-color:  #dedcec;
-            color:  #000000;
-        }#T_94f5c_row5_col3,#T_94f5c_row6_col3{
-            text-align:  center;
-            background-color:  #4295c3;
-            color:  #000000;
-        }#T_94f5c_row5_col5{
-            text-align:  center;
-            background-color:  #3790c0;
-            color:  #000000;
-        }#T_94f5c_row5_col6,#T_94f5c_row6_col0,#T_94f5c_row12_col6,#T_94f5c_row14_col6{
-            text-align:  center;
-            background-color:  #e3e0ee;
-            color:  #000000;
-        }#T_94f5c_row5_col9{
-            text-align:  center;
-            background-color:  #023f64;
-            color:  #f1f1f1;
-        }#T_94f5c_row5_col10{
-            text-align:  center;
-            border-left:  4px solid black;
-            background-color:  #8bb2d4;
-            color:  #000000;
-        }#T_94f5c_row6_col4{
-            text-align:  center;
-            background-color:  #2c89bd;
-            color:  #000000;
-        }#T_94f5c_row6_col5{
-            text-align:  center;
-            background-color:  #0569a4;
-            color:  #f1f1f1;
-        }#T_94f5c_row6_col6{
-            text-align:  center;
-            background-color:  #a9bfdc;
-            color:  #000000;
-        }#T_94f5c_row6_col8{
-            text-align:  center;
-            background-color:  #b9c6e0;
-            color:  #000000;
-        }#T_94f5c_row6_col9,#T_94f5c_row9_col9,#T_94f5c_row11_col8{
-            text-align:  center;
-            background-color:  #2685bb;
-            color:  #000000;
-        }#T_94f5c_row6_col10{
-            text-align:  center;
-            border-left:  4px solid black;
-            background-color:  #d1d2e6;
-            color:  #000000;
-        }#T_94f5c_row7_col2{
-            text-align:  center;
-            background-color:  #99b8d8;
-            color:  #000000;
-        }#T_94f5c_row7_col4{
-            text-align:  center;
-            background-color:  #d8d7e9;
-            color:  #000000;
-        }#T_94f5c_row7_col5{
-            text-align:  center;
-            background-color:  #b7c5df;
-            color:  #000000;
-        }#T_94f5c_row7_col9,#T_94f5c_row8_col9{
-            text-align:  center;
-            background-color:  #9fbad9;
-            color:  #000000;
-        }#T_94f5c_row7_col10{
-            text-align:  center;
-            border-left:  4px solid black;
-            background-color:  #8fb4d6;
-            color:  #000000;
-        }#T_94f5c_row8_col0{
-            text-align:  center;
-            background-color:  #569dc8;
-            color:  #000000;
-        }#T_94f5c_row8_col2{
-            text-align:  center;
-            background-color:  #bdc8e1;
-            color:  #000000;
-        }#T_94f5c_row8_col3,#T_94f5c_row12_col0{
-            text-align:  center;
-            background-color:  #7dacd1;
-            color:  #000000;
-        }#T_94f5c_row8_col8{
-            text-align:  center;
-            background-color:  #f2ecf5;
-            color:  #000000;
-        }#T_94f5c_row8_col10{
-            text-align:  center;
-            border-left:  4px solid black;
-            background-color:  #e1dfed;
-            color:  #000000;
-        }#T_94f5c_row9_col0{
-            text-align:  center;
-            background-color:  #f0eaf4;
-            color:  #000000;
-        }#T_94f5c_row9_col3{
-            text-align:  center;
-            background-color:  #034f7d;
-            color:  #f1f1f1;
-        }#T_94f5c_row9_col4{
-            text-align:  center;
-            background-color:  #67a4cc;
-            color:  #000000;
-        }#T_94f5c_row9_col5{
-            text-align:  center;
-            background-color:  #056faf;
-            color:  #f1f1f1;
-        }#T_94f5c_row9_col6{
-            text-align:  center;
-            background-color:  #c4cbe3;
-            color:  #000000;
-        }#T_94f5c_row9_col7{
-            text-align:  center;
-            background-color:  #73a9cf;
-            color:  #000000;
-        }#T_94f5c_row9_col8{
-            text-align:  center;
-            background-color:  #e8e4f0;
-            color:  #000000;
-        }#T_94f5c_row9_col10{
-            text-align:  center;
-            border-left:  4px solid black;
-            background-color:  #04598c;
-            color:  #f1f1f1;
-        }#T_94f5c_row10_col0{
-            text-align:  center;
-            background-color:  #2d8abd;
-            color:  #000000;
-        }#T_94f5c_row10_col2{
-            text-align:  center;
-            background-color:  #d0d1e6;
-            color:  #000000;
-        }#T_94f5c_row10_col4,#T_94f5c_row14_col0,#T_94f5c_row15_col0{
-            text-align:  center;
-            background-color:  #d1d2e6;
-            color:  #000000;
-        }#T_94f5c_row10_col5{
-            text-align:  center;
-            background-color:  #4a98c5;
-            color:  #000000;
-        }#T_94f5c_row10_col9{
-            text-align:  center;
-            background-color:  #93b5d6;
-            color:  #000000;
-        }#T_94f5c_row10_col10{
-            text-align:  center;
-            border-left:  4px solid black;
-            background-color:  #fff7fb;
-            color:  #000000;
-        }#T_94f5c_row11_col0{
-            text-align:  center;
-            background-color:  #d9d8ea;
-            color:  #000000;
-        }#T_94f5c_row11_col2,#T_94f5c_row14_col2{
-            text-align:  center;
-            background-color:  #2383ba;
-            color:  #000000;
-        }#T_94f5c_row11_col3{
-            text-align:  center;
-            background-color:  #9cb9d9;
-            color:  #000000;
-        }#T_94f5c_row11_col4{
-            text-align:  center;
-            background-color:  #b5c4df;
-            color:  #000000;
-        }#T_94f5c_row11_col5{
-            text-align:  center;
-            background-color:  #a5bddb;
-            color:  #000000;
-        }#T_94f5c_row11_col9,#T_94f5c_row15_col9{
-            text-align:  center;
-            background-color:  #197db7;
-            color:  #000000;
-        }#T_94f5c_row11_col10{
-            text-align:  center;
-            border-left:  4px solid black;
-            background-color:  #e0dded;
-            color:  #000000;
-        }#T_94f5c_row12_col2,#T_94f5c_row13_col2{
-            text-align:  center;
-            background-color:  #b0c2de;
-            color:  #000000;
-        }#T_94f5c_row12_col4{
-            text-align:  center;
-            background-color:  #0771b1;
-            color:  #f1f1f1;
-        }#T_94f5c_row12_col8{
-            text-align:  center;
-            background-color:  #97b7d7;
-            color:  #000000;
-        }#T_94f5c_row12_col10{
-            text-align:  center;
-            border-left:  4px solid black;
-            background-color:  #c0c9e2;
-            color:  #000000;
-        }#T_94f5c_row13_col0{
-            text-align:  center;
-            background-color:  #0570b0;
-            color:  #f1f1f1;
-        }#T_94f5c_row13_col3{
-            text-align:  center;
-            background-color:  #03446a;
-            color:  #f1f1f1;
-        }#T_94f5c_row13_col4{
-            text-align:  center;
-            background-color:  #f1ebf5;
-            color:  #000000;
-        }#T_94f5c_row13_col6{
-            text-align:  center;
-            background-color:  #e0dded;
-            color:  #000000;
-        }#T_94f5c_row13_col7{
-            text-align:  center;
-            background-color:  #94b6d7;
-            color:  #000000;
-        }#T_94f5c_row13_col8{
-            text-align:  center;
-            background-color:  #dbdaeb;
-            color:  #000000;
-        }#T_94f5c_row13_col9{
-            text-align:  center;
-            background-color:  #0569a5;
-            color:  #f1f1f1;
-        }#T_94f5c_row13_col10{
-            text-align:  center;
-            border-left:  4px solid black;
-            background-color:  #81aed2;
-            color:  #000000;
-        }#T_94f5c_row14_col4{
-            text-align:  center;
-            background-color:  #76aad0;
-            color:  #000000;
-        }#T_94f5c_row14_col7{
-            text-align:  center;
-            background-color:  #1e80b8;
-            color:  #000000;
-        }#T_94f5c_row14_col8{
-            text-align:  center;
-            background-color:  #04598c;
-            color:  #f1f1f1;
-        }#T_94f5c_row14_col10{
-            text-align:  center;
-            border-left:  4px solid black;
-            background-color:  #023858;
-            color:  #f1f1f1;
-        }#T_94f5c_row15_col5{
-            text-align:  center;
-            background-color:  #2a88bc;
-            color:  #000000;
-        }#T_94f5c_row15_col8{
-            text-align:  center;
-            background-color:  #6ba5cd;
-            color:  #000000;
-        }#T_94f5c_row15_col10{
-            text-align:  center;
-            border-left:  4px solid black;
-            background-color:  #fdf5fa;
-            color:  #000000;
-        }</style><table id="T_94f5c_" ><thead>    <tr>        <th class="blank level0" ></th>        <th class="col_heading level0 col0" >age</th>        <th class="col_heading level0 col1" >sex</th>        <th class="col_heading level0 col2" >bmi</th>        <th class="col_heading level0 col3" >bp</th>        <th class="col_heading level0 col4" >s1</th>        <th class="col_heading level0 col5" >s2</th>        <th class="col_heading level0 col6" >s3</th>        <th class="col_heading level0 col7" >s4</th>        <th class="col_heading level0 col8" >s5</th>        <th class="col_heading level0 col9" >s6</th>        <th class="col_heading level0 col10" >target</th>    </tr></thead><tbody>
-                <tr>
-                        <th id="T_94f5c_level0_row0" class="row_heading level0 row0" >0</th>
-                        <td id="T_94f5c_row0_col0" class="data row0 col0" >0.038</td>
-                        <td id="T_94f5c_row0_col1" class="data row0 col1" >0.051</td>
-                        <td id="T_94f5c_row0_col2" class="data row0 col2" >0.062</td>
-                        <td id="T_94f5c_row0_col3" class="data row0 col3" >0.022</td>
-                        <td id="T_94f5c_row0_col4" class="data row0 col4" >-0.044</td>
-                        <td id="T_94f5c_row0_col5" class="data row0 col5" >-0.035</td>
-                        <td id="T_94f5c_row0_col6" class="data row0 col6" >-0.043</td>
-                        <td id="T_94f5c_row0_col7" class="data row0 col7" >-0.003</td>
-                        <td id="T_94f5c_row0_col8" class="data row0 col8" >0.020</td>
-                        <td id="T_94f5c_row0_col9" class="data row0 col9" >-0.018</td>
-                        <td id="T_94f5c_row0_col10" class="data row0 col10" >151.000</td>
-            </tr>
-            <tr>
-                        <th id="T_94f5c_level0_row1" class="row_heading level0 row1" >1</th>
-                        <td id="T_94f5c_row1_col0" class="data row1 col0" >-0.002</td>
-                        <td id="T_94f5c_row1_col1" class="data row1 col1" >-0.045</td>
-                        <td id="T_94f5c_row1_col2" class="data row1 col2" >-0.051</td>
-                        <td id="T_94f5c_row1_col3" class="data row1 col3" >-0.026</td>
-                        <td id="T_94f5c_row1_col4" class="data row1 col4" >-0.008</td>
-                        <td id="T_94f5c_row1_col5" class="data row1 col5" >-0.019</td>
-                        <td id="T_94f5c_row1_col6" class="data row1 col6" >0.074</td>
-                        <td id="T_94f5c_row1_col7" class="data row1 col7" >-0.039</td>
-                        <td id="T_94f5c_row1_col8" class="data row1 col8" >-0.068</td>
-                        <td id="T_94f5c_row1_col9" class="data row1 col9" >-0.092</td>
-                        <td id="T_94f5c_row1_col10" class="data row1 col10" >75.000</td>
-            </tr>
-            <tr>
-                        <th id="T_94f5c_level0_row2" class="row_heading level0 row2" >2</th>
-                        <td id="T_94f5c_row2_col0" class="data row2 col0" >0.085</td>
-                        <td id="T_94f5c_row2_col1" class="data row2 col1" >0.051</td>
-                        <td id="T_94f5c_row2_col2" class="data row2 col2" >0.044</td>
-                        <td id="T_94f5c_row2_col3" class="data row2 col3" >-0.006</td>
-                        <td id="T_94f5c_row2_col4" class="data row2 col4" >-0.046</td>
-                        <td id="T_94f5c_row2_col5" class="data row2 col5" >-0.034</td>
-                        <td id="T_94f5c_row2_col6" class="data row2 col6" >-0.032</td>
-                        <td id="T_94f5c_row2_col7" class="data row2 col7" >-0.003</td>
-                        <td id="T_94f5c_row2_col8" class="data row2 col8" >0.003</td>
-                        <td id="T_94f5c_row2_col9" class="data row2 col9" >-0.026</td>
-                        <td id="T_94f5c_row2_col10" class="data row2 col10" >141.000</td>
-            </tr>
-            <tr>
-                        <th id="T_94f5c_level0_row3" class="row_heading level0 row3" >3</th>
-                        <td id="T_94f5c_row3_col0" class="data row3 col0" >-0.089</td>
-                        <td id="T_94f5c_row3_col1" class="data row3 col1" >-0.045</td>
-                        <td id="T_94f5c_row3_col2" class="data row3 col2" >-0.012</td>
-                        <td id="T_94f5c_row3_col3" class="data row3 col3" >-0.037</td>
-                        <td id="T_94f5c_row3_col4" class="data row3 col4" >0.012</td>
-                        <td id="T_94f5c_row3_col5" class="data row3 col5" >0.025</td>
-                        <td id="T_94f5c_row3_col6" class="data row3 col6" >-0.036</td>
-                        <td id="T_94f5c_row3_col7" class="data row3 col7" >0.034</td>
-                        <td id="T_94f5c_row3_col8" class="data row3 col8" >0.023</td>
-                        <td id="T_94f5c_row3_col9" class="data row3 col9" >-0.009</td>
-                        <td id="T_94f5c_row3_col10" class="data row3 col10" >206.000</td>
-            </tr>
-            <tr>
-                        <th id="T_94f5c_level0_row4" class="row_heading level0 row4" >146</th>
-                        <td id="T_94f5c_row4_col0" class="data row4 col0" >-0.031</td>
-                        <td id="T_94f5c_row4_col1" class="data row4 col1" >0.051</td>
-                        <td id="T_94f5c_row4_col2" class="data row4 col2" >0.060</td>
-                        <td id="T_94f5c_row4_col3" class="data row4 col3" >0.001</td>
-                        <td id="T_94f5c_row4_col4" class="data row4 col4" >0.012</td>
-                        <td id="T_94f5c_row4_col5" class="data row4 col5" >0.032</td>
-                        <td id="T_94f5c_row4_col6" class="data row4 col6" >-0.043</td>
-                        <td id="T_94f5c_row4_col7" class="data row4 col7" >0.034</td>
-                        <td id="T_94f5c_row4_col8" class="data row4 col8" >0.015</td>
-                        <td id="T_94f5c_row4_col9" class="data row4 col9" >0.007</td>
-                        <td id="T_94f5c_row4_col10" class="data row4 col10" >178.000</td>
-            </tr>
-            <tr>
-                        <th id="T_94f5c_level0_row5" class="row_heading level0 row5" >147</th>
-                        <td id="T_94f5c_row5_col0" class="data row5 col0" >-0.056</td>
-                        <td id="T_94f5c_row5_col1" class="data row5 col1" >-0.045</td>
-                        <td id="T_94f5c_row5_col2" class="data row5 col2" >0.093</td>
-                        <td id="T_94f5c_row5_col3" class="data row5 col3" >-0.019</td>
-                        <td id="T_94f5c_row5_col4" class="data row5 col4" >0.015</td>
-                        <td id="T_94f5c_row5_col5" class="data row5 col5" >0.023</td>
-                        <td id="T_94f5c_row5_col6" class="data row5 col6" >-0.029</td>
-                        <td id="T_94f5c_row5_col7" class="data row5 col7" >0.025</td>
-                        <td id="T_94f5c_row5_col8" class="data row5 col8" >0.026</td>
-                        <td id="T_94f5c_row5_col9" class="data row5 col9" >0.040</td>
-                        <td id="T_94f5c_row5_col10" class="data row5 col10" >128.000</td>
-            </tr>
-            <tr>
-                        <th id="T_94f5c_level0_row6" class="row_heading level0 row6" >148</th>
-                        <td id="T_94f5c_row6_col0" class="data row6 col0" >-0.060</td>
-                        <td id="T_94f5c_row6_col1" class="data row6 col1" >0.051</td>
-                        <td id="T_94f5c_row6_col2" class="data row6 col2" >0.015</td>
-                        <td id="T_94f5c_row6_col3" class="data row6 col3" >-0.019</td>
-                        <td id="T_94f5c_row6_col4" class="data row6 col4" >0.037</td>
-                        <td id="T_94f5c_row6_col5" class="data row6 col5" >0.048</td>
-                        <td id="T_94f5c_row6_col6" class="data row6 col6" >0.019</td>
-                        <td id="T_94f5c_row6_col7" class="data row6 col7" >-0.003</td>
-                        <td id="T_94f5c_row6_col8" class="data row6 col8" >-0.031</td>
-                        <td id="T_94f5c_row6_col9" class="data row6 col9" >-0.001</td>
-                        <td id="T_94f5c_row6_col10" class="data row6 col10" >96.000</td>
-            </tr>
-            <tr>
-                        <th id="T_94f5c_level0_row7" class="row_heading level0 row7" >149</th>
-                        <td id="T_94f5c_row7_col0" class="data row7 col0" >-0.049</td>
-                        <td id="T_94f5c_row7_col1" class="data row7 col1" >0.051</td>
-                        <td id="T_94f5c_row7_col2" class="data row7 col2" >-0.005</td>
-                        <td id="T_94f5c_row7_col3" class="data row7 col3" >-0.047</td>
-                        <td id="T_94f5c_row7_col4" class="data row7 col4" >-0.021</td>
-                        <td id="T_94f5c_row7_col5" class="data row7 col5" >-0.020</td>
-                        <td id="T_94f5c_row7_col6" class="data row7 col6" >-0.069</td>
-                        <td id="T_94f5c_row7_col7" class="data row7 col7" >0.071</td>
-                        <td id="T_94f5c_row7_col8" class="data row7 col8" >0.061</td>
-                        <td id="T_94f5c_row7_col9" class="data row7 col9" >-0.038</td>
-                        <td id="T_94f5c_row7_col10" class="data row7 col10" >126.000</td>
-            </tr>
-            <tr>
-                        <th id="T_94f5c_level0_row8" class="row_heading level0 row8" >292</th>
-                        <td id="T_94f5c_row8_col0" class="data row8 col0" >0.009</td>
-                        <td id="T_94f5c_row8_col1" class="data row8 col1" >-0.045</td>
-                        <td id="T_94f5c_row8_col2" class="data row8 col2" >-0.022</td>
-                        <td id="T_94f5c_row8_col3" class="data row8 col3" >-0.032</td>
-                        <td id="T_94f5c_row8_col4" class="data row8 col4" >-0.050</td>
-                        <td id="T_94f5c_row8_col5" class="data row8 col5" >-0.069</td>
-                        <td id="T_94f5c_row8_col6" class="data row8 col6" >0.078</td>
-                        <td id="T_94f5c_row8_col7" class="data row8 col7" >-0.071</td>
-                        <td id="T_94f5c_row8_col8" class="data row8 col8" >-0.063</td>
-                        <td id="T_94f5c_row8_col9" class="data row8 col9" >-0.038</td>
-                        <td id="T_94f5c_row8_col10" class="data row8 col10" >84.000</td>
-            </tr>
-            <tr>
-                        <th id="T_94f5c_level0_row9" class="row_heading level0 row9" >293</th>
-                        <td id="T_94f5c_row9_col0" class="data row9 col0" >-0.071</td>
-                        <td id="T_94f5c_row9_col1" class="data row9 col1" >-0.045</td>
-                        <td id="T_94f5c_row9_col2" class="data row9 col2" >0.093</td>
-                        <td id="T_94f5c_row9_col3" class="data row9 col3" >0.013</td>
-                        <td id="T_94f5c_row9_col4" class="data row9 col4" >0.020</td>
-                        <td id="T_94f5c_row9_col5" class="data row9 col5" >0.043</td>
-                        <td id="T_94f5c_row9_col6" class="data row9 col6" >0.001</td>
-                        <td id="T_94f5c_row9_col7" class="data row9 col7" >0.000</td>
-                        <td id="T_94f5c_row9_col8" class="data row9 col8" >-0.055</td>
-                        <td id="T_94f5c_row9_col9" class="data row9 col9" >-0.001</td>
-                        <td id="T_94f5c_row9_col10" class="data row9 col10" >200.000</td>
-            </tr>
-            <tr>
-                        <th id="T_94f5c_level0_row10" class="row_heading level0 row10" >294</th>
-                        <td id="T_94f5c_row10_col0" class="data row10 col0" >0.024</td>
-                        <td id="T_94f5c_row10_col1" class="data row10 col1" >0.051</td>
-                        <td id="T_94f5c_row10_col2" class="data row10 col2" >-0.031</td>
-                        <td id="T_94f5c_row10_col3" class="data row10 col3" >-0.006</td>
-                        <td id="T_94f5c_row10_col4" class="data row10 col4" >-0.017</td>
-                        <td id="T_94f5c_row10_col5" class="data row10 col5" >0.018</td>
-                        <td id="T_94f5c_row10_col6" class="data row10 col6" >-0.032</td>
-                        <td id="T_94f5c_row10_col7" class="data row10 col7" >-0.003</td>
-                        <td id="T_94f5c_row10_col8" class="data row10 col8" >-0.074</td>
-                        <td id="T_94f5c_row10_col9" class="data row10 col9" >-0.034</td>
-                        <td id="T_94f5c_row10_col10" class="data row10 col10" >55.000</td>
-            </tr>
-            <tr>
-                        <th id="T_94f5c_level0_row11" class="row_heading level0 row11" >295</th>
-                        <td id="T_94f5c_row11_col0" class="data row11 col0" >-0.053</td>
-                        <td id="T_94f5c_row11_col1" class="data row11 col1" >0.051</td>
-                        <td id="T_94f5c_row11_col2" class="data row11 col2" >0.039</td>
-                        <td id="T_94f5c_row11_col3" class="data row11 col3" >-0.040</td>
-                        <td id="T_94f5c_row11_col4" class="data row11 col4" >-0.006</td>
-                        <td id="T_94f5c_row11_col5" class="data row11 col5" >-0.013</td>
-                        <td id="T_94f5c_row11_col6" class="data row11 col6" >0.012</td>
-                        <td id="T_94f5c_row11_col7" class="data row11 col7" >-0.039</td>
-                        <td id="T_94f5c_row11_col8" class="data row11 col8" >0.016</td>
-                        <td id="T_94f5c_row11_col9" class="data row11 col9" >0.003</td>
-                        <td id="T_94f5c_row11_col10" class="data row11 col10" >85.000</td>
-            </tr>
-            <tr>
-                        <th id="T_94f5c_level0_row12" class="row_heading level0 row12" >438</th>
-                        <td id="T_94f5c_row12_col0" class="data row12 col0" >-0.006</td>
-                        <td id="T_94f5c_row12_col1" class="data row12 col1" >0.051</td>
-                        <td id="T_94f5c_row12_col2" class="data row12 col2" >-0.016</td>
-                        <td id="T_94f5c_row12_col3" class="data row12 col3" >-0.068</td>
-                        <td id="T_94f5c_row12_col4" class="data row12 col4" >0.049</td>
-                        <td id="T_94f5c_row12_col5" class="data row12 col5" >0.079</td>
-                        <td id="T_94f5c_row12_col6" class="data row12 col6" >-0.029</td>
-                        <td id="T_94f5c_row12_col7" class="data row12 col7" >0.034</td>
-                        <td id="T_94f5c_row12_col8" class="data row12 col8" >-0.018</td>
-                        <td id="T_94f5c_row12_col9" class="data row12 col9" >0.044</td>
-                        <td id="T_94f5c_row12_col10" class="data row12 col10" >104.000</td>
-            </tr>
-            <tr>
-                        <th id="T_94f5c_level0_row13" class="row_heading level0 row13" >439</th>
-                        <td id="T_94f5c_row13_col0" class="data row13 col0" >0.042</td>
-                        <td id="T_94f5c_row13_col1" class="data row13 col1" >0.051</td>
-                        <td id="T_94f5c_row13_col2" class="data row13 col2" >-0.016</td>
-                        <td id="T_94f5c_row13_col3" class="data row13 col3" >0.017</td>
-                        <td id="T_94f5c_row13_col4" class="data row13 col4" >-0.037</td>
-                        <td id="T_94f5c_row13_col5" class="data row13 col5" >-0.014</td>
-                        <td id="T_94f5c_row13_col6" class="data row13 col6" >-0.025</td>
-                        <td id="T_94f5c_row13_col7" class="data row13 col7" >-0.011</td>
-                        <td id="T_94f5c_row13_col8" class="data row13 col8" >-0.047</td>
-                        <td id="T_94f5c_row13_col9" class="data row13 col9" >0.015</td>
-                        <td id="T_94f5c_row13_col10" class="data row13 col10" >132.000</td>
-            </tr>
-            <tr>
-                        <th id="T_94f5c_level0_row14" class="row_heading level0 row14" >440</th>
-                        <td id="T_94f5c_row14_col0" class="data row14 col0" >-0.045</td>
-                        <td id="T_94f5c_row14_col1" class="data row14 col1" >-0.045</td>
-                        <td id="T_94f5c_row14_col2" class="data row14 col2" >0.039</td>
-                        <td id="T_94f5c_row14_col3" class="data row14 col3" >0.001</td>
-                        <td id="T_94f5c_row14_col4" class="data row14 col4" >0.016</td>
-                        <td id="T_94f5c_row14_col5" class="data row14 col5" >0.015</td>
-                        <td id="T_94f5c_row14_col6" class="data row14 col6" >-0.029</td>
-                        <td id="T_94f5c_row14_col7" class="data row14 col7" >0.027</td>
-                        <td id="T_94f5c_row14_col8" class="data row14 col8" >0.045</td>
-                        <td id="T_94f5c_row14_col9" class="data row14 col9" >-0.026</td>
-                        <td id="T_94f5c_row14_col10" class="data row14 col10" >220.000</td>
-            </tr>
-            <tr>
-                        <th id="T_94f5c_level0_row15" class="row_heading level0 row15" >441</th>
-                        <td id="T_94f5c_row15_col0" class="data row15 col0" >-0.045</td>
-                        <td id="T_94f5c_row15_col1" class="data row15 col1" >-0.045</td>
-                        <td id="T_94f5c_row15_col2" class="data row15 col2" >-0.073</td>
-                        <td id="T_94f5c_row15_col3" class="data row15 col3" >-0.081</td>
-                        <td id="T_94f5c_row15_col4" class="data row15 col4" >0.084</td>
-                        <td id="T_94f5c_row15_col5" class="data row15 col5" >0.028</td>
-                        <td id="T_94f5c_row15_col6" class="data row15 col6" >0.174</td>
-                        <td id="T_94f5c_row15_col7" class="data row15 col7" >-0.039</td>
-                        <td id="T_94f5c_row15_col8" class="data row15 col8" >-0.004</td>
-                        <td id="T_94f5c_row15_col9" class="data row15 col9" >0.003</td>
-                        <td id="T_94f5c_row15_col10" class="data row15 col10" >57.000</td>
-            </tr>
-    </tbody></table></div></div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/ipykernel_launcher.py:16: FutureWarning: this method is deprecated in favour of `Styler.format(precision=..)`
+  app.launch_new_instance()
+</pre></div>
+</div>
+<div class="output text_html"><style type="text/css">
+#T_4d1c2_ th {
+  font-size: 13px;
+}
+#T_4d1c2_ td {
+  font-size: 11px;
+}
+#T_4d1c2_row0_col0, #T_4d1c2_row4_col9 {
+  text-align: center;
+  background-color: #0d75b3;
+  color: #f1f1f1;
+}
+#T_4d1c2_row0_col1, #T_4d1c2_row0_col3, #T_4d1c2_row2_col0, #T_4d1c2_row2_col1, #T_4d1c2_row4_col1, #T_4d1c2_row5_col2, #T_4d1c2_row6_col1, #T_4d1c2_row7_col1, #T_4d1c2_row7_col7, #T_4d1c2_row7_col8, #T_4d1c2_row9_col2, #T_4d1c2_row10_col1, #T_4d1c2_row11_col1, #T_4d1c2_row12_col1, #T_4d1c2_row12_col5, #T_4d1c2_row12_col9, #T_4d1c2_row13_col1, #T_4d1c2_row15_col4, #T_4d1c2_row15_col6 {
+  text-align: center;
+  background-color: #023858;
+  color: #f1f1f1;
+}
+#T_4d1c2_row0_col2 {
+  text-align: center;
+  background-color: #05659f;
+  color: #f1f1f1;
+}
+#T_4d1c2_row0_col4, #T_4d1c2_row1_col8 {
+  text-align: center;
+  background-color: #f9f2f8;
+  color: #000000;
+}
+#T_4d1c2_row0_col5, #T_4d1c2_row7_col0 {
+  text-align: center;
+  background-color: #d5d5e8;
+  color: #000000;
+}
+#T_4d1c2_row0_col6, #T_4d1c2_row4_col6 {
+  text-align: center;
+  background-color: #efe9f3;
+  color: #000000;
+}
+#T_4d1c2_row0_col7, #T_4d1c2_row2_col7, #T_4d1c2_row6_col7, #T_4d1c2_row10_col7 {
+  text-align: center;
+  background-color: #7bacd1;
+  color: #f1f1f1;
+}
+#T_4d1c2_row0_col8 {
+  text-align: center;
+  background-color: #1b7eb7;
+  color: #f1f1f1;
+}
+#T_4d1c2_row0_col9 {
+  text-align: center;
+  background-color: #5ea0ca;
+  color: #f1f1f1;
+}
+#T_4d1c2_row0_col10 {
+  text-align: center;
+  border-left: 4px solid black;
+  background-color: #4c99c5;
+  color: #f1f1f1;
+}
+#T_4d1c2_row1_col0 {
+  text-align: center;
+  background-color: #75a9cf;
+  color: #f1f1f1;
+}
+#T_4d1c2_row1_col1, #T_4d1c2_row1_col9, #T_4d1c2_row3_col0, #T_4d1c2_row3_col1, #T_4d1c2_row5_col1, #T_4d1c2_row7_col6, #T_4d1c2_row8_col1, #T_4d1c2_row8_col4, #T_4d1c2_row8_col5, #T_4d1c2_row8_col7, #T_4d1c2_row9_col1, #T_4d1c2_row10_col8, #T_4d1c2_row14_col1, #T_4d1c2_row15_col1, #T_4d1c2_row15_col2, #T_4d1c2_row15_col3 {
+  text-align: center;
+  background-color: #fff7fb;
+  color: #000000;
+}
+#T_4d1c2_row1_col2 {
+  text-align: center;
+  background-color: #ebe6f2;
+  color: #000000;
+}
+#T_4d1c2_row1_col3, #T_4d1c2_row6_col2 {
+  text-align: center;
+  background-color: #63a2cb;
+  color: #f1f1f1;
+}
+#T_4d1c2_row1_col4 {
+  text-align: center;
+  background-color: #bcc7e1;
+  color: #000000;
+}
+#T_4d1c2_row1_col5, #T_4d1c2_row4_col0, #T_4d1c2_row7_col3, #T_4d1c2_row11_col6 {
+  text-align: center;
+  background-color: #b4c4df;
+  color: #000000;
+}
+#T_4d1c2_row1_col6 {
+  text-align: center;
+  background-color: #4697c4;
+  color: #f1f1f1;
+}
+#T_4d1c2_row1_col7, #T_4d1c2_row11_col7, #T_4d1c2_row15_col7 {
+  text-align: center;
+  background-color: #d7d6e9;
+  color: #000000;
+}
+#T_4d1c2_row1_col10 {
+  text-align: center;
+  border-left: 4px solid black;
+  background-color: #ede7f2;
+  color: #000000;
+}
+#T_4d1c2_row2_col2 {
+  text-align: center;
+  background-color: #157ab5;
+  color: #f1f1f1;
+}
+#T_4d1c2_row2_col3, #T_4d1c2_row10_col3 {
+  text-align: center;
+  background-color: #0c74b2;
+  color: #f1f1f1;
+}
+#T_4d1c2_row2_col4 {
+  text-align: center;
+  background-color: #fbf3f9;
+  color: #000000;
+}
+#T_4d1c2_row2_col5 {
+  text-align: center;
+  background-color: #d4d4e8;
+  color: #000000;
+}
+#T_4d1c2_row2_col6, #T_4d1c2_row10_col6 {
+  text-align: center;
+  background-color: #e7e3f0;
+  color: #000000;
+}
+#T_4d1c2_row2_col8, #T_4d1c2_row14_col5 {
+  text-align: center;
+  background-color: #529bc7;
+  color: #f1f1f1;
+}
+#T_4d1c2_row2_col9, #T_4d1c2_row5_col4, #T_4d1c2_row14_col9 {
+  text-align: center;
+  background-color: #79abd0;
+  color: #f1f1f1;
+}
+#T_4d1c2_row2_col10 {
+  text-align: center;
+  border-left: 4px solid black;
+  background-color: #69a5cc;
+  color: #f1f1f1;
+}
+#T_4d1c2_row3_col2, #T_4d1c2_row13_col5 {
+  text-align: center;
+  background-color: #a8bedc;
+  color: #000000;
+}
+#T_4d1c2_row3_col3 {
+  text-align: center;
+  background-color: #8fb4d6;
+  color: #000000;
+}
+#T_4d1c2_row3_col4, #T_4d1c2_row4_col4 {
+  text-align: center;
+  background-color: #83afd3;
+  color: #f1f1f1;
+}
+#T_4d1c2_row3_col5 {
+  text-align: center;
+  background-color: #328dbf;
+  color: #f1f1f1;
+}
+#T_4d1c2_row3_col6, #T_4d1c2_row12_col3 {
+  text-align: center;
+  background-color: #eae6f1;
+  color: #000000;
+}
+#T_4d1c2_row3_col7, #T_4d1c2_row4_col7, #T_4d1c2_row5_col8, #T_4d1c2_row12_col7 {
+  text-align: center;
+  background-color: #0872b1;
+  color: #f1f1f1;
+}
+#T_4d1c2_row3_col8 {
+  text-align: center;
+  background-color: #1278b4;
+  color: #f1f1f1;
+}
+#T_4d1c2_row3_col9, #T_4d1c2_row8_col6 {
+  text-align: center;
+  background-color: #3f93c2;
+  color: #f1f1f1;
+}
+#T_4d1c2_row3_col10 {
+  text-align: center;
+  border-left: 4px solid black;
+  background-color: #034e7b;
+  color: #f1f1f1;
+}
+#T_4d1c2_row4_col2, #T_4d1c2_row4_col3, #T_4d1c2_row14_col3 {
+  text-align: center;
+  background-color: #0567a2;
+  color: #f1f1f1;
+}
+#T_4d1c2_row4_col5, #T_4d1c2_row5_col7 {
+  text-align: center;
+  background-color: #2182b9;
+  color: #f1f1f1;
+}
+#T_4d1c2_row4_col8 {
+  text-align: center;
+  background-color: #2987bc;
+  color: #f1f1f1;
+}
+#T_4d1c2_row4_col10 {
+  text-align: center;
+  border-left: 4px solid black;
+  background-color: #0771b1;
+  color: #f1f1f1;
+}
+#T_4d1c2_row5_col0 {
+  text-align: center;
+  background-color: #dedcec;
+  color: #000000;
+}
+#T_4d1c2_row5_col3, #T_4d1c2_row6_col3 {
+  text-align: center;
+  background-color: #4295c3;
+  color: #f1f1f1;
+}
+#T_4d1c2_row5_col5 {
+  text-align: center;
+  background-color: #3790c0;
+  color: #f1f1f1;
+}
+#T_4d1c2_row5_col6, #T_4d1c2_row6_col0, #T_4d1c2_row12_col6, #T_4d1c2_row14_col6 {
+  text-align: center;
+  background-color: #e3e0ee;
+  color: #000000;
+}
+#T_4d1c2_row5_col9 {
+  text-align: center;
+  background-color: #023f64;
+  color: #f1f1f1;
+}
+#T_4d1c2_row5_col10 {
+  text-align: center;
+  border-left: 4px solid black;
+  background-color: #8bb2d4;
+  color: #000000;
+}
+#T_4d1c2_row6_col4 {
+  text-align: center;
+  background-color: #2c89bd;
+  color: #f1f1f1;
+}
+#T_4d1c2_row6_col5 {
+  text-align: center;
+  background-color: #0569a4;
+  color: #f1f1f1;
+}
+#T_4d1c2_row6_col6 {
+  text-align: center;
+  background-color: #a9bfdc;
+  color: #000000;
+}
+#T_4d1c2_row6_col8 {
+  text-align: center;
+  background-color: #b9c6e0;
+  color: #000000;
+}
+#T_4d1c2_row6_col9, #T_4d1c2_row9_col9, #T_4d1c2_row11_col8 {
+  text-align: center;
+  background-color: #2685bb;
+  color: #f1f1f1;
+}
+#T_4d1c2_row6_col10 {
+  text-align: center;
+  border-left: 4px solid black;
+  background-color: #d1d2e6;
+  color: #000000;
+}
+#T_4d1c2_row7_col2 {
+  text-align: center;
+  background-color: #99b8d8;
+  color: #000000;
+}
+#T_4d1c2_row7_col4 {
+  text-align: center;
+  background-color: #d8d7e9;
+  color: #000000;
+}
+#T_4d1c2_row7_col5 {
+  text-align: center;
+  background-color: #b7c5df;
+  color: #000000;
+}
+#T_4d1c2_row7_col9, #T_4d1c2_row8_col9 {
+  text-align: center;
+  background-color: #9fbad9;
+  color: #000000;
+}
+#T_4d1c2_row7_col10 {
+  text-align: center;
+  border-left: 4px solid black;
+  background-color: #8fb4d6;
+  color: #000000;
+}
+#T_4d1c2_row8_col0 {
+  text-align: center;
+  background-color: #569dc8;
+  color: #f1f1f1;
+}
+#T_4d1c2_row8_col2 {
+  text-align: center;
+  background-color: #bdc8e1;
+  color: #000000;
+}
+#T_4d1c2_row8_col3, #T_4d1c2_row12_col0 {
+  text-align: center;
+  background-color: #7dacd1;
+  color: #f1f1f1;
+}
+#T_4d1c2_row8_col8 {
+  text-align: center;
+  background-color: #f2ecf5;
+  color: #000000;
+}
+#T_4d1c2_row8_col10 {
+  text-align: center;
+  border-left: 4px solid black;
+  background-color: #e1dfed;
+  color: #000000;
+}
+#T_4d1c2_row9_col0 {
+  text-align: center;
+  background-color: #f0eaf4;
+  color: #000000;
+}
+#T_4d1c2_row9_col3 {
+  text-align: center;
+  background-color: #034f7d;
+  color: #f1f1f1;
+}
+#T_4d1c2_row9_col4 {
+  text-align: center;
+  background-color: #67a4cc;
+  color: #f1f1f1;
+}
+#T_4d1c2_row9_col5 {
+  text-align: center;
+  background-color: #056faf;
+  color: #f1f1f1;
+}
+#T_4d1c2_row9_col6 {
+  text-align: center;
+  background-color: #c4cbe3;
+  color: #000000;
+}
+#T_4d1c2_row9_col7 {
+  text-align: center;
+  background-color: #73a9cf;
+  color: #f1f1f1;
+}
+#T_4d1c2_row9_col8 {
+  text-align: center;
+  background-color: #e8e4f0;
+  color: #000000;
+}
+#T_4d1c2_row9_col10 {
+  text-align: center;
+  border-left: 4px solid black;
+  background-color: #04598c;
+  color: #f1f1f1;
+}
+#T_4d1c2_row10_col0 {
+  text-align: center;
+  background-color: #2d8abd;
+  color: #f1f1f1;
+}
+#T_4d1c2_row10_col2 {
+  text-align: center;
+  background-color: #d0d1e6;
+  color: #000000;
+}
+#T_4d1c2_row10_col4, #T_4d1c2_row14_col0, #T_4d1c2_row15_col0 {
+  text-align: center;
+  background-color: #d1d2e6;
+  color: #000000;
+}
+#T_4d1c2_row10_col5 {
+  text-align: center;
+  background-color: #4a98c5;
+  color: #f1f1f1;
+}
+#T_4d1c2_row10_col9 {
+  text-align: center;
+  background-color: #93b5d6;
+  color: #000000;
+}
+#T_4d1c2_row10_col10 {
+  text-align: center;
+  border-left: 4px solid black;
+  background-color: #fff7fb;
+  color: #000000;
+}
+#T_4d1c2_row11_col0 {
+  text-align: center;
+  background-color: #d9d8ea;
+  color: #000000;
+}
+#T_4d1c2_row11_col2, #T_4d1c2_row14_col2 {
+  text-align: center;
+  background-color: #2383ba;
+  color: #f1f1f1;
+}
+#T_4d1c2_row11_col3 {
+  text-align: center;
+  background-color: #9cb9d9;
+  color: #000000;
+}
+#T_4d1c2_row11_col4 {
+  text-align: center;
+  background-color: #b5c4df;
+  color: #000000;
+}
+#T_4d1c2_row11_col5 {
+  text-align: center;
+  background-color: #a5bddb;
+  color: #000000;
+}
+#T_4d1c2_row11_col9, #T_4d1c2_row15_col9 {
+  text-align: center;
+  background-color: #197db7;
+  color: #f1f1f1;
+}
+#T_4d1c2_row11_col10 {
+  text-align: center;
+  border-left: 4px solid black;
+  background-color: #e0dded;
+  color: #000000;
+}
+#T_4d1c2_row12_col2, #T_4d1c2_row13_col2 {
+  text-align: center;
+  background-color: #b0c2de;
+  color: #000000;
+}
+#T_4d1c2_row12_col4 {
+  text-align: center;
+  background-color: #0771b1;
+  color: #f1f1f1;
+}
+#T_4d1c2_row12_col8 {
+  text-align: center;
+  background-color: #97b7d7;
+  color: #000000;
+}
+#T_4d1c2_row12_col10 {
+  text-align: center;
+  border-left: 4px solid black;
+  background-color: #c0c9e2;
+  color: #000000;
+}
+#T_4d1c2_row13_col0 {
+  text-align: center;
+  background-color: #0570b0;
+  color: #f1f1f1;
+}
+#T_4d1c2_row13_col3 {
+  text-align: center;
+  background-color: #03446a;
+  color: #f1f1f1;
+}
+#T_4d1c2_row13_col4 {
+  text-align: center;
+  background-color: #f1ebf5;
+  color: #000000;
+}
+#T_4d1c2_row13_col6 {
+  text-align: center;
+  background-color: #e0dded;
+  color: #000000;
+}
+#T_4d1c2_row13_col7 {
+  text-align: center;
+  background-color: #94b6d7;
+  color: #000000;
+}
+#T_4d1c2_row13_col8 {
+  text-align: center;
+  background-color: #dbdaeb;
+  color: #000000;
+}
+#T_4d1c2_row13_col9 {
+  text-align: center;
+  background-color: #0569a5;
+  color: #f1f1f1;
+}
+#T_4d1c2_row13_col10 {
+  text-align: center;
+  border-left: 4px solid black;
+  background-color: #81aed2;
+  color: #f1f1f1;
+}
+#T_4d1c2_row14_col4 {
+  text-align: center;
+  background-color: #76aad0;
+  color: #f1f1f1;
+}
+#T_4d1c2_row14_col7 {
+  text-align: center;
+  background-color: #1e80b8;
+  color: #f1f1f1;
+}
+#T_4d1c2_row14_col8 {
+  text-align: center;
+  background-color: #04598c;
+  color: #f1f1f1;
+}
+#T_4d1c2_row14_col10 {
+  text-align: center;
+  border-left: 4px solid black;
+  background-color: #023858;
+  color: #f1f1f1;
+}
+#T_4d1c2_row15_col5 {
+  text-align: center;
+  background-color: #2a88bc;
+  color: #f1f1f1;
+}
+#T_4d1c2_row15_col8 {
+  text-align: center;
+  background-color: #6ba5cd;
+  color: #f1f1f1;
+}
+#T_4d1c2_row15_col10 {
+  text-align: center;
+  border-left: 4px solid black;
+  background-color: #fdf5fa;
+  color: #000000;
+}
+</style>
+<table id="T_4d1c2_">
+  <thead>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th class="col_heading level0 col0" >age</th>
+      <th class="col_heading level0 col1" >sex</th>
+      <th class="col_heading level0 col2" >bmi</th>
+      <th class="col_heading level0 col3" >bp</th>
+      <th class="col_heading level0 col4" >s1</th>
+      <th class="col_heading level0 col5" >s2</th>
+      <th class="col_heading level0 col6" >s3</th>
+      <th class="col_heading level0 col7" >s4</th>
+      <th class="col_heading level0 col8" >s5</th>
+      <th class="col_heading level0 col9" >s6</th>
+      <th class="col_heading level0 col10" >target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th id="T_4d1c2_level0_row0" class="row_heading level0 row0" >0</th>
+      <td id="T_4d1c2_row0_col0" class="data row0 col0" >0.038</td>
+      <td id="T_4d1c2_row0_col1" class="data row0 col1" >0.051</td>
+      <td id="T_4d1c2_row0_col2" class="data row0 col2" >0.062</td>
+      <td id="T_4d1c2_row0_col3" class="data row0 col3" >0.022</td>
+      <td id="T_4d1c2_row0_col4" class="data row0 col4" >-0.044</td>
+      <td id="T_4d1c2_row0_col5" class="data row0 col5" >-0.035</td>
+      <td id="T_4d1c2_row0_col6" class="data row0 col6" >-0.043</td>
+      <td id="T_4d1c2_row0_col7" class="data row0 col7" >-0.003</td>
+      <td id="T_4d1c2_row0_col8" class="data row0 col8" >0.020</td>
+      <td id="T_4d1c2_row0_col9" class="data row0 col9" >-0.018</td>
+      <td id="T_4d1c2_row0_col10" class="data row0 col10" >151.000</td>
+    </tr>
+    <tr>
+      <th id="T_4d1c2_level0_row1" class="row_heading level0 row1" >1</th>
+      <td id="T_4d1c2_row1_col0" class="data row1 col0" >-0.002</td>
+      <td id="T_4d1c2_row1_col1" class="data row1 col1" >-0.045</td>
+      <td id="T_4d1c2_row1_col2" class="data row1 col2" >-0.051</td>
+      <td id="T_4d1c2_row1_col3" class="data row1 col3" >-0.026</td>
+      <td id="T_4d1c2_row1_col4" class="data row1 col4" >-0.008</td>
+      <td id="T_4d1c2_row1_col5" class="data row1 col5" >-0.019</td>
+      <td id="T_4d1c2_row1_col6" class="data row1 col6" >0.074</td>
+      <td id="T_4d1c2_row1_col7" class="data row1 col7" >-0.039</td>
+      <td id="T_4d1c2_row1_col8" class="data row1 col8" >-0.068</td>
+      <td id="T_4d1c2_row1_col9" class="data row1 col9" >-0.092</td>
+      <td id="T_4d1c2_row1_col10" class="data row1 col10" >75.000</td>
+    </tr>
+    <tr>
+      <th id="T_4d1c2_level0_row2" class="row_heading level0 row2" >2</th>
+      <td id="T_4d1c2_row2_col0" class="data row2 col0" >0.085</td>
+      <td id="T_4d1c2_row2_col1" class="data row2 col1" >0.051</td>
+      <td id="T_4d1c2_row2_col2" class="data row2 col2" >0.044</td>
+      <td id="T_4d1c2_row2_col3" class="data row2 col3" >-0.006</td>
+      <td id="T_4d1c2_row2_col4" class="data row2 col4" >-0.046</td>
+      <td id="T_4d1c2_row2_col5" class="data row2 col5" >-0.034</td>
+      <td id="T_4d1c2_row2_col6" class="data row2 col6" >-0.032</td>
+      <td id="T_4d1c2_row2_col7" class="data row2 col7" >-0.003</td>
+      <td id="T_4d1c2_row2_col8" class="data row2 col8" >0.003</td>
+      <td id="T_4d1c2_row2_col9" class="data row2 col9" >-0.026</td>
+      <td id="T_4d1c2_row2_col10" class="data row2 col10" >141.000</td>
+    </tr>
+    <tr>
+      <th id="T_4d1c2_level0_row3" class="row_heading level0 row3" >3</th>
+      <td id="T_4d1c2_row3_col0" class="data row3 col0" >-0.089</td>
+      <td id="T_4d1c2_row3_col1" class="data row3 col1" >-0.045</td>
+      <td id="T_4d1c2_row3_col2" class="data row3 col2" >-0.012</td>
+      <td id="T_4d1c2_row3_col3" class="data row3 col3" >-0.037</td>
+      <td id="T_4d1c2_row3_col4" class="data row3 col4" >0.012</td>
+      <td id="T_4d1c2_row3_col5" class="data row3 col5" >0.025</td>
+      <td id="T_4d1c2_row3_col6" class="data row3 col6" >-0.036</td>
+      <td id="T_4d1c2_row3_col7" class="data row3 col7" >0.034</td>
+      <td id="T_4d1c2_row3_col8" class="data row3 col8" >0.023</td>
+      <td id="T_4d1c2_row3_col9" class="data row3 col9" >-0.009</td>
+      <td id="T_4d1c2_row3_col10" class="data row3 col10" >206.000</td>
+    </tr>
+    <tr>
+      <th id="T_4d1c2_level0_row4" class="row_heading level0 row4" >146</th>
+      <td id="T_4d1c2_row4_col0" class="data row4 col0" >-0.031</td>
+      <td id="T_4d1c2_row4_col1" class="data row4 col1" >0.051</td>
+      <td id="T_4d1c2_row4_col2" class="data row4 col2" >0.060</td>
+      <td id="T_4d1c2_row4_col3" class="data row4 col3" >0.001</td>
+      <td id="T_4d1c2_row4_col4" class="data row4 col4" >0.012</td>
+      <td id="T_4d1c2_row4_col5" class="data row4 col5" >0.032</td>
+      <td id="T_4d1c2_row4_col6" class="data row4 col6" >-0.043</td>
+      <td id="T_4d1c2_row4_col7" class="data row4 col7" >0.034</td>
+      <td id="T_4d1c2_row4_col8" class="data row4 col8" >0.015</td>
+      <td id="T_4d1c2_row4_col9" class="data row4 col9" >0.007</td>
+      <td id="T_4d1c2_row4_col10" class="data row4 col10" >178.000</td>
+    </tr>
+    <tr>
+      <th id="T_4d1c2_level0_row5" class="row_heading level0 row5" >147</th>
+      <td id="T_4d1c2_row5_col0" class="data row5 col0" >-0.056</td>
+      <td id="T_4d1c2_row5_col1" class="data row5 col1" >-0.045</td>
+      <td id="T_4d1c2_row5_col2" class="data row5 col2" >0.093</td>
+      <td id="T_4d1c2_row5_col3" class="data row5 col3" >-0.019</td>
+      <td id="T_4d1c2_row5_col4" class="data row5 col4" >0.015</td>
+      <td id="T_4d1c2_row5_col5" class="data row5 col5" >0.023</td>
+      <td id="T_4d1c2_row5_col6" class="data row5 col6" >-0.029</td>
+      <td id="T_4d1c2_row5_col7" class="data row5 col7" >0.025</td>
+      <td id="T_4d1c2_row5_col8" class="data row5 col8" >0.026</td>
+      <td id="T_4d1c2_row5_col9" class="data row5 col9" >0.040</td>
+      <td id="T_4d1c2_row5_col10" class="data row5 col10" >128.000</td>
+    </tr>
+    <tr>
+      <th id="T_4d1c2_level0_row6" class="row_heading level0 row6" >148</th>
+      <td id="T_4d1c2_row6_col0" class="data row6 col0" >-0.060</td>
+      <td id="T_4d1c2_row6_col1" class="data row6 col1" >0.051</td>
+      <td id="T_4d1c2_row6_col2" class="data row6 col2" >0.015</td>
+      <td id="T_4d1c2_row6_col3" class="data row6 col3" >-0.019</td>
+      <td id="T_4d1c2_row6_col4" class="data row6 col4" >0.037</td>
+      <td id="T_4d1c2_row6_col5" class="data row6 col5" >0.048</td>
+      <td id="T_4d1c2_row6_col6" class="data row6 col6" >0.019</td>
+      <td id="T_4d1c2_row6_col7" class="data row6 col7" >-0.003</td>
+      <td id="T_4d1c2_row6_col8" class="data row6 col8" >-0.031</td>
+      <td id="T_4d1c2_row6_col9" class="data row6 col9" >-0.001</td>
+      <td id="T_4d1c2_row6_col10" class="data row6 col10" >96.000</td>
+    </tr>
+    <tr>
+      <th id="T_4d1c2_level0_row7" class="row_heading level0 row7" >149</th>
+      <td id="T_4d1c2_row7_col0" class="data row7 col0" >-0.049</td>
+      <td id="T_4d1c2_row7_col1" class="data row7 col1" >0.051</td>
+      <td id="T_4d1c2_row7_col2" class="data row7 col2" >-0.005</td>
+      <td id="T_4d1c2_row7_col3" class="data row7 col3" >-0.047</td>
+      <td id="T_4d1c2_row7_col4" class="data row7 col4" >-0.021</td>
+      <td id="T_4d1c2_row7_col5" class="data row7 col5" >-0.020</td>
+      <td id="T_4d1c2_row7_col6" class="data row7 col6" >-0.069</td>
+      <td id="T_4d1c2_row7_col7" class="data row7 col7" >0.071</td>
+      <td id="T_4d1c2_row7_col8" class="data row7 col8" >0.061</td>
+      <td id="T_4d1c2_row7_col9" class="data row7 col9" >-0.038</td>
+      <td id="T_4d1c2_row7_col10" class="data row7 col10" >126.000</td>
+    </tr>
+    <tr>
+      <th id="T_4d1c2_level0_row8" class="row_heading level0 row8" >292</th>
+      <td id="T_4d1c2_row8_col0" class="data row8 col0" >0.009</td>
+      <td id="T_4d1c2_row8_col1" class="data row8 col1" >-0.045</td>
+      <td id="T_4d1c2_row8_col2" class="data row8 col2" >-0.022</td>
+      <td id="T_4d1c2_row8_col3" class="data row8 col3" >-0.032</td>
+      <td id="T_4d1c2_row8_col4" class="data row8 col4" >-0.050</td>
+      <td id="T_4d1c2_row8_col5" class="data row8 col5" >-0.069</td>
+      <td id="T_4d1c2_row8_col6" class="data row8 col6" >0.078</td>
+      <td id="T_4d1c2_row8_col7" class="data row8 col7" >-0.071</td>
+      <td id="T_4d1c2_row8_col8" class="data row8 col8" >-0.063</td>
+      <td id="T_4d1c2_row8_col9" class="data row8 col9" >-0.038</td>
+      <td id="T_4d1c2_row8_col10" class="data row8 col10" >84.000</td>
+    </tr>
+    <tr>
+      <th id="T_4d1c2_level0_row9" class="row_heading level0 row9" >293</th>
+      <td id="T_4d1c2_row9_col0" class="data row9 col0" >-0.071</td>
+      <td id="T_4d1c2_row9_col1" class="data row9 col1" >-0.045</td>
+      <td id="T_4d1c2_row9_col2" class="data row9 col2" >0.093</td>
+      <td id="T_4d1c2_row9_col3" class="data row9 col3" >0.013</td>
+      <td id="T_4d1c2_row9_col4" class="data row9 col4" >0.020</td>
+      <td id="T_4d1c2_row9_col5" class="data row9 col5" >0.043</td>
+      <td id="T_4d1c2_row9_col6" class="data row9 col6" >0.001</td>
+      <td id="T_4d1c2_row9_col7" class="data row9 col7" >0.000</td>
+      <td id="T_4d1c2_row9_col8" class="data row9 col8" >-0.055</td>
+      <td id="T_4d1c2_row9_col9" class="data row9 col9" >-0.001</td>
+      <td id="T_4d1c2_row9_col10" class="data row9 col10" >200.000</td>
+    </tr>
+    <tr>
+      <th id="T_4d1c2_level0_row10" class="row_heading level0 row10" >294</th>
+      <td id="T_4d1c2_row10_col0" class="data row10 col0" >0.024</td>
+      <td id="T_4d1c2_row10_col1" class="data row10 col1" >0.051</td>
+      <td id="T_4d1c2_row10_col2" class="data row10 col2" >-0.031</td>
+      <td id="T_4d1c2_row10_col3" class="data row10 col3" >-0.006</td>
+      <td id="T_4d1c2_row10_col4" class="data row10 col4" >-0.017</td>
+      <td id="T_4d1c2_row10_col5" class="data row10 col5" >0.018</td>
+      <td id="T_4d1c2_row10_col6" class="data row10 col6" >-0.032</td>
+      <td id="T_4d1c2_row10_col7" class="data row10 col7" >-0.003</td>
+      <td id="T_4d1c2_row10_col8" class="data row10 col8" >-0.074</td>
+      <td id="T_4d1c2_row10_col9" class="data row10 col9" >-0.034</td>
+      <td id="T_4d1c2_row10_col10" class="data row10 col10" >55.000</td>
+    </tr>
+    <tr>
+      <th id="T_4d1c2_level0_row11" class="row_heading level0 row11" >295</th>
+      <td id="T_4d1c2_row11_col0" class="data row11 col0" >-0.053</td>
+      <td id="T_4d1c2_row11_col1" class="data row11 col1" >0.051</td>
+      <td id="T_4d1c2_row11_col2" class="data row11 col2" >0.039</td>
+      <td id="T_4d1c2_row11_col3" class="data row11 col3" >-0.040</td>
+      <td id="T_4d1c2_row11_col4" class="data row11 col4" >-0.006</td>
+      <td id="T_4d1c2_row11_col5" class="data row11 col5" >-0.013</td>
+      <td id="T_4d1c2_row11_col6" class="data row11 col6" >0.012</td>
+      <td id="T_4d1c2_row11_col7" class="data row11 col7" >-0.039</td>
+      <td id="T_4d1c2_row11_col8" class="data row11 col8" >0.016</td>
+      <td id="T_4d1c2_row11_col9" class="data row11 col9" >0.003</td>
+      <td id="T_4d1c2_row11_col10" class="data row11 col10" >85.000</td>
+    </tr>
+    <tr>
+      <th id="T_4d1c2_level0_row12" class="row_heading level0 row12" >438</th>
+      <td id="T_4d1c2_row12_col0" class="data row12 col0" >-0.006</td>
+      <td id="T_4d1c2_row12_col1" class="data row12 col1" >0.051</td>
+      <td id="T_4d1c2_row12_col2" class="data row12 col2" >-0.016</td>
+      <td id="T_4d1c2_row12_col3" class="data row12 col3" >-0.068</td>
+      <td id="T_4d1c2_row12_col4" class="data row12 col4" >0.049</td>
+      <td id="T_4d1c2_row12_col5" class="data row12 col5" >0.079</td>
+      <td id="T_4d1c2_row12_col6" class="data row12 col6" >-0.029</td>
+      <td id="T_4d1c2_row12_col7" class="data row12 col7" >0.034</td>
+      <td id="T_4d1c2_row12_col8" class="data row12 col8" >-0.018</td>
+      <td id="T_4d1c2_row12_col9" class="data row12 col9" >0.044</td>
+      <td id="T_4d1c2_row12_col10" class="data row12 col10" >104.000</td>
+    </tr>
+    <tr>
+      <th id="T_4d1c2_level0_row13" class="row_heading level0 row13" >439</th>
+      <td id="T_4d1c2_row13_col0" class="data row13 col0" >0.042</td>
+      <td id="T_4d1c2_row13_col1" class="data row13 col1" >0.051</td>
+      <td id="T_4d1c2_row13_col2" class="data row13 col2" >-0.016</td>
+      <td id="T_4d1c2_row13_col3" class="data row13 col3" >0.017</td>
+      <td id="T_4d1c2_row13_col4" class="data row13 col4" >-0.037</td>
+      <td id="T_4d1c2_row13_col5" class="data row13 col5" >-0.014</td>
+      <td id="T_4d1c2_row13_col6" class="data row13 col6" >-0.025</td>
+      <td id="T_4d1c2_row13_col7" class="data row13 col7" >-0.011</td>
+      <td id="T_4d1c2_row13_col8" class="data row13 col8" >-0.047</td>
+      <td id="T_4d1c2_row13_col9" class="data row13 col9" >0.015</td>
+      <td id="T_4d1c2_row13_col10" class="data row13 col10" >132.000</td>
+    </tr>
+    <tr>
+      <th id="T_4d1c2_level0_row14" class="row_heading level0 row14" >440</th>
+      <td id="T_4d1c2_row14_col0" class="data row14 col0" >-0.045</td>
+      <td id="T_4d1c2_row14_col1" class="data row14 col1" >-0.045</td>
+      <td id="T_4d1c2_row14_col2" class="data row14 col2" >0.039</td>
+      <td id="T_4d1c2_row14_col3" class="data row14 col3" >0.001</td>
+      <td id="T_4d1c2_row14_col4" class="data row14 col4" >0.016</td>
+      <td id="T_4d1c2_row14_col5" class="data row14 col5" >0.015</td>
+      <td id="T_4d1c2_row14_col6" class="data row14 col6" >-0.029</td>
+      <td id="T_4d1c2_row14_col7" class="data row14 col7" >0.027</td>
+      <td id="T_4d1c2_row14_col8" class="data row14 col8" >0.045</td>
+      <td id="T_4d1c2_row14_col9" class="data row14 col9" >-0.026</td>
+      <td id="T_4d1c2_row14_col10" class="data row14 col10" >220.000</td>
+    </tr>
+    <tr>
+      <th id="T_4d1c2_level0_row15" class="row_heading level0 row15" >441</th>
+      <td id="T_4d1c2_row15_col0" class="data row15 col0" >-0.045</td>
+      <td id="T_4d1c2_row15_col1" class="data row15 col1" >-0.045</td>
+      <td id="T_4d1c2_row15_col2" class="data row15 col2" >-0.073</td>
+      <td id="T_4d1c2_row15_col3" class="data row15 col3" >-0.081</td>
+      <td id="T_4d1c2_row15_col4" class="data row15 col4" >0.084</td>
+      <td id="T_4d1c2_row15_col5" class="data row15 col5" >0.028</td>
+      <td id="T_4d1c2_row15_col6" class="data row15 col6" >0.174</td>
+      <td id="T_4d1c2_row15_col7" class="data row15 col7" >-0.039</td>
+      <td id="T_4d1c2_row15_col8" class="data row15 col8" >-0.004</td>
+      <td id="T_4d1c2_row15_col9" class="data row15 col9" >0.003</td>
+      <td id="T_4d1c2_row15_col10" class="data row15 col10" >57.000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1945,17 +2078,37 @@ Mean Squared Error: 2734.73
 
               </div>
               
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../chapter_02/exercise_02.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Exercise II: k-Nearest Neighbors (k-NN)</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../chapter_04/exercise_04.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Exercise IV: Logistic Regression</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
         </div>
     </div>
-    
-    
-    <div class='prev-next-bottom'>
-        
-    <a class='left-prev' id="prev-link" href="../chapter_02/exercise_02.html" title="previous page">Exercise II: K-Nearest Neighbors (KNN)</a>
-    <a class='right-next' id="next-link" href="../chapter_04/exercise_04.html" title="next page">Exercise IV: Logistic Regression</a>
-
-    </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -1970,11 +2123,9 @@ Mean Squared Error: 2734.73
 
       </div>
     </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-    
-  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
-
-
-    
+  
   </body>
 </html>
