@@ -4,6 +4,7 @@ matplotlib==3.3.3
 nibabel~=3.2
 nilearn~=0.7
 numpy~=1.19
+openpyxl
 pandas~=1.1
 seaborn~=0.11
 sklearn
