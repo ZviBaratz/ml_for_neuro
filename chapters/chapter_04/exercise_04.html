@@ -450,63 +450,25 @@
 <p>In this exercise we will reproduce the bank defaults example used in chapter IV of the ISLR, as adapted from the <a class="reference external" href="https://github.com/JWarmenhoven/ISLR-python">ISLR-python</a> repository.</p>
 <div class="section" id="setup">
 <h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="k">def</span> <span class="nf">fix_boolean</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="k">return</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;Yes&quot;</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;Yes&quot;</span>
 
 <span class="n">converters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="n">fix_boolean</span><span class="p">,</span> <span class="s2">&quot;student&quot;</span><span class="p">:</span> <span class="n">fix_boolean</span><span class="p">}</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;default.xlsx&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">converters</span><span class="o">=</span><span class="n">converters</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
-ImportError                               Traceback (most recent call last)
-/tmp/ipykernel_2742/3047817843.py in &lt;module&gt;
-      6 converters = {&quot;default&quot;: fix_boolean, &quot;student&quot;: fix_boolean}
-      7 
-----&gt; 8 df = pd.read_excel(&#39;default.xlsx&#39;, index_col=0, converters=converters)
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/pandas/util/_decorators.py in wrapper(*args, **kwargs)
-    309                     stacklevel=stacklevel,
-    310                 )
---&gt; 311             return func(*args, **kwargs)
-    312 
-    313         return wrapper
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/pandas/io/excel/_base.py in read_excel(io, sheet_name, header, names, index_col, usecols, squeeze, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, parse_dates, date_parser, thousands, comment, skipfooter, convert_float, mangle_dupe_cols, storage_options)
-    362     if not isinstance(io, ExcelFile):
-    363         should_close = True
---&gt; 364         io = ExcelFile(io, storage_options=storage_options, engine=engine)
-    365     elif engine and engine != io.engine:
-    366         raise ValueError(
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/pandas/io/excel/_base.py in __init__(self, path_or_buffer, engine, storage_options)
-   1231         self.storage_options = storage_options
-   1232 
--&gt; 1233         self._reader = self._engines[engine](self._io, storage_options=storage_options)
-   1234 
-   1235     def __fspath__(self):
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/pandas/io/excel/_openpyxl.py in __init__(self, filepath_or_buffer, storage_options)
-    519             passed to fsspec for appropriate URLs (see ``_get_filepath_or_buffer``)
-    520         &quot;&quot;&quot;
---&gt; 521         import_optional_dependency(&quot;openpyxl&quot;)
-    522         super().__init__(filepath_or_buffer, storage_options=storage_options)
-    523 
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/pandas/compat/_optional.py in import_optional_dependency(name, extra, errors, min_version)
-    116     except ImportError:
-    117         if errors == &quot;raise&quot;:
---&gt; 118             raise ImportError(msg) from None
-    119         else:
-    120             return None
-
-ImportError: Missing optional dependency &#39;openpyxl&#39;.  Use pip or conda to install openpyxl.
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/JWarmenhoven/ISLR-python/raw/master/Notebooks/Data/Default.xlsx&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">converters</span><span class="o">=</span><span class="n">converters</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -563,36 +525,36 @@ ImportError: Missing optional dependency &#39;openpyxl&#39;.  Use pip or conda t
   <tbody>
     <tr>
       <th>1</th>
-      <td>0</td>
-      <td>0</td>
+      <td>False</td>
+      <td>False</td>
       <td>-0.218835</td>
       <td>0.813187</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>0</td>
-      <td>1</td>
+      <td>False</td>
+      <td>True</td>
       <td>-0.037616</td>
       <td>-1.605496</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>0</td>
-      <td>0</td>
+      <td>False</td>
+      <td>False</td>
       <td>0.492410</td>
       <td>-0.131212</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>0</td>
-      <td>0</td>
+      <td>False</td>
+      <td>False</td>
       <td>-0.632893</td>
       <td>0.164031</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>0</td>
-      <td>0</td>
+      <td>False</td>
+      <td>False</td>
       <td>-0.102791</td>
       <td>0.370915</td>
     </tr>
@@ -612,12 +574,12 @@ Int64Index: 10000 entries, 1 to 10000
 Data columns (total 4 columns):
  #   Column   Non-Null Count  Dtype  
 ---  ------   --------------  -----  
- 0   default  10000 non-null  int64  
- 1   student  10000 non-null  int64  
+ 0   default  10000 non-null  bool   
+ 1   student  10000 non-null  bool   
  2   balance  10000 non-null  float64
  3   income   10000 non-null  float64
-dtypes: float64(2), int64(2)
-memory usage: 390.6 KB
+dtypes: bool(2), float64(2)
+memory usage: 253.9 KB
 </pre></div>
 </div>
 </div>
@@ -648,8 +610,6 @@ memory usage: 390.6 KB
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>default</th>
-      <th>student</th>
       <th>balance</th>
       <th>income</th>
     </tr>
@@ -659,55 +619,39 @@ memory usage: 390.6 KB
       <th>count</th>
       <td>10000</td>
       <td>10000</td>
-      <td>10000</td>
-      <td>10000</td>
     </tr>
     <tr>
       <th>mean</th>
-      <td>0.0333</td>
-      <td>0.2944</td>
       <td>-1.25056e-16</td>
       <td>-1.93623e-16</td>
     </tr>
     <tr>
       <th>std</th>
-      <td>0.179428</td>
-      <td>0.455795</td>
       <td>1.00005</td>
       <td>1.00005</td>
     </tr>
     <tr>
       <th>min</th>
-      <td>0</td>
-      <td>0</td>
       <td>-1.72708</td>
       <td>-2.45539</td>
     </tr>
     <tr>
       <th>25%</th>
-      <td>0</td>
-      <td>0</td>
       <td>-0.731136</td>
       <td>-0.913058</td>
     </tr>
     <tr>
       <th>50%</th>
-      <td>0</td>
-      <td>0</td>
       <td>-0.0242674</td>
       <td>0.0776593</td>
     </tr>
     <tr>
       <th>75%</th>
-      <td>0</td>
-      <td>1</td>
       <td>0.684184</td>
       <td>0.771653</td>
     </tr>
     <tr>
       <th>max</th>
-      <td>1</td>
-      <td>1</td>
       <td>3.76056</td>
       <td>3.0022</td>
     </tr>
@@ -739,7 +683,7 @@ memory usage: 390.6 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_04_12_0.png" src="../../_images/exercise_04_12_0.png" />
+<img alt="../../_images/exercise_04_13_0.png" src="../../_images/exercise_04_13_0.png" />
 </div>
 </div>
 </div>
@@ -765,7 +709,7 @@ memory usage: 390.6 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_04_14_0.png" src="../../_images/exercise_04_14_0.png" />
+<img alt="../../_images/exercise_04_15_0.png" src="../../_images/exercise_04_15_0.png" />
 </div>
 </div>
 </div>
@@ -812,6 +756,25 @@ memory usage: 390.6 KB
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 
 <span class="n">sm_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">Logit</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;default ~ balance + income + student&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1809</span><span class="o">/</span><span class="mf">711570277.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> 
+<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">sm_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">Logit</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;default ~ balance + income + student&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+
+<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/statsmodels/base/model.py</span> in <span class="ni">from_formula</span><span class="nt">(cls, formula, data, subset, drop_cols, *args, **kwargs)</span>
+<span class="g g-Whitespace">    </span><span class="mi">207</span>                              <span class="s1">&#39;columns that has shape </span><span class="si">{0}</span><span class="s1">. This occurs when &#39;</span>
+<span class="g g-Whitespace">    </span><span class="mi">208</span>                              <span class="s1">&#39;the variable converted to endog is non-numeric&#39;</span>
+<span class="ne">--&gt; </span><span class="mi">209</span>                              <span class="s1">&#39; (e.g., bool or str).&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">endog</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">210</span>         <span class="k">if</span> <span class="n">drop_cols</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">drop_cols</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">211</span>             <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">exog</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">drop_cols</span><span class="p">]</span>
+
+<span class="ne">ValueError</span>: endog has evaluated to an array with multiple columns that has shape (10000, 2). This occurs when the variable converted to endog is non-numeric (e.g., bool or str).
 </pre></div>
 </div>
 </div>
@@ -922,7 +885,7 @@ Coefficients: [[ 2.72019068 -0.02263331 -0.61746372]]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_04_37_0.png" src="../../_images/exercise_04_37_0.png" />
+<img alt="../../_images/exercise_04_38_0.png" src="../../_images/exercise_04_38_0.png" />
 </div>
 </div>
 </div>
