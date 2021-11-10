@@ -459,54 +459,13 @@
 
 <span class="n">converters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="n">fix_boolean</span><span class="p">,</span> <span class="s2">&quot;student&quot;</span><span class="p">:</span> <span class="n">fix_boolean</span><span class="p">}</span>
 
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;default.xlsx&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">converters</span><span class="o">=</span><span class="n">converters</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;default.xlsx&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">converters</span><span class="o">=</span><span class="n">converters</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>---------------------------------------------------------------------------
-ImportError                               Traceback (most recent call last)
-/tmp/ipykernel_2107/3047817843.py in &lt;module&gt;
-      6 converters = {&quot;default&quot;: fix_boolean, &quot;student&quot;: fix_boolean}
-      7 
-----&gt; 8 df = pd.read_excel(&#39;default.xlsx&#39;, index_col=0, converters=converters)
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/pandas/util/_decorators.py in wrapper(*args, **kwargs)
-    309                     stacklevel=stacklevel,
-    310                 )
---&gt; 311             return func(*args, **kwargs)
-    312 
-    313         return wrapper
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/pandas/io/excel/_base.py in read_excel(io, sheet_name, header, names, index_col, usecols, squeeze, dtype, engine, converters, true_values, false_values, skiprows, nrows, na_values, keep_default_na, na_filter, verbose, parse_dates, date_parser, thousands, comment, skipfooter, convert_float, mangle_dupe_cols, storage_options)
-    362     if not isinstance(io, ExcelFile):
-    363         should_close = True
---&gt; 364         io = ExcelFile(io, storage_options=storage_options, engine=engine)
-    365     elif engine and engine != io.engine:
-    366         raise ValueError(
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/pandas/io/excel/_base.py in __init__(self, path_or_buffer, engine, storage_options)
-   1231         self.storage_options = storage_options
-   1232 
--&gt; 1233         self._reader = self._engines[engine](self._io, storage_options=storage_options)
-   1234 
-   1235     def __fspath__(self):
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/pandas/io/excel/_openpyxl.py in __init__(self, filepath_or_buffer, storage_options)
-    519             passed to fsspec for appropriate URLs (see ``_get_filepath_or_buffer``)
-    520         &quot;&quot;&quot;
---&gt; 521         import_optional_dependency(&quot;openpyxl&quot;)
-    522         super().__init__(filepath_or_buffer, storage_options=storage_options)
-    523 
-
-/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/pandas/compat/_optional.py in import_optional_dependency(name, extra, errors, min_version)
-    116     except ImportError:
-    117         if errors == &quot;raise&quot;:
---&gt; 118             raise ImportError(msg) from None
-    119         else:
-    120             return None
-
-ImportError: Missing optional dependency &#39;openpyxl&#39;.  Use pip or conda to install openpyxl.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl&#39;s default
+  warn(&quot;Workbook contains no default style, apply openpyxl&#39;s default&quot;)
 </pre></div>
 </div>
 </div>
@@ -521,6 +480,13 @@ ImportError: Missing optional dependency &#39;openpyxl&#39;.  Use pip or conda t
 <span class="n">numeric_features</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
 <span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
 <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">numeric_features</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:,</span> <span class="n">numeric_features</span><span class="o">.</span><span class="n">columns</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/ipykernel_launcher.py:4: DeprecationWarning: `np.float` is a deprecated alias for the builtin `float`. To silence this warning, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  after removing the cwd from sys.path.
 </pre></div>
 </div>
 </div>
@@ -922,7 +888,11 @@ Coefficients: [[ 2.72019068 -0.02263331 -0.61746372]]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_04_37_0.png" src="../../_images/exercise_04_37_0.png" />
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/sklearn/utils/deprecation.py:87: FutureWarning: Function plot_confusion_matrix is deprecated; Function `plot_confusion_matrix` is deprecated in 1.0 and will be removed in 1.2. Use one of the class methods: ConfusionMatrixDisplay.from_predictions or ConfusionMatrixDisplay.from_estimator.
+  warnings.warn(msg, category=FutureWarning)
+</pre></div>
+</div>
+<img alt="../../_images/exercise_04_37_1.png" src="../../_images/exercise_04_37_1.png" />
 </div>
 </div>
 </div>
@@ -1095,10 +1065,10 @@ weighted avg       0.97      0.97      0.97      2000
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>   <td>     3</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Wed, 25 Nov 2020</td> <th>  Pseudo R-squ.:     </th>   <td>0.4619</td>  
+  <th>Date:</th>            <td>Wed, 10 Nov 2021</td> <th>  Pseudo R-squ.:     </th>   <td>0.4619</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>09:36:17</td>     <th>  Log-Likelihood:    </th>  <td> -785.77</td> 
+  <th>Time:</th>                <td>08:03:41</td>     <th>  Log-Likelihood:    </th>  <td> -785.77</td> 
 </tr>
 <tr>
   <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th>  <td> -1460.3</td> 
