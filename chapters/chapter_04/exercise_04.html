@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exercise IV: Logistic Regression &#8212; Machine Learning for Neuroscience</title>
     
-  <link href="../../_static/css/theme.css" rel="stylesheet" />
-  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
@@ -56,7 +56,10 @@
     <link rel="next" title="Exercise V: Regularization" href="../chapter_05/exercise_05.html" />
     <link rel="prev" title="Exercise III: Linear Regression" href="../chapter_03/exercise_03.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -462,16 +465,125 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="k">def</span> <span class="nf">fix_boolean</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="k">return</span> <span class="n">value</span> <span class="o">==</span> <span class="s2">&quot;Yes&quot;</span>
-
-<span class="n">converters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="n">fix_boolean</span><span class="p">,</span> <span class="s2">&quot;student&quot;</span><span class="p">:</span> <span class="n">fix_boolean</span><span class="p">}</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/JWarmenhoven/ISLR-python/raw/master/Notebooks/Data/Default.xlsx&quot;</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">converters</span><span class="o">=</span><span class="n">converters</span><span class="p">)</span>
+<span class="n">URL</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/JWarmenhoven/ISLR-python/raw/master/Notebooks/Data/Default.xlsx&quot;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">true_values</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Yes&quot;</span><span class="p">],</span> <span class="n">false_values</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;No&quot;</span><span class="p">])</span>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>default</th>
+      <th>student</th>
+      <th>balance</th>
+      <th>income</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>False</td>
+      <td>False</td>
+      <td>729.526495</td>
+      <td>44361.625074</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>False</td>
+      <td>True</td>
+      <td>817.180407</td>
+      <td>12106.134700</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>False</td>
+      <td>False</td>
+      <td>1073.549164</td>
+      <td>31767.138947</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>False</td>
+      <td>False</td>
+      <td>529.250605</td>
+      <td>35704.493935</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>False</td>
+      <td>False</td>
+      <td>785.655883</td>
+      <td>38463.495879</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9996</th>
+      <td>False</td>
+      <td>False</td>
+      <td>711.555020</td>
+      <td>52992.378914</td>
+    </tr>
+    <tr>
+      <th>9997</th>
+      <td>False</td>
+      <td>False</td>
+      <td>757.962918</td>
+      <td>19660.721768</td>
+    </tr>
+    <tr>
+      <th>9998</th>
+      <td>False</td>
+      <td>False</td>
+      <td>845.411989</td>
+      <td>58636.156984</td>
+    </tr>
+    <tr>
+      <th>9999</th>
+      <td>False</td>
+      <td>False</td>
+      <td>1569.009053</td>
+      <td>36669.112365</td>
+    </tr>
+    <tr>
+      <th>10000</th>
+      <td>False</td>
+      <td>True</td>
+      <td>200.922183</td>
+      <td>16862.952321</td>
+    </tr>
+  </tbody>
+</table>
+<p>10000 rows × 4 columns</p>
+</div></div></div>
 </div>
 <div class="section" id="feature-scaling">
 <h3>Feature Scaling<a class="headerlink" href="#feature-scaling" title="Permalink to this headline">¶</a></h3>
@@ -683,7 +795,7 @@ memory usage: 253.9 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_04_13_0.png" src="../../_images/exercise_04_13_0.png" />
+<img alt="../../_images/exercise_04_14_0.png" src="../../_images/exercise_04_14_0.png" />
 </div>
 </div>
 </div>
@@ -709,7 +821,7 @@ memory usage: 253.9 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_04_15_0.png" src="../../_images/exercise_04_15_0.png" />
+<img alt="../../_images/exercise_04_16_0.png" src="../../_images/exercise_04_16_0.png" />
 </div>
 </div>
 </div>
@@ -755,6 +867,8 @@ memory usage: 253.9 KB
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 <span class="n">sm_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">Logit</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;default ~ balance + income + student&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -762,10 +876,10 @@ memory usage: 253.9 KB
 <div class="cell_output docutils container">
 <div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
 <span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1809</span><span class="o">/</span><span class="mf">711570277.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> 
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="n">sm_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">Logit</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;default ~ balance + income + student&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1727</span><span class="o">/</span><span class="mf">2864238518.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">sm_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">Logit</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;default ~ balance + income + student&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
 
 <span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/statsmodels/base/model.py</span> in <span class="ni">from_formula</span><span class="nt">(cls, formula, data, subset, drop_cols, *args, **kwargs)</span>
 <span class="g g-Whitespace">    </span><span class="mi">207</span>                              <span class="s1">&#39;columns that has shape </span><span class="si">{0}</span><span class="s1">. This occurs when &#39;</span>
@@ -885,7 +999,7 @@ Coefficients: [[ 2.72019068 -0.02263331 -0.61746372]]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_04_38_0.png" src="../../_images/exercise_04_38_0.png" />
+<img alt="../../_images/exercise_04_39_0.png" src="../../_images/exercise_04_39_0.png" />
 </div>
 </div>
 </div>
@@ -1116,31 +1230,22 @@ weighted avg       0.97      0.97      0.97      2000
               </div>
               
         
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="../chapter_03/exercise_03.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Exercise III: Linear Regression</p>
-            </div>
-        </a>
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../chapter_03/exercise_03.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Exercise III: Linear Regression</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../chapter_05/exercise_05.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Exercise V: Regularization</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="../chapter_05/exercise_05.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Exercise V: Regularization</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
         
         </div>
@@ -1161,8 +1266,7 @@ weighted avg       0.97      0.97      0.97      2000
       </div>
     </div>
   
-  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

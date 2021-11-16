@@ -19,15 +19,17 @@ nbclient.exceptions.CellExecutionError: An error occurred while executing the fo
 ------------------
 import statsmodels.api as sm
 
+df["student"] = df["student"].astype(int)
+df["student"] = df["student"].astype(int)
 sm_model = sm.Logit.from_formula('default ~ balance + income + student', data=df)
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
 [0;31mValueError[0m                                Traceback (most recent call last)
-[0;32m/tmp/ipykernel_1809/711570277.py[0m in [0;36m<module>[0;34m[0m
-[1;32m      1[0m [0;32mimport[0m [0mstatsmodels[0m[0;34m.[0m[0mapi[0m [0;32mas[0m [0msm[0m[0;34m[0m[0;34m[0m[0m
-[1;32m      2[0m [0;34m[0m[0m
-[0;32m----> 3[0;31m [0msm_model[0m [0;34m=[0m [0msm[0m[0;34m.[0m[0mLogit[0m[0;34m.[0m[0mfrom_formula[0m[0;34m([0m[0;34m'default ~ balance + income + student'[0m[0;34m,[0m [0mdata[0m[0;34m=[0m[0mdf[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m/tmp/ipykernel_1727/2864238518.py[0m in [0;36m<module>[0;34m[0m
+[1;32m      3[0m [0mdf[0m[0;34m[[0m[0;34m"student"[0m[0;34m][0m [0;34m=[0m [0mdf[0m[0;34m[[0m[0;34m"student"[0m[0;34m][0m[0;34m.[0m[0mastype[0m[0;34m([0m[0mint[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[1;32m      4[0m [0mdf[0m[0;34m[[0m[0;34m"student"[0m[0;34m][0m [0;34m=[0m [0mdf[0m[0;34m[[0m[0;34m"student"[0m[0;34m][0m[0;34m.[0m[0mastype[0m[0;34m([0m[0mint[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
+[0;32m----> 5[0;31m [0msm_model[0m [0;34m=[0m [0msm[0m[0;34m.[0m[0mLogit[0m[0;34m.[0m[0mfrom_formula[0m[0;34m([0m[0;34m'default ~ balance + income + student'[0m[0;34m,[0m [0mdata[0m[0;34m=[0m[0mdf[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
 [0m
 [0;32m/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/statsmodels/base/model.py[0m in [0;36mfrom_formula[0;34m(cls, formula, data, subset, drop_cols, *args, **kwargs)[0m
 [1;32m    207[0m                              [0;34m'columns that has shape {0}. This occurs when '[0m[0;34m[0m[0;34m[0m[0m
