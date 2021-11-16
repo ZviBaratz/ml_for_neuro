@@ -473,117 +473,225 @@
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">color_booleans</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s2">&quot;green&quot;</span> <span class="k">if</span> <span class="n">value</span> <span class="k">else</span> <span class="s2">&quot;red&quot;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;color: </span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="n">BOOLEAN_COLUMNS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="s2">&quot;student&quot;</span><span class="p">]</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">text_gradient</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;Blues&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="n">color_booleans</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="n">BOOLEAN_COLUMNS</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
+<div class="output text_html"><style type="text/css">
+#T_b183b_row0_col0, #T_b183b_row1_col1, #T_b183b_row3_col1, #T_b183b_row9_col1, #T_b183b_row10_col1, #T_b183b_row13_col1 {
+  color: green;
+}
+#T_b183b_row0_col1, #T_b183b_row1_col0, #T_b183b_row2_col0, #T_b183b_row2_col1, #T_b183b_row3_col0, #T_b183b_row4_col0, #T_b183b_row4_col1, #T_b183b_row5_col0, #T_b183b_row5_col1, #T_b183b_row6_col0, #T_b183b_row6_col1, #T_b183b_row7_col0, #T_b183b_row7_col1, #T_b183b_row8_col0, #T_b183b_row8_col1, #T_b183b_row9_col0, #T_b183b_row10_col0, #T_b183b_row11_col0, #T_b183b_row11_col1, #T_b183b_row12_col0, #T_b183b_row12_col1, #T_b183b_row13_col0, #T_b183b_row14_col0, #T_b183b_row14_col1 {
+  color: red;
+}
+#T_b183b_row0_col2 {
+  color: #0a549e;
+}
+#T_b183b_row0_col3 {
+  color: #dce9f6;
+}
+#T_b183b_row1_col2 {
+  color: #72b2d8;
+}
+#T_b183b_row1_col3 {
+  color: #f3f8fe;
+}
+#T_b183b_row2_col2 {
+  color: #206fb4;
+}
+#T_b183b_row2_col3 {
+  color: #1865ac;
+}
+#T_b183b_row3_col2 {
+  color: #81badb;
+}
+#T_b183b_row3_col3 {
+  color: #e7f1fa;
+}
+#T_b183b_row4_col2 {
+  color: #77b5d9;
+}
+#T_b183b_row4_col3 {
+  color: #75b4d8;
+}
+#T_b183b_row5_col2 {
+  color: #79b5d9;
+}
+#T_b183b_row5_col3 {
+  color: #4191c6;
+}
+#T_b183b_row6_col2 {
+  color: #c7dcef;
+}
+#T_b183b_row6_col3 {
+  color: #5fa6d1;
+}
+#T_b183b_row7_col2 {
+  color: #bad6eb;
+}
+#T_b183b_row7_col3 {
+  color: #7fb9da;
+}
+#T_b183b_row8_col2 {
+  color: #e2edf8;
+}
+#T_b183b_row8_col3, #T_b183b_row13_col2 {
+  color: #08306b;
+}
+#T_b183b_row9_col2 {
+  color: #7db8da;
+}
+#T_b183b_row9_col3 {
+  color: #f6faff;
+}
+#T_b183b_row10_col2 {
+  color: #b0d2e7;
+}
+#T_b183b_row10_col3, #T_b183b_row13_col3 {
+  color: #e9f2fa;
+}
+#T_b183b_row11_col2 {
+  color: #9cc9e1;
+}
+#T_b183b_row11_col3, #T_b183b_row14_col2 {
+  color: #f7fbff;
+}
+#T_b183b_row12_col2 {
+  color: #ccdff1;
+}
+#T_b183b_row12_col3 {
+  color: #4896c8;
+}
+#T_b183b_row14_col3 {
+  color: #b8d5ea;
+}
 </style>
-<table border="1" class="dataframe">
+<table id="T_b183b_">
   <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>default</th>
-      <th>student</th>
-      <th>balance</th>
-      <th>income</th>
+    <tr>
+      <th class="blank level0" >&nbsp;</th>
+      <th class="col_heading level0 col0" >default</th>
+      <th class="col_heading level0 col1" >student</th>
+      <th class="col_heading level0 col2" >balance</th>
+      <th class="col_heading level0 col3" >income</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>1</th>
-      <td>False</td>
-      <td>False</td>
-      <td>729.526495</td>
-      <td>44361.625074</td>
+      <th id="T_b183b_level0_row0" class="row_heading level0 row0" >3392</th>
+      <td id="T_b183b_row0_col0" class="data row0 col0" >True</td>
+      <td id="T_b183b_row0_col1" class="data row0 col1" >False</td>
+      <td id="T_b183b_row0_col2" class="data row0 col2" >1488.558775</td>
+      <td id="T_b183b_row0_col3" class="data row0 col3" >22256.863691</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>False</td>
-      <td>True</td>
-      <td>817.180407</td>
-      <td>12106.134700</td>
+      <th id="T_b183b_level0_row1" class="row_heading level0 row1" >2440</th>
+      <td id="T_b183b_row1_col0" class="data row1 col0" >False</td>
+      <td id="T_b183b_row1_col1" class="data row1 col1" >True</td>
+      <td id="T_b183b_row1_col2" class="data row1 col2" >852.313952</td>
+      <td id="T_b183b_row1_col3" class="data row1 col3" >15956.648844</td>
     </tr>
     <tr>
-      <th>3</th>
-      <td>False</td>
-      <td>False</td>
-      <td>1073.549164</td>
-      <td>31767.138947</td>
+      <th id="T_b183b_level0_row2" class="row_heading level0 row2" >5130</th>
+      <td id="T_b183b_row2_col0" class="data row2 col0" >False</td>
+      <td id="T_b183b_row2_col1" class="data row2 col1" >False</td>
+      <td id="T_b183b_row2_col2" class="data row2 col2" >1308.529172</td>
+      <td id="T_b183b_row2_col3" class="data row2 col3" >57190.874873</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>False</td>
-      <td>False</td>
-      <td>529.250605</td>
-      <td>35704.493935</td>
+      <th id="T_b183b_level0_row3" class="row_heading level0 row3" >791</th>
+      <td id="T_b183b_row3_col0" class="data row3 col0" >False</td>
+      <td id="T_b183b_row3_col1" class="data row3 col1" >True</td>
+      <td id="T_b183b_row3_col2" class="data row3 col2" >793.820466</td>
+      <td id="T_b183b_row3_col3" class="data row3 col3" >19074.031733</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>False</td>
-      <td>False</td>
-      <td>785.655883</td>
-      <td>38463.495879</td>
+      <th id="T_b183b_level0_row4" class="row_heading level0 row4" >2374</th>
+      <td id="T_b183b_row4_col0" class="data row4 col0" >False</td>
+      <td id="T_b183b_row4_col1" class="data row4 col1" >False</td>
+      <td id="T_b183b_row4_col2" class="data row4 col2" >836.010590</td>
+      <td id="T_b183b_row4_col3" class="data row4 col3" >40178.934699</td>
     </tr>
     <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
+      <th id="T_b183b_level0_row5" class="row_heading level0 row5" >3419</th>
+      <td id="T_b183b_row5_col0" class="data row5 col0" >False</td>
+      <td id="T_b183b_row5_col1" class="data row5 col1" >False</td>
+      <td id="T_b183b_row5_col2" class="data row5 col2" >825.849976</td>
+      <td id="T_b183b_row5_col3" class="data row5 col3" >48216.711888</td>
     </tr>
     <tr>
-      <th>9996</th>
-      <td>False</td>
-      <td>False</td>
-      <td>711.555020</td>
-      <td>52992.378914</td>
+      <th id="T_b183b_level0_row6" class="row_heading level0 row6" >5453</th>
+      <td id="T_b183b_row6_col0" class="data row6 col0" >False</td>
+      <td id="T_b183b_row6_col1" class="data row6 col1" >False</td>
+      <td id="T_b183b_row6_col2" class="data row6 col2" >455.184490</td>
+      <td id="T_b183b_row6_col3" class="data row6 col3" >43513.350627</td>
     </tr>
     <tr>
-      <th>9997</th>
-      <td>False</td>
-      <td>False</td>
-      <td>757.962918</td>
-      <td>19660.721768</td>
+      <th id="T_b183b_level0_row7" class="row_heading level0 row7" >6507</th>
+      <td id="T_b183b_row7_col0" class="data row7 col0" >False</td>
+      <td id="T_b183b_row7_col1" class="data row7 col1" >False</td>
+      <td id="T_b183b_row7_col2" class="data row7 col2" >528.867388</td>
+      <td id="T_b183b_row7_col3" class="data row7 col3" >38881.476265</td>
     </tr>
     <tr>
-      <th>9998</th>
-      <td>False</td>
-      <td>False</td>
-      <td>845.411989</td>
-      <td>58636.156984</td>
+      <th id="T_b183b_level0_row8" class="row_heading level0 row8" >5780</th>
+      <td id="T_b183b_row8_col0" class="data row8 col0" >False</td>
+      <td id="T_b183b_row8_col1" class="data row8 col1" >False</td>
+      <td id="T_b183b_row8_col2" class="data row8 col2" >229.214974</td>
+      <td id="T_b183b_row8_col3" class="data row8 col3" >68145.133729</td>
     </tr>
     <tr>
-      <th>9999</th>
-      <td>False</td>
-      <td>False</td>
-      <td>1569.009053</td>
-      <td>36669.112365</td>
+      <th id="T_b183b_level0_row9" class="row_heading level0 row9" >9686</th>
+      <td id="T_b183b_row9_col0" class="data row9 col0" >False</td>
+      <td id="T_b183b_row9_col1" class="data row9 col1" >True</td>
+      <td id="T_b183b_row9_col2" class="data row9 col2" >810.102225</td>
+      <td id="T_b183b_row9_col3" class="data row9 col3" >15102.324180</td>
     </tr>
     <tr>
-      <th>10000</th>
-      <td>False</td>
-      <td>True</td>
-      <td>200.922183</td>
-      <td>16862.952321</td>
+      <th id="T_b183b_level0_row10" class="row_heading level0 row10" >3717</th>
+      <td id="T_b183b_row10_col0" class="data row10 col0" >False</td>
+      <td id="T_b183b_row10_col1" class="data row10 col1" >True</td>
+      <td id="T_b183b_row10_col2" class="data row10 col2" >579.721305</td>
+      <td id="T_b183b_row10_col3" class="data row10 col3" >18555.752586</td>
+    </tr>
+    <tr>
+      <th id="T_b183b_level0_row11" class="row_heading level0 row11" >8626</th>
+      <td id="T_b183b_row11_col0" class="data row11 col0" >False</td>
+      <td id="T_b183b_row11_col1" class="data row11 col1" >False</td>
+      <td id="T_b183b_row11_col2" class="data row11 col2" >684.906297</td>
+      <td id="T_b183b_row11_col3" class="data row11 col3" >14756.998353</td>
+    </tr>
+    <tr>
+      <th id="T_b183b_level0_row12" class="row_heading level0 row12" >7046</th>
+      <td id="T_b183b_row12_col0" class="data row12 col0" >False</td>
+      <td id="T_b183b_row12_col1" class="data row12 col1" >False</td>
+      <td id="T_b183b_row12_col2" class="data row12 col2" >419.444570</td>
+      <td id="T_b183b_row12_col3" class="data row12 col3" >47155.692218</td>
+    </tr>
+    <tr>
+      <th id="T_b183b_level0_row13" class="row_heading level0 row13" >6774</th>
+      <td id="T_b183b_row13_col0" class="data row13 col0" >False</td>
+      <td id="T_b183b_row13_col1" class="data row13 col1" >True</td>
+      <td id="T_b183b_row13_col2" class="data row13 col2" >1719.566851</td>
+      <td id="T_b183b_row13_col3" class="data row13 col3" >18696.298750</td>
+    </tr>
+    <tr>
+      <th id="T_b183b_level0_row14" class="row_heading level0 row14" >657</th>
+      <td id="T_b183b_row14_col0" class="data row14 col0" >False</td>
+      <td id="T_b183b_row14_col1" class="data row14 col1" >False</td>
+      <td id="T_b183b_row14_col2" class="data row14 col2" >49.209666</td>
+      <td id="T_b183b_row14_col3" class="data row14 col3" >30451.152859</td>
     </tr>
   </tbody>
 </table>
-<p>10000 rows × 4 columns</p>
-</div></div></div>
+</div></div>
 </div>
 <div class="section" id="feature-scaling">
 <h3>Feature Scaling<a class="headerlink" href="#feature-scaling" title="Permalink to this headline">¶</a></h3>
@@ -603,77 +711,6 @@
 </div>
 <div class="section" id="raw-inspection">
 <h2>Raw inspection<a class="headerlink" href="#raw-inspection" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>default</th>
-      <th>student</th>
-      <th>balance</th>
-      <th>income</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>False</td>
-      <td>False</td>
-      <td>-0.218835</td>
-      <td>0.813187</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>False</td>
-      <td>True</td>
-      <td>-0.037616</td>
-      <td>-1.605496</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>False</td>
-      <td>False</td>
-      <td>0.492410</td>
-      <td>-0.131212</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>False</td>
-      <td>False</td>
-      <td>-0.632893</td>
-      <td>0.164031</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>False</td>
-      <td>False</td>
-      <td>-0.102791</td>
-      <td>0.370915</td>
-    </tr>
-  </tbody>
-</table>
-</div></div></div>
-</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
@@ -795,7 +832,7 @@ memory usage: 253.9 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_04_14_0.png" src="../../_images/exercise_04_14_0.png" />
+<img alt="../../_images/exercise_04_13_0.png" src="../../_images/exercise_04_13_0.png" />
 </div>
 </div>
 </div>
@@ -821,7 +858,7 @@ memory usage: 253.9 KB
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_04_16_0.png" src="../../_images/exercise_04_16_0.png" />
+<img alt="../../_images/exercise_04_15_0.png" src="../../_images/exercise_04_15_0.png" />
 </div>
 </div>
 </div>
@@ -832,10 +869,10 @@ memory usage: 253.9 KB
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span> 
 
-<span class="n">feature_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;balance&quot;</span><span class="p">,</span> <span class="s2">&quot;income&quot;</span><span class="p">,</span> <span class="s2">&quot;student&quot;</span><span class="p">]</span>
-<span class="n">target_name</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">feature_names</span><span class="p">]</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">target_name</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">FEATURE_NAMES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;balance&quot;</span><span class="p">,</span> <span class="s2">&quot;income&quot;</span><span class="p">,</span> <span class="s2">&quot;student&quot;</span><span class="p">]</span>
+<span class="n">TARGET_NAME</span> <span class="o">=</span> <span class="s2">&quot;default&quot;</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">FEATURE_NAMES</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">TARGET_NAME</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span>
                                                     <span class="n">y</span><span class="p">,</span>
@@ -868,27 +905,8 @@ memory usage: 253.9 KB
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
 
 <span class="n">df</span><span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="n">df</span><span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;default&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
 <span class="n">sm_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">Logit</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;default ~ balance + income + student&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ValueError</span><span class="g g-Whitespace">                                </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_1727</span><span class="o">/</span><span class="mf">2864238518.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;student&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
-<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">sm_model</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">Logit</span><span class="o">.</span><span class="n">from_formula</span><span class="p">(</span><span class="s1">&#39;default ~ balance + income + student&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
-
-<span class="nn">/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/statsmodels/base/model.py</span> in <span class="ni">from_formula</span><span class="nt">(cls, formula, data, subset, drop_cols, *args, **kwargs)</span>
-<span class="g g-Whitespace">    </span><span class="mi">207</span>                              <span class="s1">&#39;columns that has shape </span><span class="si">{0}</span><span class="s1">. This occurs when &#39;</span>
-<span class="g g-Whitespace">    </span><span class="mi">208</span>                              <span class="s1">&#39;the variable converted to endog is non-numeric&#39;</span>
-<span class="ne">--&gt; </span><span class="mi">209</span>                              <span class="s1">&#39; (e.g., bool or str).&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">endog</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">210</span>         <span class="k">if</span> <span class="n">drop_cols</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">drop_cols</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">211</span>             <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">exog</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">drop_cols</span><span class="p">]</span>
-
-<span class="ne">ValueError</span>: endog has evaluated to an array with multiple columns that has shape (10000, 2). This occurs when the variable converted to endog is non-numeric (e.g., bool or str).
 </pre></div>
 </div>
 </div>
@@ -999,7 +1017,7 @@ Coefficients: [[ 2.72019068 -0.02263331 -0.61746372]]
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../../_images/exercise_04_39_0.png" src="../../_images/exercise_04_39_0.png" />
+<img alt="../../_images/exercise_04_38_0.png" src="../../_images/exercise_04_38_0.png" />
 </div>
 </div>
 </div>
@@ -1018,8 +1036,8 @@ Coefficients: [[ 2.72019068 -0.02263331 -0.61746372]]
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
 
-           0       0.97      1.00      0.99      1926
-           1       0.79      0.31      0.45        74
+       False       0.97      1.00      0.99      1926
+        True       0.79      0.31      0.45        74
 
     accuracy                           0.97      2000
    macro avg       0.88      0.65      0.72      2000
@@ -1172,10 +1190,10 @@ weighted avg       0.97      0.97      0.97      2000
   <th>Method:</th>                 <td>MLE</td>       <th>  Df Model:          </th>   <td>     3</td>  
 </tr>
 <tr>
-  <th>Date:</th>            <td>Wed, 25 Nov 2020</td> <th>  Pseudo R-squ.:     </th>   <td>0.4619</td>  
+  <th>Date:</th>            <td>Tue, 16 Nov 2021</td> <th>  Pseudo R-squ.:     </th>   <td>0.4619</td>  
 </tr>
 <tr>
-  <th>Time:</th>                <td>09:36:17</td>     <th>  Log-Likelihood:    </th>  <td> -785.77</td> 
+  <th>Time:</th>                <td>09:34:31</td>     <th>  Log-Likelihood:    </th>  <td> -785.77</td> 
 </tr>
 <tr>
   <th>converged:</th>             <td>True</td>       <th>  LL-Null:           </th>  <td> -1460.3</td> 
