@@ -359,8 +359,8 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
-<span class="n">URL</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/JWarmenhoven/ISLR-python/master/Notebooks/Data/Hitters.csv&quot;</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">URL</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">csv_url</span> <span class="o">=</span> <span class="s2">&quot;https://raw.githubusercontent.com/JWarmenhoven/ISLR-python/master/Notebooks/Data/Hitters.csv&quot;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_url</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1516,16 +1516,16 @@ NewLeague  [&#39;N&#39; &#39;A&#39;]
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><style type="text/css">
-#T_1d1c1_row0_col0, #T_1d1c1_row0_col2, #T_1d1c1_row1_col0, #T_1d1c1_row1_col2, #T_1d1c1_row2_col1, #T_1d1c1_row4_col1, #T_1d1c1_row5_col1, #T_1d1c1_row7_col0, #T_1d1c1_row7_col2, #T_1d1c1_row8_col0, #T_1d1c1_row8_col1, #T_1d1c1_row8_col2, #T_1d1c1_row10_col0, #T_1d1c1_row10_col1, #T_1d1c1_row10_col2, #T_1d1c1_row11_col1, #T_1d1c1_row12_col2, #T_1d1c1_row13_col0, #T_1d1c1_row13_col1, #T_1d1c1_row13_col2, #T_1d1c1_row14_col0, #T_1d1c1_row14_col1, #T_1d1c1_row14_col2, #T_1d1c1_row18_col1, #T_1d1c1_row19_col0, #T_1d1c1_row19_col2 {
+#T_4f972_row0_col0, #T_4f972_row0_col2, #T_4f972_row1_col0, #T_4f972_row1_col2, #T_4f972_row2_col0, #T_4f972_row2_col1, #T_4f972_row3_col0, #T_4f972_row4_col0, #T_4f972_row4_col1, #T_4f972_row4_col2, #T_4f972_row6_col0, #T_4f972_row6_col2, #T_4f972_row7_col0, #T_4f972_row7_col1, #T_4f972_row9_col0, #T_4f972_row9_col2, #T_4f972_row10_col1, #T_4f972_row11_col0, #T_4f972_row11_col1, #T_4f972_row11_col2, #T_4f972_row13_col0, #T_4f972_row13_col1, #T_4f972_row13_col2, #T_4f972_row16_col0, #T_4f972_row16_col1, #T_4f972_row16_col2, #T_4f972_row17_col0, #T_4f972_row17_col2, #T_4f972_row18_col0, #T_4f972_row18_col1, #T_4f972_row18_col2, #T_4f972_row19_col0, #T_4f972_row19_col1, #T_4f972_row19_col2 {
   background-color: #fff7fb;
   color: #000000;
 }
-#T_1d1c1_row0_col1, #T_1d1c1_row1_col1, #T_1d1c1_row2_col0, #T_1d1c1_row2_col2, #T_1d1c1_row3_col0, #T_1d1c1_row3_col1, #T_1d1c1_row3_col2, #T_1d1c1_row4_col0, #T_1d1c1_row4_col2, #T_1d1c1_row5_col0, #T_1d1c1_row5_col2, #T_1d1c1_row6_col0, #T_1d1c1_row6_col1, #T_1d1c1_row6_col2, #T_1d1c1_row7_col1, #T_1d1c1_row9_col0, #T_1d1c1_row9_col1, #T_1d1c1_row9_col2, #T_1d1c1_row11_col0, #T_1d1c1_row11_col2, #T_1d1c1_row12_col0, #T_1d1c1_row12_col1, #T_1d1c1_row15_col0, #T_1d1c1_row15_col1, #T_1d1c1_row15_col2, #T_1d1c1_row16_col0, #T_1d1c1_row16_col1, #T_1d1c1_row16_col2, #T_1d1c1_row17_col0, #T_1d1c1_row17_col1, #T_1d1c1_row17_col2, #T_1d1c1_row18_col0, #T_1d1c1_row18_col2, #T_1d1c1_row19_col1 {
+#T_4f972_row0_col1, #T_4f972_row1_col1, #T_4f972_row2_col2, #T_4f972_row3_col1, #T_4f972_row3_col2, #T_4f972_row5_col0, #T_4f972_row5_col1, #T_4f972_row5_col2, #T_4f972_row6_col1, #T_4f972_row7_col2, #T_4f972_row8_col0, #T_4f972_row8_col1, #T_4f972_row8_col2, #T_4f972_row9_col1, #T_4f972_row10_col0, #T_4f972_row10_col2, #T_4f972_row12_col0, #T_4f972_row12_col1, #T_4f972_row12_col2, #T_4f972_row14_col0, #T_4f972_row14_col1, #T_4f972_row14_col2, #T_4f972_row15_col0, #T_4f972_row15_col1, #T_4f972_row15_col2, #T_4f972_row17_col1 {
   background-color: #023858;
   color: #f1f1f1;
 }
 </style>
-<table id="T_1d1c1_">
+<table id="T_4f972_">
   <thead>
     <tr>
       <th class="blank level0" >&nbsp;</th>
@@ -1536,124 +1536,124 @@ NewLeague  [&#39;N&#39; &#39;A&#39;]
   </thead>
   <tbody>
     <tr>
-      <th id="T_1d1c1_level0_row0" class="row_heading level0 row0" >-Roy Smalley</th>
-      <td id="T_1d1c1_row0_col0" class="data row0 col0" >0</td>
-      <td id="T_1d1c1_row0_col1" class="data row0 col1" >1</td>
-      <td id="T_1d1c1_row0_col2" class="data row0 col2" >0</td>
+      <th id="T_4f972_level0_row0" class="row_heading level0 row0" >-Mike Kingery</th>
+      <td id="T_4f972_row0_col0" class="data row0 col0" >0</td>
+      <td id="T_4f972_row0_col1" class="data row0 col1" >1</td>
+      <td id="T_4f972_row0_col2" class="data row0 col2" >0</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row1" class="row_heading level0 row1" >-Tim Laudner</th>
-      <td id="T_1d1c1_row1_col0" class="data row1 col0" >0</td>
-      <td id="T_1d1c1_row1_col1" class="data row1 col1" >1</td>
-      <td id="T_1d1c1_row1_col2" class="data row1 col2" >0</td>
+      <th id="T_4f972_level0_row1" class="row_heading level0 row1" >-Gary Pettis</th>
+      <td id="T_4f972_row1_col0" class="data row1 col0" >0</td>
+      <td id="T_4f972_row1_col1" class="data row1 col1" >1</td>
+      <td id="T_4f972_row1_col2" class="data row1 col2" >0</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row2" class="row_heading level0 row2" >-Wally Backman</th>
-      <td id="T_1d1c1_row2_col0" class="data row2 col0" >1</td>
-      <td id="T_1d1c1_row2_col1" class="data row2 col1" >0</td>
-      <td id="T_1d1c1_row2_col2" class="data row2 col2" >1</td>
+      <th id="T_4f972_level0_row2" class="row_heading level0 row2" >-Mike Easler</th>
+      <td id="T_4f972_row2_col0" class="data row2 col0" >0</td>
+      <td id="T_4f972_row2_col1" class="data row2 col1" >0</td>
+      <td id="T_4f972_row2_col2" class="data row2 col2" >1</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row3" class="row_heading level0 row3" >-Alan Ashby</th>
-      <td id="T_1d1c1_row3_col0" class="data row3 col0" >1</td>
-      <td id="T_1d1c1_row3_col1" class="data row3 col1" >1</td>
-      <td id="T_1d1c1_row3_col2" class="data row3 col2" >1</td>
+      <th id="T_4f972_level0_row3" class="row_heading level0 row3" >-John Cangelosi</th>
+      <td id="T_4f972_row3_col0" class="data row3 col0" >0</td>
+      <td id="T_4f972_row3_col1" class="data row3 col1" >1</td>
+      <td id="T_4f972_row3_col2" class="data row3 col2" >1</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row4" class="row_heading level0 row4" >-Andy VanSlyke</th>
-      <td id="T_1d1c1_row4_col0" class="data row4 col0" >1</td>
-      <td id="T_1d1c1_row4_col1" class="data row4 col1" >0</td>
-      <td id="T_1d1c1_row4_col2" class="data row4 col2" >1</td>
+      <th id="T_4f972_level0_row4" class="row_heading level0 row4" >-Marty Barrett</th>
+      <td id="T_4f972_row4_col0" class="data row4 col0" >0</td>
+      <td id="T_4f972_row4_col1" class="data row4 col1" >0</td>
+      <td id="T_4f972_row4_col2" class="data row4 col2" >0</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row5" class="row_heading level0 row5" >-Jim Morrison</th>
-      <td id="T_1d1c1_row5_col0" class="data row5 col0" >1</td>
-      <td id="T_1d1c1_row5_col1" class="data row5 col1" >0</td>
-      <td id="T_1d1c1_row5_col2" class="data row5 col2" >1</td>
+      <th id="T_4f972_level0_row5" class="row_heading level0 row5" >-Eddie Milner</th>
+      <td id="T_4f972_row5_col0" class="data row5 col0" >1</td>
+      <td id="T_4f972_row5_col1" class="data row5 col1" >1</td>
+      <td id="T_4f972_row5_col2" class="data row5 col2" >1</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row6" class="row_heading level0 row6" >-Harry Spilman</th>
-      <td id="T_1d1c1_row6_col0" class="data row6 col0" >1</td>
-      <td id="T_1d1c1_row6_col1" class="data row6 col1" >1</td>
-      <td id="T_1d1c1_row6_col2" class="data row6 col2" >1</td>
+      <th id="T_4f972_level0_row6" class="row_heading level0 row6" >-Joel Skinner</th>
+      <td id="T_4f972_row6_col0" class="data row6 col0" >0</td>
+      <td id="T_4f972_row6_col1" class="data row6 col1" >1</td>
+      <td id="T_4f972_row6_col2" class="data row6 col2" >0</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row7" class="row_heading level0 row7" >-Gary Ward</th>
-      <td id="T_1d1c1_row7_col0" class="data row7 col0" >0</td>
-      <td id="T_1d1c1_row7_col1" class="data row7 col1" >1</td>
-      <td id="T_1d1c1_row7_col2" class="data row7 col2" >0</td>
+      <th id="T_4f972_level0_row7" class="row_heading level0 row7" >-Ken Griffey</th>
+      <td id="T_4f972_row7_col0" class="data row7 col0" >0</td>
+      <td id="T_4f972_row7_col1" class="data row7 col1" >0</td>
+      <td id="T_4f972_row7_col2" class="data row7 col2" >1</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row8" class="row_heading level0 row8" >-Johnny Grubb</th>
-      <td id="T_1d1c1_row8_col0" class="data row8 col0" >0</td>
-      <td id="T_1d1c1_row8_col1" class="data row8 col1" >0</td>
-      <td id="T_1d1c1_row8_col2" class="data row8 col2" >0</td>
+      <th id="T_4f972_level0_row8" class="row_heading level0 row8" >-Bill Doran</th>
+      <td id="T_4f972_row8_col0" class="data row8 col0" >1</td>
+      <td id="T_4f972_row8_col1" class="data row8 col1" >1</td>
+      <td id="T_4f972_row8_col2" class="data row8 col2" >1</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row9" class="row_heading level0 row9" >-Kevin McReynolds</th>
-      <td id="T_1d1c1_row9_col0" class="data row9 col0" >1</td>
-      <td id="T_1d1c1_row9_col1" class="data row9 col1" >1</td>
-      <td id="T_1d1c1_row9_col2" class="data row9 col2" >1</td>
+      <th id="T_4f972_level0_row9" class="row_heading level0 row9" >-Reggie Jackson</th>
+      <td id="T_4f972_row9_col0" class="data row9 col0" >0</td>
+      <td id="T_4f972_row9_col1" class="data row9 col1" >1</td>
+      <td id="T_4f972_row9_col2" class="data row9 col2" >0</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row10" class="row_heading level0 row10" >-Alan Trammell</th>
-      <td id="T_1d1c1_row10_col0" class="data row10 col0" >0</td>
-      <td id="T_1d1c1_row10_col1" class="data row10 col1" >0</td>
-      <td id="T_1d1c1_row10_col2" class="data row10 col2" >0</td>
+      <th id="T_4f972_level0_row10" class="row_heading level0 row10" >-Barry Bonds</th>
+      <td id="T_4f972_row10_col0" class="data row10 col0" >1</td>
+      <td id="T_4f972_row10_col1" class="data row10 col1" >0</td>
+      <td id="T_4f972_row10_col2" class="data row10 col2" >1</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row11" class="row_heading level0 row11" >-Tim Wallach</th>
-      <td id="T_1d1c1_row11_col0" class="data row11 col0" >1</td>
-      <td id="T_1d1c1_row11_col1" class="data row11 col1" >0</td>
-      <td id="T_1d1c1_row11_col2" class="data row11 col2" >1</td>
+      <th id="T_4f972_level0_row11" class="row_heading level0 row11" >-Don Mattingly</th>
+      <td id="T_4f972_row11_col0" class="data row11 col0" >0</td>
+      <td id="T_4f972_row11_col1" class="data row11 col1" >0</td>
+      <td id="T_4f972_row11_col2" class="data row11 col2" >0</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row12" class="row_heading level0 row12" >-Terry Harper</th>
-      <td id="T_1d1c1_row12_col0" class="data row12 col0" >1</td>
-      <td id="T_1d1c1_row12_col1" class="data row12 col1" >1</td>
-      <td id="T_1d1c1_row12_col2" class="data row12 col2" >0</td>
+      <th id="T_4f972_level0_row12" class="row_heading level0 row12" >-Andres Thomas</th>
+      <td id="T_4f972_row12_col0" class="data row12 col0" >1</td>
+      <td id="T_4f972_row12_col1" class="data row12 col1" >1</td>
+      <td id="T_4f972_row12_col2" class="data row12 col2" >1</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row13" class="row_heading level0 row13" >-Jim Rice</th>
-      <td id="T_1d1c1_row13_col0" class="data row13 col0" >0</td>
-      <td id="T_1d1c1_row13_col1" class="data row13 col1" >0</td>
-      <td id="T_1d1c1_row13_col2" class="data row13 col2" >0</td>
+      <th id="T_4f972_level0_row13" class="row_heading level0 row13" >-Pat Sheridan</th>
+      <td id="T_4f972_row13_col0" class="data row13 col0" >0</td>
+      <td id="T_4f972_row13_col1" class="data row13 col1" >0</td>
+      <td id="T_4f972_row13_col2" class="data row13 col2" >0</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row14" class="row_heading level0 row14" >-Larry Herndon</th>
-      <td id="T_1d1c1_row14_col0" class="data row14 col0" >0</td>
-      <td id="T_1d1c1_row14_col1" class="data row14 col1" >0</td>
-      <td id="T_1d1c1_row14_col2" class="data row14 col2" >0</td>
+      <th id="T_4f972_level0_row14" class="row_heading level0 row14" >-Len Matuszek</th>
+      <td id="T_4f972_row14_col0" class="data row14 col0" >1</td>
+      <td id="T_4f972_row14_col1" class="data row14 col1" >1</td>
+      <td id="T_4f972_row14_col2" class="data row14 col2" >1</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row15" class="row_heading level0 row15" >-Tim Flannery</th>
-      <td id="T_1d1c1_row15_col0" class="data row15 col0" >1</td>
-      <td id="T_1d1c1_row15_col1" class="data row15 col1" >1</td>
-      <td id="T_1d1c1_row15_col2" class="data row15 col2" >1</td>
+      <th id="T_4f972_level0_row15" class="row_heading level0 row15" >-Denny Walling</th>
+      <td id="T_4f972_row15_col0" class="data row15 col0" >1</td>
+      <td id="T_4f972_row15_col1" class="data row15 col1" >1</td>
+      <td id="T_4f972_row15_col2" class="data row15 col2" >1</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row16" class="row_heading level0 row16" >-Dale Murphy</th>
-      <td id="T_1d1c1_row16_col0" class="data row16 col0" >1</td>
-      <td id="T_1d1c1_row16_col1" class="data row16 col1" >1</td>
-      <td id="T_1d1c1_row16_col2" class="data row16 col2" >1</td>
+      <th id="T_4f972_level0_row16" class="row_heading level0 row16" >-Joe Carter</th>
+      <td id="T_4f972_row16_col0" class="data row16 col0" >0</td>
+      <td id="T_4f972_row16_col1" class="data row16 col1" >0</td>
+      <td id="T_4f972_row16_col2" class="data row16 col2" >0</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row17" class="row_heading level0 row17" >-Jose Cruz</th>
-      <td id="T_1d1c1_row17_col0" class="data row17 col0" >1</td>
-      <td id="T_1d1c1_row17_col1" class="data row17 col1" >1</td>
-      <td id="T_1d1c1_row17_col2" class="data row17 col2" >1</td>
+      <th id="T_4f972_level0_row17" class="row_heading level0 row17" >-Tom Brunansky</th>
+      <td id="T_4f972_row17_col0" class="data row17 col0" >0</td>
+      <td id="T_4f972_row17_col1" class="data row17 col1" >1</td>
+      <td id="T_4f972_row17_col2" class="data row17 col2" >0</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row18" class="row_heading level0 row18" >-Rick Schu</th>
-      <td id="T_1d1c1_row18_col0" class="data row18 col0" >1</td>
-      <td id="T_1d1c1_row18_col1" class="data row18 col1" >0</td>
-      <td id="T_1d1c1_row18_col2" class="data row18 col2" >1</td>
+      <th id="T_4f972_level0_row18" class="row_heading level0 row18" >-Lee Lacy</th>
+      <td id="T_4f972_row18_col0" class="data row18 col0" >0</td>
+      <td id="T_4f972_row18_col1" class="data row18 col1" >0</td>
+      <td id="T_4f972_row18_col2" class="data row18 col2" >0</td>
     </tr>
     <tr>
-      <th id="T_1d1c1_level0_row19" class="row_heading level0 row19" >-Oddibe McDowell</th>
-      <td id="T_1d1c1_row19_col0" class="data row19 col0" >0</td>
-      <td id="T_1d1c1_row19_col1" class="data row19 col1" >1</td>
-      <td id="T_1d1c1_row19_col2" class="data row19 col2" >0</td>
+      <th id="T_4f972_level0_row19" class="row_heading level0 row19" >-Jesse Barfield</th>
+      <td id="T_4f972_row19_col0" class="data row19 col0" >0</td>
+      <td id="T_4f972_row19_col1" class="data row19 col1" >0</td>
+      <td id="T_4f972_row19_col2" class="data row19 col2" >0</td>
     </tr>
   </tbody>
 </table>
@@ -1709,8 +1709,20 @@ NewLeague  [&#39;N&#39; &#39;A&#39;]
 </div>
 </div>
 <div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/sklearn/linear_model/_base.py:155: FutureWarning: &#39;normalize&#39; was deprecated in version 1.0 and will be removed in 1.2. Please leave the normalize parameter to its default value to silence this warning. The default behavior of this estimator is to not do any normalization. If normalization is needed please use sklearn.preprocessing.StandardScaler instead.
+  FutureWarning,
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/opt/hostedtoolcache/Python/3.7.12/x64/lib/python3.7/site-packages/sklearn/linear_model/_base.py:155: FutureWarning: &#39;normalize&#39; was deprecated in version 1.0 and will be removed in 1.2. Please leave the normalize parameter to its default value to silence this warning. The default behavior of this estimator is to not do any normalization. If normalization is needed please use sklearn.preprocessing.StandardScaler instead.
+  FutureWarning,
+</pre></div>
+</div>
+</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
