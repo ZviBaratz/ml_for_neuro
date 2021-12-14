@@ -1,8 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-
 from ipywidgets import interact
-
 
 DEFAULT_TITLE = "Dataset Projected Over {n_dimensions} Dimensions Using PCA"
 PCA_AXIS_LABELS_2D = {
@@ -45,17 +43,18 @@ def plot_reduced(
     # Create a classification_success mask array if required
     classification_success = None
     if true_labels is not None and classification_labels is not None:
-        classification_success = true_labels == classification_labels
-
-    # Create color mapping arrays
-    color = "blue" if classification_labels is None else classification_labels
-    if classification_success is not None:
-        c_1 = (
-            color if isinstance(color, str) else color[classification_success]
-        )
-        c_2 = (
-            color if isinstance(color, str) else color[~classification_success]
-        )
+        classification_success = np.full(true_labels.shape, False)
+        part_length = len(true_labels) // 3
+        for i in range(3):
+            start_index = i * part_length
+            end_index = (i + 1) * part_length
+            category_label = np.bincount(
+                classification_labels[start_index:end_index]
+            ).argmax()
+            part_labels = classification_labels[start_index:end_index]
+            classification_success[start_index:end_index] = (
+                part_labels == category_label
+            )
 
     # Generate plot by number of dimensions
     if n_dimensions == 3:
@@ -64,14 +63,18 @@ def plot_reduced(
             fig = plt.figure(figsize=(8, 8))
             ax = fig.add_subplot(111, projection="3d")
             if classification_success is None:
-                ax.scatter(*X_reduced.T, c=color)
+                ax.scatter(*X_reduced.T, c=classification_labels)
             else:
                 # Plot correct labels
-                ax.scatter(*X_reduced[classification_success].T, c=c_1, s=60)
+                ax.scatter(
+                    *X_reduced[classification_success, :].T,
+                    c=classification_labels[classification_success],
+                    s=60,
+                )
                 # Plot incorrect labels
                 ax.scatter(
                     *X_reduced[~classification_success].T,
-                    c=c_2,
+                    c=classification_labels[~classification_success],
                     s=60,
                     marker="x",
                 )
@@ -85,22 +88,20 @@ def plot_reduced(
         # Create 2D scatter plot
         fig, ax = plt.subplots(figsize=(6, 4))
         if classification_success is None:
-            if true_labels is not None:
-                color = true_labels
-            ax.scatter(*X_reduced.T, c=color)
+            ax.scatter(*X_reduced.T, c=classification_labels)
         else:
             success = X_reduced[classification_success]
             failure = X_reduced[~classification_success]
             # Plot correct labels
             ax.scatter(
                 *success.T,
-                c=c_1,
+                c=classification_labels[classification_success],
                 label="Corrent Label",
             )
             # Plot incorrect labels
             ax.scatter(
                 *failure.T,
-                c=c_2,
+                c=classification_labels[~classification_success],
                 marker="x",
                 label="Incorrent Label",
             )
