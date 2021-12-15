@@ -96,14 +96,14 @@ def plot_reduced(
             ax.scatter(
                 *success.T,
                 c=classification_labels[classification_success],
-                label="Corrent Label",
+                label="Correct Label",
             )
             # Plot incorrect labels
             ax.scatter(
                 *failure.T,
                 c=classification_labels[~classification_success],
                 marker="x",
-                label="Incorrent Label",
+                label="Incorrect Label",
             )
             ax.legend(loc="upper center")
         ax.set(
